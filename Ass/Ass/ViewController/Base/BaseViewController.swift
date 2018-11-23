@@ -8,7 +8,7 @@
 import UIKit
 
 /// Base class for all view controllers contained in app.
-class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
     static var logEnabled: Bool = true
     
     private var firstWillAppearOccured = false
@@ -24,19 +24,25 @@ class BaseViewController: UIViewController {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     // MARK: View life cycle
     
-    override func loadView() {
+    override open func loadView() {
         super.loadView()
         
         view.backgroundColor = .white
     }
+
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup()
+    }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !firstWillAppearOccured {
@@ -45,7 +51,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if !firstDidAppearOccured {
