@@ -16,29 +16,26 @@ struct AppInfo: Encodable {
         case deviceModel
         case osVersion
         case bundleID
+        case appVersion
+        case buildNumber
         case appName
-        case date
         case customData
     }
     
     static var customData = CustomData()
     
     static var `default`: AppInfo {
-        let osVersion = UIDevice.current.systemVersion
-        let device = UIDevice.modelIdentifier + " (" + UIDevice.modelName + ")"
-        let bundleID = Bundle.main.bundleIdentifier ?? ""
-        let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
-        
-        return AppInfo(deviceModel: device, osVersion: osVersion, bundleID: bundleID, appName: appName, customData: customData)
+        return AppInfo(customData: customData)
     }
     
     let platform = "ios"
     let deviceMake = "Apple"
-    let deviceModel: String
-    let osVersion: String
-    let bundleID: String
-    let appName: String
-    let date = Date()
+    let deviceModel = UIDevice.modelIdentifier + " (" + UIDevice.modelName + ")"
+    let osVersion = UIDevice.current.systemVersion
+    let bundleID = Bundle.main.bundleIdentifier ?? ""
+    let appVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
+    let buildNumber = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String).map { Int($0)! }
+    let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
     let customData: CustomData
     
     func encode(to encoder: Encoder) throws {
@@ -49,8 +46,9 @@ struct AppInfo: Encodable {
         try container.encode(deviceModel, forKey: .deviceModel)
         try container.encode(osVersion, forKey: .osVersion)
         try container.encode(bundleID, forKey: .bundleID)
+        try container.encode(appVersion, forKey: .appVersion)
+        try container.encode(buildNumber, forKey: .buildNumber)
         try container.encode(appName, forKey: .appName)
-        try container.encode(date.timeIntervalSince1970, forKey: .date)
         
         if !customData.isEmpty {
             try container.encode(customData, forKey: .customData)
@@ -85,6 +83,8 @@ extension AppInfo {
             ("Device", deviceModel),
             ("OS version", osVersion),
             ("App name", appName),
+            ("App version", appVersion),
+            ("Build", buildNumber.map { String($0) } ?? ""),
             ("Bundle ID", bundleID),
         ] + customData
     }
