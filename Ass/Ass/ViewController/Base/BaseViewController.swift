@@ -8,7 +8,7 @@
 import UIKit
 
 /// Base class for all view controllers contained in app.
-class BaseViewController: UIViewController, PopupPresenting {
+class BaseViewController: UIViewController {
     static var logEnabled: Bool = true
     
     private var firstWillAppearOccured = false
@@ -43,8 +43,6 @@ class BaseViewController: UIViewController, PopupPresenting {
             viewWillFirstAppear(animated)
             firstWillAppearOccured = true
         }
-        
-        navigationController?.setNavigationBarHidden(!hasNavigationBar, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {

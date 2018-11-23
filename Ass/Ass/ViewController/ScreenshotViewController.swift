@@ -7,16 +7,10 @@
 //
 
 import UIKit
-import ReactiveSwift
-
-protocol ScreenshotFlowDelegate: class {
-
-}
 
 final class ScreenshotViewController: BaseViewController {
-
-    weak var flowDelegate: ScreenshotFlowDelegate?
-
+    private weak var imageView: UIImageView!
+    
     private let viewModel: ScreenshotViewModeling
 
     // MARK: - Initialization
@@ -36,18 +30,30 @@ final class ScreenshotViewController: BaseViewController {
     override func loadView() {
         super.loadView()
 
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        view.addSubview(imageView)
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        self.imageView = imageView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupBindings()
+        viewModel.delegate = self
+        
+        imageView.image = viewModel.screenshot
     }
+}
 
-    // MARK: - Helpers
-
-    private func setupBindings() {
-
+extension ScreenshotViewController: ScreenshotViewModelingDelegate {
+    func screenshotChanged(in viewModel: ScreenshotViewModeling) {
+        imageView.image = viewModel.screenshot
     }
-
 }
