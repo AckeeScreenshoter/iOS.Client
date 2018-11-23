@@ -12,7 +12,8 @@ typealias CustomData = [String: String]
 struct AppInfo: Encodable {
     enum CodingKeys: String, CodingKey {
         case platform
-        case device
+        case deviceMake
+        case deviceModel
         case osVersion
         case bundleID
         case appName
@@ -24,15 +25,16 @@ struct AppInfo: Encodable {
     
     static var `default`: AppInfo {
         let osVersion = UIDevice.current.systemVersion
-        let device = UIDevice.current.model + " (" + UIDevice.current.localizedModel + ")"
+        let device = UIDevice.modelIdentifier + " (" + UIDevice.modelName + ")"
         let bundleID = Bundle.main.bundleIdentifier ?? ""
         let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
         
-        return AppInfo(device: device, osVersion: osVersion, bundleID: bundleID, appName: appName, customData: customData)
+        return AppInfo(deviceModel: device, osVersion: osVersion, bundleID: bundleID, appName: appName, customData: customData)
     }
     
     let platform = "ios"
-    let device: String
+    let deviceMake = "Apple"
+    let deviceModel: String
     let osVersion: String
     let bundleID: String
     let appName: String
@@ -41,15 +43,18 @@ struct AppInfo: Encodable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        let customDataData = try JSONSerialization.data(withJSONObject: customData, options: .prettyPrinted)
         
         try container.encode(platform, forKey: .platform)
-        try container.encode(device, forKey: .device)
+        try container.encode(deviceMake, forKey: .deviceMake)
+        try container.encode(deviceModel, forKey: .deviceModel)
         try container.encode(osVersion, forKey: .osVersion)
         try container.encode(bundleID, forKey: .bundleID)
         try container.encode(appName, forKey: .appName)
         try container.encode(date.timeIntervalSince1970, forKey: .date)
-        try container.encode(customDataData, forKey: .customData)
+        
+        if !customData.isEmpty {
+            try container.encode(customData, forKey: .customData)
+        }
     }
 }
 
@@ -77,7 +82,7 @@ extension AppInfo: CustomStringConvertible {
 extension AppInfo {
     var keyValueItems: [(key: String, value: String)] {
         return [
-            ("Device", device),
+            ("Device", deviceModel),
             ("OS version", osVersion),
             ("App name", appName),
             ("Bundle ID", bundleID),

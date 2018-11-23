@@ -65,10 +65,11 @@ func createBodyWithParameters(parameters: Data?, filePathKey: String?, imageData
     var body = Data()
     
     if let parameters = parameters {
-            body.appendString("--\(boundary)\r\n")
-            body.appendString("Content-Disposition: form-data; name=\"metadata\"\r\n\r\n")
-            body.append(parameters)
-            body.appendString("\r\n")
+        body.appendString("--\(boundary)\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"metadata\"\r\n")
+        body.appendString("Content-Type: application/json\r\n\r\n")
+        body.append(parameters)
+        body.appendString("\r\n")
     }
     
     let filename = "screenshot.jpg"

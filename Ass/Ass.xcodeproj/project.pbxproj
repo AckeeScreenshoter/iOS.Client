@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		693C40B621A8BF1F009B3C2B /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */; };
 		69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */; };
 		69F1EB9621A8992E00DBB627 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F1EB9421A8992E00DBB627 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69F1EBA121A8995600DBB627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBA021A8995600DBB627 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		69F1EB9121A8992E00DBB627 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F1EB9421A8992E00DBB627 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */,
 				69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */,
 				69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */,
+				693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				69F1EBC021A89B6400DBB627 /* AppDependency.swift in Sources */,
 				69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */,
+				693C40B621A8BF1F009B3C2B /* UIDeviceExtensions.swift in Sources */,
 				69F1EBC921A89F0800DBB627 /* AppInfo.swift in Sources */,
 				69F1EBC621A89BC000DBB627 /* BaseViewModel.swift in Sources */,
 				69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */,
