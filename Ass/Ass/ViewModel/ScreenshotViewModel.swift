@@ -14,6 +14,7 @@ protocol ScreenshotViewModelingActions {
 
 protocol ScreenshotViewModelingDelegate: class {
     func screenshotChanged(in viewModel: ScreenshotViewModeling)
+    func appInfoChanged(in viewModel: ScreenshotViewModeling)
 }
 
 protocol ScreenshotViewModeling: class {
@@ -22,6 +23,8 @@ protocol ScreenshotViewModeling: class {
     var delegate: ScreenshotViewModelingDelegate? { get set }
     
     var screenshot: UIImage { get }
+    var appInfo: AppInfo { get }
+    var canUseShareSheet: Bool { get }
 }
 
 extension ScreenshotViewModeling where Self: ScreenshotViewModelingActions {
@@ -34,6 +37,12 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     weak var delegate: ScreenshotViewModelingDelegate?
     
     let screenshot: UIImage
+    let appInfo = AppInfo.default
+    var canUseShareSheet: Bool {
+        return Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
+            .flatMap { $0 as? String }
+            .map { $0.count > 0 } ?? false
+    }
 
     // MARK: - Initialization
 

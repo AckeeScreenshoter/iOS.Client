@@ -68,6 +68,12 @@ extension AppInfo: Equatable {
     }
 }
 
+extension AppInfo: CustomStringConvertible {
+    var description: String {
+        return keyValueItems.map { $0 + " " + $1 }.joined(separator: ",")
+    }
+}
+
 extension AppInfo {
     var keyValueItems: [(key: String, value: String)] {
         return [

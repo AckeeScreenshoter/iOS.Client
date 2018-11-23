@@ -31,7 +31,7 @@ final class ScreenshotViewController: BaseViewController {
     override func loadView() {
         super.loadView()
 
-        let imageView = UIImageView()
+        let imageView = UIImageView(image: viewModel.screenshot)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
@@ -43,7 +43,7 @@ final class ScreenshotViewController: BaseViewController {
             ])
         self.imageView = imageView
         
-        let debugInfoView = DebugInfoView(appInfo: .default)
+        let debugInfoView = DebugInfoView(appInfo: viewModel.appInfo)
         view.addSubview(debugInfoView)
         NSLayoutConstraint.activate([
             debugInfoView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -15),
@@ -52,10 +52,11 @@ final class ScreenshotViewController: BaseViewController {
             ])
         self.debugInfoView = debugInfoView
         
-        toolbarItems = [
+        
+        toolbarItems = viewModel.canUseShareSheet ? [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
-        ]
+            ] : []
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendTapped))
     }
@@ -64,8 +65,6 @@ final class ScreenshotViewController: BaseViewController {
         super.viewDidLoad()
 
         viewModel.delegate = self
-        
-        imageView.image = viewModel.screenshot
     }
     
     // MARK: - UI actions
@@ -77,7 +76,8 @@ final class ScreenshotViewController: BaseViewController {
     
     @objc
     private func shareTapped() {
-        
+        let shareVC = UIActivityViewController(activityItems: [viewModel.screenshot, viewModel.appInfo.description], applicationActivities: nil)
+        present(shareVC, animated: true)
     }
     
     @objc
@@ -89,5 +89,9 @@ final class ScreenshotViewController: BaseViewController {
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     func screenshotChanged(in viewModel: ScreenshotViewModeling) {
         imageView.image = viewModel.screenshot
+    }
+    
+    func appInfoChanged(in viewModel: ScreenshotViewModeling) {
+        debugInfoView.appInfo = viewModel.appInfo
     }
 }
