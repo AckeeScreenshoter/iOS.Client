@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */; };
 		69F1EB9621A8992E00DBB627 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F1EB9421A8992E00DBB627 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69F1EBA121A8995600DBB627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBA021A8995600DBB627 /* AppDelegate.swift */; };
 		69F1EBA321A8995600DBB627 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBA221A8995600DBB627 /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		69F1EB9121A8992E00DBB627 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F1EB9421A8992E00DBB627 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
 		69F1EB9521A8992E00DBB627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */,
 				69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */,
+				69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69F1EBC021A89B6400DBB627 /* AppDependency.swift in Sources */,
+				69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */,
 				69F1EBC921A89F0800DBB627 /* AppInfo.swift in Sources */,
 				69F1EBC621A89BC000DBB627 /* BaseViewModel.swift in Sources */,
 				69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */,

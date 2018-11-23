@@ -71,7 +71,7 @@ final class ScreenshotViewController: BaseViewController {
     
     @objc
     private func sendTapped() {
-        
+        myImageUploadRequest(image: viewModel.screenshot, appInfo: viewModel.appInfo)
     }
     
     @objc
@@ -84,6 +84,8 @@ final class ScreenshotViewController: BaseViewController {
     private func cancelTapped() {
         dismiss(animated: true)
     }
+    
+    
 }
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
