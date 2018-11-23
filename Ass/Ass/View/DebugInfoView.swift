@@ -24,13 +24,13 @@ final class DebugInfoView: UIView {
         self.appInfo = appInfo
         super.init(frame: .zero)
         
-        let scrollView = UIScrollView()
-        addSubview(scrollView)
-        NSLayoutConstraint.activate(scrollView.equalEdges(to: self))
+        alpha = 0.9
+        backgroundColor = .lightGray
         
         let vStack = UIStackView()
-        scrollView.addSubview(vStack)
-        NSLayoutConstraint.activate(vStack.equalEdges(to: scrollView) + [vStack.widthAnchor.constraint(equalTo: widthAnchor)])
+        vStack.axis = .vertical
+        addSubview(vStack)
+        NSLayoutConstraint.activate(vStack.equalEdges(to: self))
         self.vStack = vStack
         
         updateAppInfo()

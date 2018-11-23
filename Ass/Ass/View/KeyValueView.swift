@@ -23,6 +23,7 @@ final class KeyValueView: UIView {
         self.keyLabel = keyLabel
         
         let valueLabel = UILabel()
+        valueLabel.font = .systemFont(ofSize: UIFont.systemFontSize)
         valueLabel.numberOfLines = 0
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         self.valueLabel = valueLabel
@@ -31,7 +32,7 @@ final class KeyValueView: UIView {
         hStack.distribution = .fill
         hStack.spacing = 10
         addSubview(hStack)
-        NSLayoutConstraint.activate(hStack.equalEdges(to: self))
+        NSLayoutConstraint.activate(hStack.equalEdges(to: self, inset: 5))
     }
     
     required init?(coder aDecoder: NSCoder) {

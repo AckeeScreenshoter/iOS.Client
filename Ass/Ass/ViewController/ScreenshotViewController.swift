@@ -10,6 +10,7 @@ import UIKit
 
 final class ScreenshotViewController: BaseViewController {
     private weak var imageView: UIImageView!
+    private weak var debugInfoView: DebugInfoView!
     
     private let viewModel: ScreenshotViewModeling
 
@@ -41,6 +42,15 @@ final class ScreenshotViewController: BaseViewController {
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
         self.imageView = imageView
+        
+        let debugInfoView = DebugInfoView(appInfo: .default)
+        view.addSubview(debugInfoView)
+        NSLayoutConstraint.activate([
+            debugInfoView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -15),
+            debugInfoView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 15),
+            debugInfoView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -15)
+            ])
+        self.debugInfoView = debugInfoView
     }
 
     override func viewDidLoad() {

@@ -8,15 +8,15 @@
 import UIKit
 
 extension UIView {
-    func equalEdges(to view: UIView) -> [NSLayoutConstraint] {
+    func equalEdges(to view: UIView, inset: CGFloat = 0) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return [
-            leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topAnchor.constraint(equalTo: view.topAnchor),
-            bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
         ]
     }
 }

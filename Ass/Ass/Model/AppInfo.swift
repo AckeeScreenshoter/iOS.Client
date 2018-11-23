@@ -26,7 +26,7 @@ struct AppInfo: Encodable {
         let osVersion = UIDevice.current.systemVersion
         let device = UIDevice.current.model + " (" + UIDevice.current.localizedModel + ")"
         let bundleID = Bundle.main.bundleIdentifier ?? ""
-        let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String) ?? ""
+        let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
         
         return AppInfo(device: device, osVersion: osVersion, bundleID: bundleID, appName: appName, customData: customData)
     }
@@ -73,8 +73,8 @@ extension AppInfo {
         return [
             ("Device", device),
             ("OS version", osVersion),
-            ("appName", appName),
-            ("bundleID", bundleID),
+            ("App name", appName),
+            ("Bundle ID", bundleID),
         ] + customData
     }
 }
