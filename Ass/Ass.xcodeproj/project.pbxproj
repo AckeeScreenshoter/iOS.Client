@@ -21,6 +21,7 @@
 		69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBC221A89B8F00DBB627 /* BaseViewController.swift */; };
 		69F1EBC621A89BC000DBB627 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBC521A89BC000DBB627 /* BaseViewModel.swift */; };
 		69F1EBC921A89F0800DBB627 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBC821A89F0800DBB627 /* AppInfo.swift */; };
+		69F1EBCF21A8A32500DBB627 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		69F1EBC221A89B8F00DBB627 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		69F1EBC521A89BC000DBB627 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		69F1EBC821A89F0800DBB627 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		69F1EB9321A8992E00DBB627 /* Ass */ = {
 			isa = PBXGroup;
 			children = (
+				69F1EBCD21A8A30D00DBB627 /* View */,
 				69F1EBBE21A89B5600DBB627 /* DI */,
 				69F1EBC721A89EF700DBB627 /* Model */,
 				69F1EBB821A89B2000DBB627 /* ViewController */,
@@ -201,6 +204,14 @@
 				69F1EBC821A89F0800DBB627 /* AppInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		69F1EBCD21A8A30D00DBB627 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */,
 				69F1EBBC21A89B3E00DBB627 /* ScreenshotViewModel.swift in Sources */,
 				69F1EBBB21A89B3E00DBB627 /* ScreenshotViewController.swift in Sources */,
+				69F1EBCF21A8A32500DBB627 /* KeyValueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
