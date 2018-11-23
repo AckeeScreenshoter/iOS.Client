@@ -26,7 +26,10 @@ extension UIViewController: Debuggable {
 
     func presentDebugController() {
         guard let screenshotViewController = createScreenshotViewController() else { return }
-        present(screenshotViewController, animated: true, completion: nil)
+        
+        let navVC = UINavigationController(rootViewController: screenshotViewController)
+        navVC.isToolbarHidden = false
+        present(navVC, animated: true, completion: nil)
     }
 
     private func createScreenshotViewController() -> ScreenshotViewController? {

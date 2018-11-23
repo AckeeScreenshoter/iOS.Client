@@ -18,8 +18,8 @@ final class ScreenshotViewController: BaseViewController {
 
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
-
         super.init()
+        self.title = "Debug"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,6 +51,13 @@ final class ScreenshotViewController: BaseViewController {
             debugInfoView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -15)
             ])
         self.debugInfoView = debugInfoView
+        
+        toolbarItems = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        ]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendTapped))
     }
 
     override func viewDidLoad() {
@@ -59,6 +66,23 @@ final class ScreenshotViewController: BaseViewController {
         viewModel.delegate = self
         
         imageView.image = viewModel.screenshot
+    }
+    
+    // MARK: - UI actions
+    
+    @objc
+    private func sendTapped() {
+        
+    }
+    
+    @objc
+    private func shareTapped() {
+        
+    }
+    
+    @objc
+    private func cancelTapped() {
+        dismiss(animated: true)
     }
 }
 
