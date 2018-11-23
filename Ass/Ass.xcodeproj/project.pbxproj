@@ -94,8 +94,7 @@
 		69F1EB9321A8992E00DBB627 /* Ass */ = {
 			isa = PBXGroup;
 			children = (
-				69F1EB9421A8992E00DBB627 /* Ass.h */,
-				69F1EB9521A8992E00DBB627 /* Info.plist */,
+				69F1EBB521A89A6000DBB627 /* Supporting files */,
 			);
 			path = Ass;
 			sourceTree = "<group>";
@@ -103,14 +102,39 @@
 		69F1EB9F21A8995600DBB627 /* AssExample */ = {
 			isa = PBXGroup;
 			children = (
+				69F1EBB721A89A8500DBB627 /* Resources */,
+				69F1EBB621A89A6F00DBB627 /* Supporting files */,
 				69F1EBA021A8995600DBB627 /* AppDelegate.swift */,
 				69F1EBA221A8995600DBB627 /* ViewController.swift */,
-				69F1EBA421A8995600DBB627 /* Main.storyboard */,
-				69F1EBA721A8995700DBB627 /* Assets.xcassets */,
-				69F1EBA921A8995700DBB627 /* LaunchScreen.storyboard */,
-				69F1EBAC21A8995700DBB627 /* Info.plist */,
 			);
 			path = AssExample;
+			sourceTree = "<group>";
+		};
+		69F1EBB521A89A6000DBB627 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				69F1EB9421A8992E00DBB627 /* Ass.h */,
+				69F1EB9521A8992E00DBB627 /* Info.plist */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		69F1EBB621A89A6F00DBB627 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				69F1EBA921A8995700DBB627 /* LaunchScreen.storyboard */,
+				69F1EBA421A8995600DBB627 /* Main.storyboard */,
+				69F1EBAC21A8995700DBB627 /* Info.plist */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		69F1EBB721A89A8500DBB627 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69F1EBA721A8995700DBB627 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
