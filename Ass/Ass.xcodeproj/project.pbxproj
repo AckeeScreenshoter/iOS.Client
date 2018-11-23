@@ -23,6 +23,9 @@
 		69F1EBC921A89F0800DBB627 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBC821A89F0800DBB627 /* AppInfo.swift */; };
 		69F1EBCF21A8A32500DBB627 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */; };
 		F85F88C721A8A0E600786AEC /* Debuggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F88C521A89D6000786AEC /* Debuggable.swift */; };
+		69F1EBD121A8A4E800DBB627 /* DebugInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */; };
+		69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */; };
+		69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		69F1EBC821A89F0800DBB627 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 		F85F88C521A89D6000786AEC /* Debuggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debuggable.swift; sourceTree = "<group>"; };
+		69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfoView.swift; sourceTree = "<group>"; };
+		69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 		69F1EB9321A8992E00DBB627 /* Ass */ = {
 			isa = PBXGroup;
 			children = (
+				69F1EBD221A8A6E600DBB627 /* Extensions */,
 				69F1EBCD21A8A30D00DBB627 /* View */,
 				69F1EBBE21A89B5600DBB627 /* DI */,
 				69F1EBC721A89EF700DBB627 /* Model */,
@@ -212,9 +219,19 @@
 		69F1EBCD21A8A30D00DBB627 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */,
 				69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		69F1EBD221A8A6E600DBB627 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */,
+				69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,8 +352,11 @@
 				69F1EBC621A89BC000DBB627 /* BaseViewModel.swift in Sources */,
 				69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */,
 				F85F88C721A8A0E600786AEC /* Debuggable.swift in Sources */,
+				69F1EBD121A8A4E800DBB627 /* DebugInfoView.swift in Sources */,
+				69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */,
 				69F1EBBC21A89B3E00DBB627 /* ScreenshotViewModel.swift in Sources */,
 				69F1EBBB21A89B3E00DBB627 /* ScreenshotViewController.swift in Sources */,
+				69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */,
 				69F1EBCF21A8A32500DBB627 /* KeyValueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

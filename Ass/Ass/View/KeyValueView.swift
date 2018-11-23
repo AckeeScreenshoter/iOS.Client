@@ -11,7 +11,7 @@ final class KeyValueView: UIView {
     private(set) weak var keyLabel: UILabel!
     private(set) weak var valueLabel: UILabel!
     
-    // MARK: Initializers
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,12 +31,7 @@ final class KeyValueView: UIView {
         hStack.distribution = .fill
         hStack.spacing = 10
         addSubview(hStack)
-        NSLayoutConstraint.activate([
-            hStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            hStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            hStack.topAnchor.constraint(equalTo: topAnchor),
-            hStack.bottomAnchor.constraint(equalTo: bottomAnchor),
-            ])
+        NSLayoutConstraint.activate(hStack.equalEdges(to: self))
     }
     
     required init?(coder aDecoder: NSCoder) {
