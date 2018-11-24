@@ -19,11 +19,12 @@ struct AppInfo: Encodable {
         case appVersion
         case buildNumber
         case appName
+        case note
         case customData
     }
     
     static var `default`: AppInfo {
-        return AppInfo(customData: Ass.customData)
+        return AppInfo(note: nil, customData: Ass.customData)
     }
     
     let platform = "ios"
@@ -34,6 +35,7 @@ struct AppInfo: Encodable {
     let appVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
     let buildNumber = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String).map { Int($0)! }
     let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
+    let note: String?
     let customData: CustomData
     
     func encode(to encoder: Encoder) throws {
@@ -47,6 +49,7 @@ struct AppInfo: Encodable {
         try container.encode(appVersion, forKey: .appVersion)
         try container.encode(buildNumber, forKey: .buildNumber)
         try container.encode(appName, forKey: .appName)
+        try container.encodeIfPresent(note, forKey: .note)
         
         if !customData.isEmpty {
             try container.encode(customData, forKey: .customData)
