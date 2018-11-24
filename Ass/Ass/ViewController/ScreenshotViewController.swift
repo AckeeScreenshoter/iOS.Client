@@ -11,6 +11,7 @@ import UIKit
 final class ScreenshotViewController: BaseViewController {
     private weak var imageView: UIImageView!
     private weak var debugInfoView: DebugInfoView!
+    private weak var loader: AssLoader!
     
     private let viewModel: ScreenshotViewModeling
 
@@ -52,6 +53,11 @@ final class ScreenshotViewController: BaseViewController {
             ])
         self.debugInfoView = debugInfoView
         
+        let loader = AssLoader()
+        loader.isHidden = true
+        view.addSubview(loader)
+        loader.equalEdges(to: view)
+        self.loader = loader
         
         toolbarItems = viewModel.canUseShareSheet ? [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -88,19 +94,25 @@ final class ScreenshotViewController: BaseViewController {
     // MARK: - Private helpers
     
     private func startLoading() {
-        
+        loader.isHidden = false
     }
     
     private func setUploadProgress(_ progress: Double) {
-        
+        loader.setProgress(progress)
     }
     
     private func stopLoading() {
-        
+        loader.isHidden = true
+        loader.setProgress(0)
     }
     
     private func uploadSucceeded() {
-        
+        let alertVC = UIAlertController(title: "Success", message: "Your screenshot was successfully uploaded", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        }
+        alertVC.addAction(ok)
+        present(alertVC, animated: true)
     }
 }
 

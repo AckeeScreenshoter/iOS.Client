@@ -13,6 +13,7 @@
 		693C40BF21A9508B009B3C2B /* UploadScreenshotOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40BE21A9508B009B3C2B /* UploadScreenshotOperation.swift */; };
 		693C40C121A95232009B3C2B /* URLRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40C021A95231009B3C2B /* URLRequestOperation.swift */; };
 		693C40C421A96711009B3C2B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40C321A96711009B3C2B /* Action.swift */; };
+		693C40C621A96B4B009B3C2B /* AssLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40C521A96B4B009B3C2B /* AssLoader.swift */; };
 		69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */; };
 		69F1EB9621A8992E00DBB627 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F1EB9421A8992E00DBB627 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69F1EBA121A8995600DBB627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBA021A8995600DBB627 /* AppDelegate.swift */; };
@@ -66,6 +67,7 @@
 		693C40BE21A9508B009B3C2B /* UploadScreenshotOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadScreenshotOperation.swift; sourceTree = "<group>"; };
 		693C40C021A95231009B3C2B /* URLRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestOperation.swift; sourceTree = "<group>"; };
 		693C40C321A96711009B3C2B /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		693C40C521A96B4B009B3C2B /* AssLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssLoader.swift; sourceTree = "<group>"; };
 		69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		69F1EB9121A8992E00DBB627 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F1EB9421A8992E00DBB627 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */,
 				69F1EBCE21A8A32500DBB627 /* KeyValueView.swift */,
+				693C40C521A96B4B009B3C2B /* AssLoader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */,
 				69F1EBBC21A89B3E00DBB627 /* ScreenshotViewModel.swift in Sources */,
 				693C40B821A94E2B009B3C2B /* ScreenshotAPIService.swift in Sources */,
+				693C40C621A96B4B009B3C2B /* AssLoader.swift in Sources */,
 				69F1EBBB21A89B3E00DBB627 /* ScreenshotViewController.swift in Sources */,
 				69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */,
 				693C40BF21A9508B009B3C2B /* UploadScreenshotOperation.swift in Sources */,
