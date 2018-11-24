@@ -12,7 +12,21 @@ enum RequestError: Error {
     case noData
 }
 
-struct APIService {
-    func upload(screenshot: UIImage, appInfo: AppInfo, completion: @escaping (Result<Void, RequestError>) -> Void) {
+protocol ScreenshotAPIServicing {
+    func upload(screenshot: UIImage, appInfo: AppInfo, progress: ProgressBlock?, completion: @escaping (Result<Void, RequestError>) -> Void)
+}
+
+struct ScreenshotAPISercice: ScreenshotAPIServicing {
+    private let operationQueue = OperationQueue()
+    
+    func upload(screenshot: UIImage, appInfo: AppInfo, progress: ProgressBlock?, completion: @escaping (Result<Void, RequestError>) -> Void) {
+        let uploadOperation = UploadScreenshotOperation(screenshot: screenshot, appInfo: appInfo)
+        
+        uploadOperation.completionBlock = { [weak uploadOperation] in
+            let result = uploadOperation?.result ?? .failure(.noData)
+            completion(result.map { _ in })
+        }
+        
+        operationQueue.addOperation(uploadOperation)
     }
 }

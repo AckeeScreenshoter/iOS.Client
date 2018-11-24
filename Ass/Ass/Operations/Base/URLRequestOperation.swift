@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias ProgressBlock = (Double) -> ()
+
 class URLRequestOperation: Operation {
 
     override var isFinished: Bool { return _isFinished }
@@ -32,7 +34,7 @@ class URLRequestOperation: Operation {
     let urlRequest: URLRequest
     var result: Result<Data?, RequestError>?
     
-    var progressBlock: (Double) -> () = { _ in }
+    var progressBlock: ProgressBlock?
     
     private var requestTask: URLSessionTask?
     private var sentProgressObservation: NSKeyValueObservation?
@@ -89,6 +91,6 @@ class URLRequestOperation: Operation {
         guard let task = requestTask else { return }
         
         let progress = Double(task.countOfBytesSent + task.countOfBytesReceived) / Double(task.countOfBytesExpectedToSend + task.countOfBytesExpectedToReceive)
-        progressBlock(progress)
+        progressBlock?(progress)
     }
 }
