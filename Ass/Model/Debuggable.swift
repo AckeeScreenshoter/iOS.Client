@@ -36,6 +36,11 @@ public extension Debuggable where Self: UIViewController {
     }
     
     func setupAss(gesture: UIGestureRecognizer?) {
+        guard Ass.missingFields.isEmpty else {
+            assertionFailure("Debuggable view cannot be set, some mangatory config fields are missing (" + Ass.missingFields.description + ")")
+            return
+        }
+        
         guard !wasSet else { return }
         wasSet = true
         

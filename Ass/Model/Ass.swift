@@ -12,6 +12,14 @@ public enum Ass {
     /// Authorization header for communication with API
     public static var authorization: String?
     
+    /// BaseURL for sending data
+    public static var baseURL: URL?
+    
     /// Custom data that are appended to default information
     public static var customData = CustomData()
+    
+    internal static var missingFields: [String] {
+        if baseURL == nil { return ["baseURL"] }
+        return []
+    }
 }

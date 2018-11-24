@@ -23,7 +23,7 @@ final class UploadScreenshotOperation: URLRequestOperation {
     // MARK: - Private helpers
     
     private static func createRequest(for screenshot: UIImage, appInfo: AppInfo) -> URLRequest {
-        let url = URL(string: "https://requestbin.fullcontact.com/1aoiaq11")!
+        let url = URL(string: "something", relativeTo: Ass.baseURL)!
         let boundary = "cz.ackee.enterprise.ass"
         var request = URLRequest(url: url)
         
