@@ -8,6 +8,13 @@
 import UIKit
 import Ass
 
-final class ViewController: BaseViewController {
+final class ViewController: BaseViewController, Debuggable {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupAss()
+    }
+    
 }
 

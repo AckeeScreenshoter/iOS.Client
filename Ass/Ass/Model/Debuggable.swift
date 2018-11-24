@@ -7,20 +7,19 @@
 
 import UIKit
 
-protocol Debuggable {
-    func setup()
-    func presentDebugController()
+public protocol Debuggable {
+    func setupAss()
 }
 
-extension UIViewController: Debuggable {
-    func setup() {
+public extension Debuggable where Self: UIViewController {
+    func setupAss() {
         // TODO: Handle "double set-up"
         let gestureRecognizer = defaultGestureRecognizer()
-        gestureRecognizer.addTarget(self, action: #selector(debugGestureMade))
+        gestureRecognizer.onAction { [weak self] _ in self?.debugGestureMade() }
         view.addGestureRecognizer(gestureRecognizer)
     }
 
-    @objc func debugGestureMade() {
+    func debugGestureMade() {
         presentDebugController()
     }
 

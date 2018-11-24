@@ -35,12 +35,6 @@ open class BaseViewController: UIViewController {
         
         view.backgroundColor = .white
     }
-
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setup()
-    }
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
