@@ -27,6 +27,11 @@ final class AssLoader: UIView {
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = .lightGray
+        addSubview(backgroundView)
+        NSLayoutConstraint.activate([
+            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
         
         let vStack = UIStackView(arrangedSubviews: [loadingAI, percentLabel])
         vStack.axis = .vertical
