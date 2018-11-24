@@ -9,56 +9,52 @@ import UIKit
 
 /// Conform to this protocol if you want present screenshot uploader
 public protocol Debuggable: class {
-    /// Setup screenshot uploader presentation with given gesture
-    ///
-    /// Gesture recognizer is action is added automatically to view hierarchy,
-    /// also recognizer actions is added automatically
-    func setupAss(gesture: UIGestureRecognizer?)
-}
-
-public extension Debuggable {
-    /// Setup screenshot uploader presentation with default swipe up gesture
-    ///
-    /// On simulator use 2 finger swipe bottom to up, on device use 3 fingers
-    func setupAss() {
-        setupAss(gesture: nil)
-    }
+    /// Setup screenshot uploader presentation with default shake gesture
+    func setupAss()
 }
 
 private enum Keys {
     static var wasSet = UInt8(0)
+    static var window = UInt8(1)
 }
 
-public extension Debuggable where Self: UIViewController {
-    private var wasSet: Bool {
-        get { return objc_getAssociatedObject(self, &Keys.wasSet) as? Bool ?? false }
-        set { return objc_setAssociatedObject(self, &Keys.wasSet, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+public extension Debuggable where Self: UIResponder {
+    private var window: UIWindow? {
+        get { return objc_getAssociatedObject(self, &Keys.window) as? UIWindow }
+        set { objc_setAssociatedObject(self, &Keys.window, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    func setupAss(gesture: UIGestureRecognizer?) {
+    private var wasSet: Bool {
+        get { return objc_getAssociatedObject(self, &Keys.wasSet) as? Bool ?? false }
+        set { objc_setAssociatedObject(self, &Keys.wasSet, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+    
+    func setupAss() {
         guard Ass.missingFields.isEmpty else {
             assertionFailure("Debuggable view cannot be set, some mangatory config fields are missing (" + Ass.missingFields.description + ")")
             return
         }
         
+        guard canBecomeFirstResponder else {
+            assertionFailure("To use shake gesture \(self) needs to be able to becomeFirstResponder")
+            return
+        }
+        
         guard !wasSet else { return }
         wasSet = true
+    }
+
+    public func presentDebugController() {
+        guard self.window == nil, let screenshotViewController = createScreenshotViewController() else { return }
         
-        let gestureRecognizer = gesture ?? defaultGestureRecognizer()
-        gestureRecognizer.onAction { [weak self] _ in self?.debugGestureMade() }
-        view.addGestureRecognizer(gestureRecognizer)
-    }
-
-    private func debugGestureMade() {
-        presentDebugController()
-    }
-
-    private func presentDebugController() {
-        guard let screenshotViewController = createScreenshotViewController() else { return }
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UIViewController()
+        window.isHidden = false
+        self.window = window
         
         let navVC = UINavigationController(rootViewController: screenshotViewController)
         navVC.isToolbarHidden = false
-        present(navVC, animated: true, completion: nil)
+        window.rootViewController?.present(navVC, animated: true, completion: nil)
     }
 
     private func createScreenshotViewController() -> ScreenshotViewController? {
@@ -71,22 +67,9 @@ public extension Debuggable where Self: UIViewController {
         layer.render(in: context)
         guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
-        let screenshotViewModel = ScreenshotViewModel(dependencies: dependencies, screenshot: screenshot)
-        let screenshotViewController = ScreenshotViewController(viewModel: screenshotViewModel)
-        return screenshotViewController
-    }
-
-    private func defaultGestureRecognizer() -> UIGestureRecognizer {
-        // Use 2 touches in simulator to be able to use "Alt + tap" gesture
-        #if targetEnvironment(simulator)
-        let touches = 2
-        #else
-        let touches = 3
-        #endif
-
-        let gesture = UISwipeGestureRecognizer()
-        gesture.direction = .up
-        gesture.numberOfTouchesRequired = touches
-        return gesture
+        let screenshotVM = ScreenshotViewModel(dependencies: dependencies, screenshot: screenshot)
+        let screenshotVC = ScreenshotViewController(viewModel: screenshotVM)
+        screenshotVC.closeCallback = { [weak self] in self?.window = nil }
+        return screenshotVC
     }
 }

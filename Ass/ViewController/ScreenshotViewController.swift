@@ -9,6 +9,8 @@
 import UIKit
 
 final class ScreenshotViewController: BaseViewController {
+    var closeCallback = { }
+    
     private weak var imageView: UIImageView!
     private weak var debugInfoView: DebugInfoView!
     private weak var loader: AssLoader!
@@ -89,7 +91,7 @@ final class ScreenshotViewController: BaseViewController {
     @objc
     private func cancelTapped() {
         viewModel.actions.upload.operation.cancel()
-        dismiss(animated: true)
+        dismiss(animated: true, completion: closeCallback)
     }
     
     // MARK: - Private helpers
@@ -112,7 +114,7 @@ final class ScreenshotViewController: BaseViewController {
     private func uploadSucceeded() {
         let alertVC = UIAlertController(title: "Success", message: "Your screenshot was successfully uploaded", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.dismiss(animated: true, completion: self?.closeCallback)
         }
         alertVC.addAction(ok)
         present(alertVC, animated: true)

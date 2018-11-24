@@ -9,15 +9,13 @@ import UIKit
 import Ass
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Ass.authorization = "abcd"
+        Ass.baseURL = URL(string: "https://ass-ee.firebaseapp.com")!
         Ass.customData = ["account": "pan.unicorn@ackee.cz", "userID": "10"]
-        
         return true
     }
 
