@@ -14,20 +14,24 @@ class URLRequestOperation: Operation {
     override var isFinished: Bool { return _isFinished }
     private var _isFinished = false {
         willSet {
-            willChangeValue(for: \URLRequestOperation.isFinished)
+            willChangeValue(forKey: "isFinished")
+//            willChangeValue(for: \URLRequestOperation.isFinished)
         }
         didSet {
-            didChangeValue(for: \URLRequestOperation.isFinished)
+            didChangeValue(forKey: "isFinished")
+//            didChangeValue(for: \URLRequestOperation.isFinished)
         }
     }
     
     override var isExecuting: Bool { return _isExecuting }
     private var _isExecuting = false {
         willSet {
-            willChangeValue(for: \.isExecuting)
+            willChangeValue(forKey: "isExecuting")
+//            willChangeValue(for: \.isExecuting)
         }
         didSet {
-            didChangeValue(for: \.isExecuting)
+            didChangeValue(forKey: "isExecuting")
+//            didChangeValue(for: \.isExecuting)
         }
     }
     
@@ -37,9 +41,8 @@ class URLRequestOperation: Operation {
     var progressBlock: ProgressBlock?
     var startBlock = { }
     
+    private lazy var session: URLSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     private var requestTask: URLSessionTask?
-    private var sentProgressObservation: NSKeyValueObservation?
-    private var receivedProgressObservation: NSKeyValueObservation?
     
     // MARK: - Initializers
     
@@ -50,7 +53,7 @@ class URLRequestOperation: Operation {
     // MARK: - Operation override
     
     override func start() {
-        requestTask = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
+        requestTask = session.dataTask(with: urlRequest) { [weak self] data, response, error in
             self?._isExecuting = false
             
             switch (data, error) {
@@ -61,6 +64,7 @@ class URLRequestOperation: Operation {
             
             self?._isFinished = true
         }
+        
         
         super.start()
     }
@@ -79,22 +83,12 @@ class URLRequestOperation: Operation {
         requestTask = nil
         _isFinished = true
     }
-    
-    // MARK: - Private helpers
-    
-    private func observeTask() {
-        sentProgressObservation = requestTask?.observe(\.countOfBytesSent) { [weak self] _, _ in
-            self?.taskChanged()
-        }
-        receivedProgressObservation = requestTask?.observe(\.countOfBytesReceived) { [weak self] _, _ in
-            self?.taskChanged()
-        }
-    }
-    
-    private func taskChanged() {
-        guard let task = requestTask else { return }
-        
-        let progress = Double(task.countOfBytesSent + task.countOfBytesReceived) / Double(task.countOfBytesExpectedToSend + task.countOfBytesExpectedToReceive)
-        progressBlock?(progress)
+}
+
+extension URLRequestOperation: URLSessionDelegate, URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        guard totalBytesExpectedToSend > 0 else { return }
+
+        progressBlock?(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
     }
 }

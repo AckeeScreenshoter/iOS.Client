@@ -21,11 +21,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG" translatesAutoresizingMaskIntoConstraints="NO" id="qfA-PP-XOJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrW-zX-yn9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yrW-zX-yn9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="27x-y1-70Z"/>
+                            <constraint firstAttribute="trailing" secondItem="yrW-zX-yn9" secondAttribute="trailing" id="5p4-dA-lQa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="yrW-zX-yn9" secondAttribute="bottom" id="ERI-cG-iKQ"/>
                             <constraint firstAttribute="bottom" secondItem="qfA-PP-XOJ" secondAttribute="bottom" id="TfC-Cc-fwa"/>
                             <constraint firstAttribute="top" secondItem="qfA-PP-XOJ" secondAttribute="top" id="YFa-LL-eiY"/>
+                            <constraint firstAttribute="top" secondItem="yrW-zX-yn9" secondAttribute="top" id="mbj-fT-r35"/>
                             <constraint firstAttribute="trailing" secondItem="qfA-PP-XOJ" secondAttribute="trailing" id="o4b-Bq-nO4"/>
                             <constraint firstItem="qfA-PP-XOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qbG-e1-5vm"/>
                         </constraints>

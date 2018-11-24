@@ -88,6 +88,7 @@ final class ScreenshotViewController: BaseViewController {
     
     @objc
     private func cancelTapped() {
+        viewModel.actions.upload.operation.cancel()
         dismiss(animated: true)
     }
     
@@ -95,6 +96,7 @@ final class ScreenshotViewController: BaseViewController {
     
     private func startLoading() {
         loader.isHidden = false
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     private func setUploadProgress(_ progress: Double) {
@@ -102,6 +104,7 @@ final class ScreenshotViewController: BaseViewController {
     }
     
     private func stopLoading() {
+        navigationItem.rightBarButtonItem?.isEnabled = true
         loader.isHidden = true
         loader.setProgress(0)
     }
