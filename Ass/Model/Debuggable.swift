@@ -8,17 +8,14 @@
 import UIKit
 
 /// Conform to this protocol if you want present screenshot uploader
-public protocol Debuggable: class {
-    /// Setup screenshot uploader presentation with default shake gesture
-    func setupAss()
-}
+public protocol Debuggable: class { }
 
 private enum Keys {
     static var wasSet = UInt8(0)
     static var window = UInt8(1)
 }
 
-public extension Debuggable where Self: UIResponder {
+public extension Debuggable {
     private var window: UIWindow? {
         get { return objc_getAssociatedObject(self, &Keys.window) as? UIWindow }
         set { objc_setAssociatedObject(self, &Keys.window, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
@@ -27,21 +24,6 @@ public extension Debuggable where Self: UIResponder {
     private var wasSet: Bool {
         get { return objc_getAssociatedObject(self, &Keys.wasSet) as? Bool ?? false }
         set { objc_setAssociatedObject(self, &Keys.wasSet, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-    }
-    
-    func setupAss() {
-        guard Ass.missingFields.isEmpty else {
-            assertionFailure("Debuggable view cannot be set, some mangatory config fields are missing (" + Ass.missingFields.description + ")")
-            return
-        }
-        
-        guard canBecomeFirstResponder else {
-            assertionFailure("To use shake gesture \(self) needs to be able to becomeFirstResponder")
-            return
-        }
-        
-        guard !wasSet else { return }
-        wasSet = true
     }
 
     public func presentDebugController() {
