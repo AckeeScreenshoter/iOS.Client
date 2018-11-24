@@ -77,5 +77,3 @@ final class UploadScreenshotOperation: URLRequestOperation {
         return createMultipartItem(name: name, boundary: boundary, contentType: "image/jpeg", filename: filename, content: imageData)
     }
 }
-
-
