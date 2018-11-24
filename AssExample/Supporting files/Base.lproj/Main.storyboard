@@ -25,14 +25,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdX-bV-HyL">
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Test Alert"/>
+                                <connections>
+                                    <action selector="testAlertTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOF-ED-PGe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yrW-zX-yn9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="27x-y1-70Z"/>
+                            <constraint firstItem="hdX-bV-HyL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="44k-1f-zec"/>
                             <constraint firstAttribute="trailing" secondItem="yrW-zX-yn9" secondAttribute="trailing" id="5p4-dA-lQa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="yrW-zX-yn9" secondAttribute="bottom" id="ERI-cG-iKQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hdX-bV-HyL" secondAttribute="trailing" constant="16" id="GBj-QG-kSR"/>
                             <constraint firstAttribute="bottom" secondItem="qfA-PP-XOJ" secondAttribute="bottom" id="TfC-Cc-fwa"/>
                             <constraint firstAttribute="top" secondItem="qfA-PP-XOJ" secondAttribute="top" id="YFa-LL-eiY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hdX-bV-HyL" secondAttribute="bottom" constant="20" id="hMo-M4-YvF"/>
                             <constraint firstAttribute="top" secondItem="yrW-zX-yn9" secondAttribute="top" id="mbj-fT-r35"/>
                             <constraint firstAttribute="trailing" secondItem="qfA-PP-XOJ" secondAttribute="trailing" id="o4b-Bq-nO4"/>
                             <constraint firstItem="qfA-PP-XOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qbG-e1-5vm"/>

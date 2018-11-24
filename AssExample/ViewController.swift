@@ -23,4 +23,11 @@ final class ViewController: BaseViewController, Debuggable {
         guard case .motionShake = motion else { return }
         presentDebugController()
     }
+    
+    @IBAction func testAlertTapped(_ sender: UIButton) {
+        let alertVC = UIAlertController(title: "Test alert", message: "Message", preferredStyle: .alert)
+        let close = UIAlertAction(title: "Close", style: .default)
+        alertVC.addAction(close)
+        present(alertVC, animated: true)
+    }
 }
