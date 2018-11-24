@@ -7,7 +7,7 @@
 
 import UIKit
 
-typealias CustomData = [String: String]
+public typealias CustomData = [String: String]
 
 struct AppInfo: Encodable {
     enum CodingKeys: String, CodingKey {
@@ -22,10 +22,8 @@ struct AppInfo: Encodable {
         case customData
     }
     
-    static var customData = CustomData()
-    
     static var `default`: AppInfo {
-        return AppInfo(customData: customData)
+        return AppInfo(customData: Ass.customData)
     }
     
     let platform = "ios"

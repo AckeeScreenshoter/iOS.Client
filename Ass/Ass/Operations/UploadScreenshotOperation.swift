@@ -29,7 +29,7 @@ final class UploadScreenshotOperation: URLRequestOperation {
         
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=" + boundary, forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer abcd", forHTTPHeaderField: "Authorization")
+        request.setValue(Ass.authorization.map { "Bearer " + $0 }, forHTTPHeaderField: "Authorization")
         
         let closeBoundaryData = ("--" + boundary + "--\r\n").data(using: .utf8)!
         

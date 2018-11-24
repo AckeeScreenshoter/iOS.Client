@@ -15,11 +15,9 @@ class URLRequestOperation: Operation {
     private var _isFinished = false {
         willSet {
             willChangeValue(forKey: "isFinished")
-//            willChangeValue(for: \URLRequestOperation.isFinished)
         }
         didSet {
             didChangeValue(forKey: "isFinished")
-//            didChangeValue(for: \URLRequestOperation.isFinished)
         }
     }
     
@@ -27,11 +25,9 @@ class URLRequestOperation: Operation {
     private var _isExecuting = false {
         willSet {
             willChangeValue(forKey: "isExecuting")
-//            willChangeValue(for: \.isExecuting)
         }
         didSet {
             didChangeValue(forKey: "isExecuting")
-//            didChangeValue(for: \.isExecuting)
         }
     }
     
