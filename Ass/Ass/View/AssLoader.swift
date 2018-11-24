@@ -19,14 +19,19 @@ final class AssLoader: UIView {
         backgroundColor = UIColor.lightGray.withAlphaComponent(0.6)
         
         let loadingAI = UIActivityIndicatorView(style: .gray)
+        loadingAI.startAnimating()
         self.loadingAI = loadingAI
         
         let percentLabel = UILabel()
+        percentLabel.textAlignment = .center
         percentLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
         self.percentLabel = percentLabel
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = .lightGray
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.layer.cornerRadius = 5
+        backgroundView.layer.masksToBounds = true
         addSubview(backgroundView)
         NSLayoutConstraint.activate([
             backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -38,7 +43,7 @@ final class AssLoader: UIView {
         vStack.alignment = .center
         vStack.spacing = 10
         backgroundView.addSubview(vStack)
-        NSLayoutConstraint.activate(vStack.equalEdges(to: backgroundView))
+        NSLayoutConstraint.activate(vStack.equalEdges(to: backgroundView, inset: 20))
     }
     
     required init?(coder aDecoder: NSCoder) {

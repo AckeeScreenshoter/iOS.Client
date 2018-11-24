@@ -56,7 +56,7 @@ final class ScreenshotViewController: BaseViewController {
         let loader = AssLoader()
         loader.isHidden = true
         view.addSubview(loader)
-        NSLayoutConstraint.activate(view.equalEdges(to: loader))
+        NSLayoutConstraint.activate(loader.equalEdges(to: imageView))
         self.loader = loader
         
         toolbarItems = viewModel.canUseShareSheet ? [
