@@ -49,7 +49,7 @@ class URLRequestOperation: Operation {
     // MARK: - Operation override
     
     override func start() {
-        requestTask = session.dataTask(with: urlRequest) { [weak self] data, response, error in
+        requestTask = session.uploadTask(with: urlRequest, from: urlRequest.httpBody) { [weak self] data, response, error in
             self?._isExecuting = false
             
             switch (data, error) {
@@ -58,7 +58,9 @@ class URLRequestOperation: Operation {
             case (.none, .none): self?.result = Result.failure(.noData)
             }
             
-            self?._isFinished = true
+            DispatchQueue.main.async { [weak self] in
+                self?._isFinished = true
+            }
         }
         
         
@@ -77,14 +79,22 @@ class URLRequestOperation: Operation {
         _isExecuting = false
         requestTask?.cancel()
         requestTask = nil
-        _isFinished = true
+        DispatchQueue.main.async { [weak self] in
+            self?._isFinished = true
+        }
     }
 }
 
-extension URLRequestOperation: URLSessionDelegate, URLSessionTaskDelegate {
+extension URLRequestOperation: URLSessionDataDelegate {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        guard dataTask.countOfBytesExpectedToReceive > 0 else { return }
+        
+        progressBlock?(Double(dataTask.countOfBytesReceived) / Double(dataTask.countOfBytesExpectedToReceive) / 2 + 0.5)
+    }
+    
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         guard totalBytesExpectedToSend > 0 else { return }
 
-        progressBlock?(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
+        progressBlock?(Double(totalBytesSent) / Double(totalBytesExpectedToSend) / 2)
     }
 }
