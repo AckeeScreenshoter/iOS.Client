@@ -9,12 +9,16 @@
 import UIKit
 
 protocol ScreenshotViewModelingActions {
-
+    var upload: Action<UploadScreenshotOperation> { get }
 }
 
 protocol ScreenshotViewModelingDelegate: class {
     func screenshotChanged(in viewModel: ScreenshotViewModeling)
     func appInfoChanged(in viewModel: ScreenshotViewModeling)
+    func uploadStarted(in viewModel: ScreenshotViewModeling)
+    func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling)
+    func uploadFinished(in viewModel: ScreenshotViewModeling)
+    func uploadFailed(with error: RequestError, in viewModel: ScreenshotViewModeling)
 }
 
 protocol ScreenshotViewModeling: class {
@@ -32,7 +36,7 @@ extension ScreenshotViewModeling where Self: ScreenshotViewModelingActions {
 }
 
 final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, ScreenshotViewModelingActions {
-    typealias Dependencies = HasNoDependency
+    typealias Dependencies = HasScreenshotAPI
     
     weak var delegate: ScreenshotViewModelingDelegate?
     
@@ -43,11 +47,14 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
             .flatMap { $0 as? String }
             .map { $0.count > 0 } ?? false
     }
+    
+    let upload: Action<UploadScreenshotOperation>
 
     // MARK: - Initialization
 
     init(dependencies: Dependencies, screenshot: UIImage) {
         self.screenshot = screenshot
+        self.upload = Action(operation: dependencies.screenshotAPI.upload(screenshot: screenshot, appInfo: appInfo))
         super.init()
     }
 }

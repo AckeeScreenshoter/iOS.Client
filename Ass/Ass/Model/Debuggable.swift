@@ -42,7 +42,7 @@ extension UIViewController: Debuggable {
         layer.render(in: context)
         guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
-        let screenshotViewModel = ScreenshotViewModel(dependencies: Dependency(), screenshot: screenshot)
+        let screenshotViewModel = ScreenshotViewModel(dependencies: dependencies, screenshot: screenshot)
         let screenshotViewController = ScreenshotViewController(viewModel: screenshotViewModel)
         return screenshotViewController
     }
@@ -61,8 +61,4 @@ extension UIViewController: Debuggable {
         gesture.numberOfTouchesRequired = touches
         return gesture
     }
-}
-
-struct Dependency: HasNoDependency {
-
 }

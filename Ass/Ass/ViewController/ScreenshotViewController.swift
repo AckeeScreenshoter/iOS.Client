@@ -71,7 +71,7 @@ final class ScreenshotViewController: BaseViewController {
     
     @objc
     private func sendTapped() {
-        myImageUploadRequest(image: viewModel.screenshot, appInfo: viewModel.appInfo)
+        viewModel.actions.upload.start()
     }
     
     @objc
@@ -85,7 +85,23 @@ final class ScreenshotViewController: BaseViewController {
         dismiss(animated: true)
     }
     
+    // MARK: - Private helpers
     
+    private func startLoading() {
+        
+    }
+    
+    private func setUploadProgress(_ progress: Double) {
+        
+    }
+    
+    private func stopLoading() {
+        
+    }
+    
+    private func uploadSucceeded() {
+        
+    }
 }
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
@@ -95,5 +111,29 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         debugInfoView.appInfo = viewModel.appInfo
+    }
+    
+    func uploadStarted(in viewModel: ScreenshotViewModeling) {
+        startLoading()
+    }
+    
+    func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling) {
+        setUploadProgress(progress)
+    }
+    
+    func uploadFinished(in viewModel: ScreenshotViewModeling) {
+        stopLoading()
+        uploadSucceeded()
+    }
+    
+    func uploadFailed(with error: RequestError, in viewModel: ScreenshotViewModeling) {
+        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let retry = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
+            self?.viewModel.actions.upload.start()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alertVC.addAction(retry)
+        alertVC.addAction(cancel)
+        present(alertVC, animated: true)
     }
 }

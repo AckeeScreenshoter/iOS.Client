@@ -9,6 +9,8 @@ import Foundation
 
 protocol HasNoDependency { }
 
-final class AppDependency: HasNoDependency {
-    
+final class AppDependency: HasNoDependency, HasScreenshotAPI {
+    let screenshotAPI: ScreenshotAPIServicing = ScreenshotAPIService()
 }
+
+let dependencies = AppDependency()
