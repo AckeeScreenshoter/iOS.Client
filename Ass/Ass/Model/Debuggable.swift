@@ -7,23 +7,48 @@
 
 import UIKit
 
-public protocol Debuggable {
-    func setupAss()
+/// Conform to this protocol if you want present screenshot uploader
+public protocol Debuggable: class {
+    /// Setup screenshot uploader presentation with given gesture
+    ///
+    /// Gesture recognizer is action is added automatically to view hierarchy,
+    /// also recognizer actions is added automatically
+    func setupAss(gesture: UIGestureRecognizer?)
+}
+
+public extension Debuggable {
+    /// Setup screenshot uploader presentation with default swipe up gesture
+    ///
+    /// On simulator use 2 finger swipe bottom to up, on device use 3 fingers
+    func setupAss() {
+        setupAss(gesture: nil)
+    }
+}
+
+private enum Keys {
+    static var wasSet = UInt8(0)
 }
 
 public extension Debuggable where Self: UIViewController {
-    func setupAss() {
-        // TODO: Handle "double set-up"
-        let gestureRecognizer = defaultGestureRecognizer()
+    private var wasSet: Bool {
+        get { return objc_getAssociatedObject(self, &Keys.wasSet) as? Bool ?? false }
+        set { return objc_setAssociatedObject(self, &Keys.wasSet, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+    
+    func setupAss(gesture: UIGestureRecognizer?) {
+        guard !wasSet else { return }
+        wasSet = true
+        
+        let gestureRecognizer = gesture ?? defaultGestureRecognizer()
         gestureRecognizer.onAction { [weak self] _ in self?.debugGestureMade() }
         view.addGestureRecognizer(gestureRecognizer)
     }
 
-    func debugGestureMade() {
+    private func debugGestureMade() {
         presentDebugController()
     }
 
-    func presentDebugController() {
+    private func presentDebugController() {
         guard let screenshotViewController = createScreenshotViewController() else { return }
         
         let navVC = UINavigationController(rootViewController: screenshotViewController)
@@ -47,7 +72,6 @@ public extension Debuggable where Self: UIViewController {
     }
 
     private func defaultGestureRecognizer() -> UIGestureRecognizer {
-        // TODO: Swipe gesture recognzer?
         // Use 2 touches in simulator to be able to use "Alt + tap" gesture
         #if targetEnvironment(simulator)
         let touches = 2
