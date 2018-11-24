@@ -30,13 +30,12 @@ final class UploadScreenshotOperation: URLRequestOperation {
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=" + boundary, forHTTPHeaderField: "Content-Type")
         
-        let openBoundaryData = ("--" + boundary + "\r\n").data(using: .utf8)!
         let closeBoundaryData = ("--" + boundary + "--\r\n").data(using: .utf8)!
         
         let appInfoData = createMultipartItem(name: "metadata", boundary: boundary, object: appInfo)
         let screenshotData = createMultipartItem(name: "screenshot", boundary: boundary, image: screenshot, filename: "screenshot.jpg")
         
-        request.httpBody = [openBoundaryData, appInfoData, screenshotData, closeBoundaryData]
+        request.httpBody = [appInfoData, "\r\n".data(using: .utf8), screenshotData, closeBoundaryData]
             .compactMap { $0 }
             .reduce(Data()) {
                 var newData = $0
@@ -48,7 +47,7 @@ final class UploadScreenshotOperation: URLRequestOperation {
     }
     
     private static func createMultipartItem(name: String, boundary: String, contentType: String, filename: String?, content: Data) -> Data {
-        var body = Data()
+        var body = ("--" + boundary + "\r\n").data(using: .utf8)!
         
         // Content-Disposition
         let contentDispositionItems = ["Content-Disposition: form-data", "name=\"" + name + "\"", filename.map { "filename=\"" + $0 + "\"" }]
