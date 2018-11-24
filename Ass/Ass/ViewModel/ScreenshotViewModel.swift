@@ -56,5 +56,16 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         self.screenshot = screenshot
         self.upload = Action(operation: dependencies.screenshotAPI.upload(screenshot: screenshot, appInfo: appInfo))
         super.init()
+        
+        upload.operation.startBlock = { [weak self] in self?.delegate?.uploadStarted(in: self!) }
+        upload.operation.progressBlock = { [weak self] in self?.delegate?.uploadProgressChanged($0, in: self!) }
+        upload.operation.completionBlock = { [weak self] in
+            guard let self = self, let result = self.upload.operation.result else { return }
+            
+            switch result {
+            case .success: self.delegate?.uploadFinished(in: self)
+            case .failure(let error): self.delegate?.uploadFailed(with: error, in: self)
+            }
+        }
     }
 }

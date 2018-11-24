@@ -14,24 +14,24 @@ final class ScreenshotViewController: BaseViewController {
     private weak var loader: AssLoader!
     
     private let viewModel: ScreenshotViewModeling
-
+    
     // MARK: - Initialization
-
+    
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
         super.init()
         self.title = "Debug"
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Controller lifecycle
-
+    
     override func loadView() {
         super.loadView()
-
+        
         let imageView = UIImageView(image: viewModel.screenshot)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -56,7 +56,7 @@ final class ScreenshotViewController: BaseViewController {
         let loader = AssLoader()
         loader.isHidden = true
         view.addSubview(loader)
-        NSLayoutConstraint.activate(loader.equalEdges(to: view))
+        NSLayoutConstraint.activate(view.equalEdges(to: loader))
         self.loader = loader
         
         toolbarItems = viewModel.canUseShareSheet ? [
@@ -66,10 +66,10 @@ final class ScreenshotViewController: BaseViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendTapped))
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         viewModel.delegate = self
     }
     
@@ -118,34 +118,46 @@ final class ScreenshotViewController: BaseViewController {
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     func screenshotChanged(in viewModel: ScreenshotViewModeling) {
-        imageView.image = viewModel.screenshot
+        DispatchQueue.main.async { [weak self] in
+            self?.imageView.image = viewModel.screenshot
+        }
     }
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
-        debugInfoView.appInfo = viewModel.appInfo
+        DispatchQueue.main.async { [weak self] in
+            self?.debugInfoView.appInfo = viewModel.appInfo
+        }
     }
     
     func uploadStarted(in viewModel: ScreenshotViewModeling) {
-        startLoading()
+        DispatchQueue.main.async { [weak self] in
+            self?.startLoading()
+        }
     }
     
     func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling) {
-        setUploadProgress(progress)
+        DispatchQueue.main.async { [weak self] in
+            self?.setUploadProgress(progress)
+        }
     }
     
     func uploadFinished(in viewModel: ScreenshotViewModeling) {
-        stopLoading()
-        uploadSucceeded()
+        DispatchQueue.main.async { [weak self] in
+            self?.stopLoading()
+            self?.uploadSucceeded()
+        }
     }
     
     func uploadFailed(with error: RequestError, in viewModel: ScreenshotViewModeling) {
-        let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        let retry = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
-            self?.viewModel.actions.upload.start()
+        DispatchQueue.main.async { [weak self] in
+            let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            let retry = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
+                self?.viewModel.actions.upload.start()
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            alertVC.addAction(retry)
+            alertVC.addAction(cancel)
+            self?.present(alertVC, animated: true)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alertVC.addAction(retry)
-        alertVC.addAction(cancel)
-        present(alertVC, animated: true)
     }
 }

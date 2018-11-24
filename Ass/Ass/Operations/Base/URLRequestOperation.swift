@@ -35,6 +35,7 @@ class URLRequestOperation: Operation {
     var result: Result<Data?, RequestError>?
     
     var progressBlock: ProgressBlock?
+    var startBlock = { }
     
     private var requestTask: URLSessionTask?
     private var sentProgressObservation: NSKeyValueObservation?
@@ -60,9 +61,12 @@ class URLRequestOperation: Operation {
             
             self?._isFinished = true
         }
+        
+        super.start()
     }
     
     override func main() {
+        startBlock()
         _isExecuting = true
         requestTask?.resume()
     }
