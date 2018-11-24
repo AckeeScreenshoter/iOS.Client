@@ -29,35 +29,6 @@ func myImageUploadRequest(image: UIImage, appInfo: AppInfo)
     if(imageData==nil)  { return; }
     
     request.httpBody = createBodyWithParameters(parameters: paramData, filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
-    
-    let task = URLSession.shared.dataTask(with: request) {
-        data, response, error in
-        
-        if error != nil {
-            print("error=\(error)")
-            return
-        }
-        
-        // You can print out response object
-        print("******* response = \(response)")
-        
-        // Print out reponse body
-        let responseString = String(data: data!, encoding: .utf8)
-        print("****** response data = \(responseString!)")
-        
-        do {
-            let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-            
-            print(json)
-            
-        }catch
-        {
-            print(error)
-        }
-        
-    }
-    
-    task.resume()
 }
 
 

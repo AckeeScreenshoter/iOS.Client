@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		693C40B621A8BF1F009B3C2B /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */; };
+		693C40B821A94E2B009B3C2B /* ScreenshotAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40B721A94E2B009B3C2B /* ScreenshotAPIService.swift */; };
+		693C40BC21A94F09009B3C2B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40BB21A94F09009B3C2B /* Result.swift */; };
+		693C40BF21A9508B009B3C2B /* UploadScreenshotOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40BE21A9508B009B3C2B /* UploadScreenshotOperation.swift */; };
+		693C40C121A95232009B3C2B /* URLRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40C021A95231009B3C2B /* URLRequestOperation.swift */; };
 		69DF502621A8B81E00041A79 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */; };
 		69F1EB9621A8992E00DBB627 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F1EB9421A8992E00DBB627 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69F1EBA121A8995600DBB627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBA021A8995600DBB627 /* AppDelegate.swift */; };
@@ -56,6 +60,10 @@
 
 /* Begin PBXFileReference section */
 		693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
+		693C40B721A94E2B009B3C2B /* ScreenshotAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAPIService.swift; sourceTree = "<group>"; };
+		693C40BB21A94F09009B3C2B /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		693C40BE21A9508B009B3C2B /* UploadScreenshotOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadScreenshotOperation.swift; sourceTree = "<group>"; };
+		693C40C021A95231009B3C2B /* URLRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestOperation.swift; sourceTree = "<group>"; };
 		69DF502521A8B81E00041A79 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		69F1EB9121A8992E00DBB627 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F1EB9421A8992E00DBB627 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
@@ -99,6 +107,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		693C40B921A94E8C009B3C2B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				693C40BA21A94E97009B3C2B /* Base */,
+				693C40B721A94E2B009B3C2B /* ScreenshotAPIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		693C40BA21A94E97009B3C2B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		693C40BD21A95078009B3C2B /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				693C40C221A95BB8009B3C2B /* Base */,
+				693C40BE21A9508B009B3C2B /* UploadScreenshotOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		693C40C221A95BB8009B3C2B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				693C40C021A95231009B3C2B /* URLRequestOperation.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		69F1EB8521A898F200DBB627 = {
 			isa = PBXGroup;
 			children = (
@@ -124,8 +165,10 @@
 				69F1EBCD21A8A30D00DBB627 /* View */,
 				69F1EBBE21A89B5600DBB627 /* DI */,
 				69F1EBC721A89EF700DBB627 /* Model */,
+				693C40BD21A95078009B3C2B /* Operations */,
 				69F1EBB821A89B2000DBB627 /* ViewController */,
 				69F1EBBD21A89B4300DBB627 /* ViewModel */,
+				693C40B921A94E8C009B3C2B /* Service */,
 				69F1EBB521A89A6000DBB627 /* Supporting files */,
 			);
 			path = Ass;
@@ -216,6 +259,7 @@
 			children = (
 				F85F88C521A89D6000786AEC /* Debuggable.swift */,
 				69F1EBC821A89F0800DBB627 /* AppInfo.swift */,
+				693C40BB21A94F09009B3C2B /* Result.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,13 +403,17 @@
 				69F1EBC921A89F0800DBB627 /* AppInfo.swift in Sources */,
 				69F1EBC621A89BC000DBB627 /* BaseViewModel.swift in Sources */,
 				69F1EBC321A89B8F00DBB627 /* BaseViewController.swift in Sources */,
+				693C40BC21A94F09009B3C2B /* Result.swift in Sources */,
 				F85F88C721A8A0E600786AEC /* Debuggable.swift in Sources */,
 				69F1EBD121A8A4E800DBB627 /* DebugInfoView.swift in Sources */,
 				69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */,
 				69F1EBBC21A89B3E00DBB627 /* ScreenshotViewModel.swift in Sources */,
+				693C40B821A94E2B009B3C2B /* ScreenshotAPIService.swift in Sources */,
 				69F1EBBB21A89B3E00DBB627 /* ScreenshotViewController.swift in Sources */,
 				69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */,
+				693C40BF21A9508B009B3C2B /* UploadScreenshotOperation.swift in Sources */,
 				69F1EBCF21A8A32500DBB627 /* KeyValueView.swift in Sources */,
+				693C40C121A95232009B3C2B /* URLRequestOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
