@@ -28,7 +28,15 @@ protocol ScreenshotViewModeling: class {
     
     var screenshot: UIImage { get }
     var appInfo: AppInfo { get }
-    var canUseShareSheet: Bool { get }
+    var note: String { get set }
+}
+
+extension ScreenshotViewModeling {
+    var canUseShareSheet: Bool {
+        return Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
+            .flatMap { $0 as? String }
+            .map { $0.count > 0 } ?? false
+    }
 }
 
 extension ScreenshotViewModeling where Self: ScreenshotViewModelingActions {
@@ -40,12 +48,23 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     
     weak var delegate: ScreenshotViewModelingDelegate?
     
-    let screenshot: UIImage
-    let appInfo = AppInfo.default
-    var canUseShareSheet: Bool {
-        return Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
-            .flatMap { $0 as? String }
-            .map { $0.count > 0 } ?? false
+    var screenshot: UIImage {
+        didSet {
+            delegate?.screenshotChanged(in: self)
+            upload.operation.screenshot = screenshot
+        }
+    }
+    var appInfo = AppInfo.default {
+        didSet {
+            delegate?.appInfoChanged(in: self)
+            upload.operation.appInfo = appInfo
+        }
+    }
+    
+    var note = "" {
+        didSet {
+            appInfo.note = note
+        }
     }
     
     let upload: Action<UploadScreenshotOperation>

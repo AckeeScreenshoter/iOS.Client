@@ -31,7 +31,7 @@ class URLRequestOperation: Operation {
         }
     }
     
-    let urlRequest: URLRequest
+    var urlRequest: URLRequest
     var result: Result<Data?, RequestError>?
     
     var progressBlock: ProgressBlock?

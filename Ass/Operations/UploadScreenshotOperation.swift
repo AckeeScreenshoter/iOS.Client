@@ -9,8 +9,17 @@ import UIKit
 
 final class UploadScreenshotOperation: URLRequestOperation {
     
-    let screenshot: UIImage
-    let appInfo: AppInfo
+    var screenshot: UIImage {
+        didSet {
+            urlRequest = UploadScreenshotOperation.createRequest(for: screenshot, appInfo: appInfo)
+        }
+    }
+    
+    var appInfo: AppInfo {
+        didSet {
+            urlRequest = UploadScreenshotOperation.createRequest(for: screenshot, appInfo: appInfo)
+        }
+    }
     
     // MARK: - Initializers
     

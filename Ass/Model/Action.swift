@@ -15,7 +15,7 @@ private let defaultQueue: OperationQueue = {
 }()
 
 final class Action<OperationType: Operation> {
-    var operation: OperationType
+    let operation: OperationType
     
     var isExecuting: Bool { return operation.isExecuting }
     

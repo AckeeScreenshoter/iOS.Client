@@ -36,6 +36,7 @@ final class ScreenshotViewController: BaseViewController {
         super.loadView()
         
         let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.keyboardDismissMode = .onDrag
         view.addSubview(scrollView)
@@ -96,6 +97,7 @@ final class ScreenshotViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        noteTextView.delegate = self
         viewModel.delegate = self
     }
     
@@ -195,5 +197,11 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
             alertVC.addAction(cancel)
             self?.present(alertVC, animated: true)
         }
+    }
+}
+
+extension ScreenshotViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.note = textView.text ?? ""
     }
 }

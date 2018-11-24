@@ -15,7 +15,7 @@ struct AppInfo: Encodable {
         case deviceMake
         case deviceModel
         case osVersion
-        case bundleID
+        case bundleID = "bundleId"
         case appVersion
         case buildNumber
         case appName
@@ -35,7 +35,7 @@ struct AppInfo: Encodable {
     let appVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
     let buildNumber = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String).map { Int($0)! }
     let appName = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
-    let note: String?
+    var note: String?
     let customData: CustomData
     
     func encode(to encoder: Encoder) throws {
