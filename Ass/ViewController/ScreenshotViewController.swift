@@ -11,6 +11,7 @@ import UIKit
 final class ScreenshotViewController: BaseViewController {
     var closeCallback = { }
     
+    private weak var noteTextView: UITextView!
     private weak var imageView: UIImageView!
     private weak var debugInfoView: DebugInfoView!
     private weak var loader: AssLoader!
@@ -34,31 +35,54 @@ final class ScreenshotViewController: BaseViewController {
     override func loadView() {
         super.loadView()
         
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.keyboardDismissMode = .onDrag
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        
+        let noteTitleLabel = createTitleLabel()
+        noteTitleLabel.text = "Note"
+        
+        let noteTextView = UITextView()
+        noteTextView.font = .systemFont(ofSize: UIFont.systemFontSize)
+        noteTextView.isScrollEnabled = false
+        noteTextView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        self.noteTextView = noteTextView
+        
+        let imageTitleLabel = createTitleLabel()
+        imageTitleLabel.text = "Screenshot"
+        
         let imageView = UIImageView(image: viewModel.screenshot)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
+        NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 200)])
         self.imageView = imageView
+        
+        let debugInfoTitle = createTitleLabel()
+        debugInfoTitle.text = "Debug info"
         
         let debugInfoView = DebugInfoView(appInfo: viewModel.appInfo)
         view.addSubview(debugInfoView)
-        NSLayoutConstraint.activate([
-            debugInfoView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -15),
-            debugInfoView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 15),
-            debugInfoView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -15)
-            ])
         self.debugInfoView = debugInfoView
+        
+        let vStack = UIStackView(arrangedSubviews: [noteTitleLabel, noteTextView,
+                                                    imageTitleLabel, imageView,
+                                                    debugInfoTitle, debugInfoView])
+        vStack.axis = .vertical
+        vStack.spacing = 10
+        scrollView.addSubview(vStack)
+        NSLayoutConstraint.activate(vStack.equalEdges(to: scrollView, inset: 15) + [vStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -30)])
         
         let loader = AssLoader()
         loader.isHidden = true
         view.addSubview(loader)
-        NSLayoutConstraint.activate(loader.equalEdges(to: imageView))
+        NSLayoutConstraint.activate(loader.equalEdges(to: scrollView))
         self.loader = loader
         
         toolbarItems = viewModel.canUseShareSheet ? [
@@ -118,6 +142,13 @@ final class ScreenshotViewController: BaseViewController {
         }
         alertVC.addAction(ok)
         present(alertVC, animated: true)
+    }
+    
+    private func createTitleLabel() -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        titleLabel.numberOfLines = 0
+        return titleLabel
     }
 }
 

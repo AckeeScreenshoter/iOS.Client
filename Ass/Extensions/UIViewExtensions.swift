@@ -10,7 +10,6 @@ import UIKit
 extension UIView {
     func equalEdges(to view: UIView, inset: CGFloat = 0) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
-        view.translatesAutoresizingMaskIntoConstraints = false
         
         return [
             leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
