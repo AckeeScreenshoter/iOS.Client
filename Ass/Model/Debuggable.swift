@@ -50,12 +50,12 @@ public extension Debuggable {
     }
     
     private func getScreenshot() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, UIScreen.main.scale)
-        guard let context = UIGraphicsGetCurrentContext() else {
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, true, UIScreen.main.scale)
+        guard UIGraphicsGetCurrentContext() != nil else {
             UIGraphicsEndImageContext()
             return nil
         }
-        UIApplication.shared.windows.forEach { $0.layer.render(in: context)}
+        UIApplication.shared.windows.forEach { $0.drawHierarchy(in: $0.bounds, afterScreenUpdates: true) }
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return screenshot
