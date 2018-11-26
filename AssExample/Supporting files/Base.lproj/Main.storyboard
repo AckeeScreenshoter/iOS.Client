@@ -33,6 +33,12 @@
                                     <action selector="testAlertTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOF-ED-PGe"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Textfield" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s3n-E2-kyx">
+                                <rect key="frame" x="16" y="28" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -43,10 +49,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hdX-bV-HyL" secondAttribute="trailing" constant="16" id="GBj-QG-kSR"/>
                             <constraint firstAttribute="bottom" secondItem="qfA-PP-XOJ" secondAttribute="bottom" id="TfC-Cc-fwa"/>
                             <constraint firstAttribute="top" secondItem="qfA-PP-XOJ" secondAttribute="top" id="YFa-LL-eiY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s3n-E2-kyx" secondAttribute="trailing" constant="16" id="cMf-Dq-9iT"/>
+                            <constraint firstItem="s3n-E2-kyx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="gKo-rK-g7o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hdX-bV-HyL" secondAttribute="bottom" constant="20" id="hMo-M4-YvF"/>
                             <constraint firstAttribute="top" secondItem="yrW-zX-yn9" secondAttribute="top" id="mbj-fT-r35"/>
                             <constraint firstAttribute="trailing" secondItem="qfA-PP-XOJ" secondAttribute="trailing" id="o4b-Bq-nO4"/>
                             <constraint firstItem="qfA-PP-XOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qbG-e1-5vm"/>
+                            <constraint firstItem="s3n-E2-kyx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="xtm-l5-DsL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

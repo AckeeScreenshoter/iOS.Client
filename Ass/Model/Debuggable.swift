@@ -32,6 +32,8 @@ public extension Debuggable {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = UIViewController()
         window.isHidden = false
+        window.backgroundColor = .white
+        window.makeKeyAndVisible()
         self.window = window
         
         let navVC = UINavigationController(rootViewController: screenshotViewController)
@@ -40,18 +42,22 @@ public extension Debuggable {
     }
 
     private func createScreenshotViewController() -> ScreenshotViewController? {
-        // TODO: Error handling
-        guard let window = UIApplication.shared.keyWindow else { return nil }
-        let layer = window.layer
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        layer.render(in: context)
-        guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
-        UIGraphicsEndImageContext()
+        guard let screenshot = getScreenshot() else { return nil }
         let screenshotVM = ScreenshotViewModel(dependencies: dependencies, screenshot: screenshot)
         let screenshotVC = ScreenshotViewController(viewModel: screenshotVM)
         screenshotVC.closeCallback = { [weak self] in self?.window = nil }
         return screenshotVC
+    }
+    
+    private func getScreenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            UIGraphicsEndImageContext()
+            return nil
+        }
+        UIApplication.shared.windows.forEach { $0.layer.render(in: context)}
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshot
     }
 }
