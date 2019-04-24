@@ -26,7 +26,7 @@ public extension Debuggable {
         set { objc_setAssociatedObject(self, &Keys.wasSet, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    public func presentDebugController() {
+    func presentDebugController() {
         guard self.window == nil, let screenshotViewController = createScreenshotViewController() else { return }
         
         let window = UIWindow(frame: UIScreen.main.bounds)
