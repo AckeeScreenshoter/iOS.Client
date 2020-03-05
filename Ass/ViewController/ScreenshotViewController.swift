@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iOSPhotoEditor
 
 final class ScreenshotViewController: BaseViewController {
     var closeCallback = { }
@@ -60,6 +61,7 @@ final class ScreenshotViewController: BaseViewController {
         imageTitleLabel.text = "Screenshot"
         
         let imageView = UIImageView(image: viewModel.screenshot)
+        imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 200)])
@@ -99,9 +101,32 @@ final class ScreenshotViewController: BaseViewController {
         
         noteTextView.delegate = self
         viewModel.delegate = self
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageView.addGestureRecognizer(gestureRecognizer)
     }
     
     // MARK: - UI actions
+    
+    @objc
+    private func imageViewTapped() {
+        let photoEditor = PhotoEditorViewController(nibName:"PhotoEditorViewController", bundle: Bundle(for: PhotoEditorViewController.self))
+        photoEditor.photoEditorDelegate = self
+        
+        photoEditor.modalPresentationStyle = .fullScreen
+
+        //The image to be edited
+        photoEditor.image = imageView.image
+
+        //Optional: To hide controls - array of enum control
+        photoEditor.hiddenControls = [.share, .sticker]
+
+        //Optional: Colors for drawing and Text, If not set default values will be used
+        photoEditor.colors = [.red,.blue,.green, .black, .white, .yellow]
+
+        //Present the View Controller
+        present(photoEditor, animated: true, completion: nil)
+    }
     
     @objc
     private func sendTapped() {
@@ -203,5 +228,15 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
 extension ScreenshotViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         viewModel.note = textView.text ?? ""
+    }
+}
+
+extension ScreenshotViewController: PhotoEditorDelegate {
+    func canceledEditing() {
+        // this function is required
+    }
+    
+    func doneEditing(image: UIImage) {
+        viewModel.screenshot = image
     }
 }

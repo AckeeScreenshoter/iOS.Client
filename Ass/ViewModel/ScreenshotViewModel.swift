@@ -26,7 +26,7 @@ protocol ScreenshotViewModeling: class {
     
     var delegate: ScreenshotViewModelingDelegate? { get set }
     
-    var screenshot: UIImage { get }
+    var screenshot: UIImage { get set }
     var appInfo: AppInfo { get }
     var note: String { get set }
 }

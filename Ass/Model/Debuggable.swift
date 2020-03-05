@@ -37,6 +37,7 @@ public extension Debuggable {
         self.window = window
         
         let navVC = UINavigationController(rootViewController: screenshotViewController)
+        navVC.modalPresentationStyle = .fullScreen
         navVC.isToolbarHidden = false
         window.rootViewController?.present(navVC, animated: true, completion: nil)
     }
