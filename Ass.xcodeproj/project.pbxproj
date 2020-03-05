@@ -35,7 +35,7 @@
 		69F1EBD121A8A4E800DBB627 /* DebugInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */; };
 		69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */; };
 		69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */; };
-		978BBBCD240D0BC100607592 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		978BBBCD240D0BC100607592 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		97C861C12411295300EB4591 /* iOSPhotoEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974D3A67241124E9001CAB9E /* iOSPhotoEditor.framework */; };
 		F85F88C721A8A0E600786AEC /* Debuggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F88C521A89D6000786AEC /* Debuggable.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +68,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				978BBBCD240D0BC100607592 /* (null) in Embed Frameworks */,
+				978BBBCD240D0BC100607592 /* BuildFile in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,7 +178,6 @@
 				69F1EB9F21A8995600DBB627 /* AssExample */,
 				69F1EB9221A8992E00DBB627 /* Products */,
 				574FE6A28F1AAF809B8FF6B3 /* Pods */,
-				974D3A692411252A001CAB9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,13 +318,6 @@
 				69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		974D3A692411252A001CAB9E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
