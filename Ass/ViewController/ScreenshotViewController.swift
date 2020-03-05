@@ -111,15 +111,12 @@ final class ScreenshotViewController: BaseViewController {
     @objc
     private func imageViewTapped() {
         let photoEditor = PhotoEditorViewController(nibName:"PhotoEditorViewController", bundle: Bundle(for: PhotoEditorViewController.self))
+        photoEditor.photoEditorDelegate = self
+        
         photoEditor.modalPresentationStyle = .fullScreen
-//
-//        //PhotoEditorDelegate
-//        photoEditor.photoEditorDelegate = self
 
         //The image to be edited
         photoEditor.image = imageView.image
-        
-        photoEditor.
 
         //Optional: To hide controls - array of enum control
         photoEditor.hiddenControls = [.share, .sticker]
@@ -231,5 +228,15 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
 extension ScreenshotViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         viewModel.note = textView.text ?? ""
+    }
+}
+
+extension ScreenshotViewController: PhotoEditorDelegate {
+    func canceledEditing() {
+        // this function is required
+    }
+    
+    func doneEditing(image: UIImage) {
+        viewModel.screenshot = image
     }
 }
