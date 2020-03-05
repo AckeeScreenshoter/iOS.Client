@@ -2,15 +2,21 @@ PODS:
   - iOSPhotoEditor (1.0.0)
 
 DEPENDENCIES:
-  - iOSPhotoEditor
+  - iOSPhotoEditor (from `https://github.com/AckeeCZ/photo-editor.git`, branch `feature/ACKScreenshotter`)
 
-SPEC REPOS:
-  trunk:
-    - iOSPhotoEditor
+EXTERNAL SOURCES:
+  iOSPhotoEditor:
+    :branch: feature/ACKScreenshotter
+    :git: https://github.com/AckeeCZ/photo-editor.git
+
+CHECKOUT OPTIONS:
+  iOSPhotoEditor:
+    :commit: 8c642551e9321d5dcf6a68241ec4d28ea2c2ccd7
+    :git: https://github.com/AckeeCZ/photo-editor.git
 
 SPEC CHECKSUMS:
   iOSPhotoEditor: 2951f35246a31dcb428b6292248a9c065582d03e
 
-PODFILE CHECKSUM: 3d399d7f2f93578eef08a4a521e9a0944f6c1636
+PODFILE CHECKSUM: 2ed37dd3a9a769c952fb1f75eed9a72384897b33
 
 COCOAPODS: 1.8.4

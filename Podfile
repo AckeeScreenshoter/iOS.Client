@@ -6,7 +6,8 @@ target 'Ass' do
   use_frameworks!
 	
   # Pods for Ass
-  pod 'iOSPhotoEditor' 
+  pod 'iOSPhotoEditor', :git => 'https://github.com/AckeeCZ/photo-editor.git', :branch => 'feature/ACKScreenshotter'
+
 end
 
 target 'AssExample' do
