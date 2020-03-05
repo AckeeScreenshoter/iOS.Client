@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iOSPhotoEditor
 
 final class ScreenshotViewController: BaseViewController {
     var closeCallback = { }
