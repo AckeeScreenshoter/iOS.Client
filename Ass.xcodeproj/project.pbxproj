@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692D7259241C3AB800081A65 /* iOSPhotoEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D7258241C3AB800081A65 /* iOSPhotoEditor.framework */; };
 		693C40B621A8BF1F009B3C2B /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */; };
 		693C40B821A94E2B009B3C2B /* ScreenshotAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40B721A94E2B009B3C2B /* ScreenshotAPIService.swift */; };
 		693C40BC21A94F09009B3C2B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C40BB21A94F09009B3C2B /* Result.swift */; };
@@ -34,8 +35,6 @@
 		69F1EBD121A8A4E800DBB627 /* DebugInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */; };
 		69F1EBD421A8A6F100DBB627 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */; };
 		69F1EBD621A8A83200DBB627 /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */; };
-		97F8D09C24112E5E0074DCC2 /* iOSPhotoEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F8D09924112E300074DCC2 /* iOSPhotoEditor.framework */; };
-		97F8D09F24112F1C0074DCC2 /* iOSPhotoEditor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97F8D09924112E300074DCC2 /* iOSPhotoEditor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F85F88C721A8A0E600786AEC /* Debuggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F88C521A89D6000786AEC /* Debuggable.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,20 +59,10 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97F8D09E24112E5E0074DCC2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				97F8D09F24112F1C0074DCC2 /* iOSPhotoEditor.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		692D7258241C3AB800081A65 /* iOSPhotoEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSPhotoEditor.framework; path = Carthage/Build/iOS/iOSPhotoEditor.framework; sourceTree = "<group>"; };
 		693C40B521A8BF1F009B3C2B /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		693C40B721A94E2B009B3C2B /* ScreenshotAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAPIService.swift; sourceTree = "<group>"; };
 		693C40BB21A94F09009B3C2B /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -104,7 +93,6 @@
 		69F1EBD021A8A4E800DBB627 /* DebugInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfoView.swift; sourceTree = "<group>"; };
 		69F1EBD321A8A6F100DBB627 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		69F1EBD521A8A83200DBB627 /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
-		97F8D09924112E300074DCC2 /* iOSPhotoEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSPhotoEditor.framework; path = Carthage/Build/iOS/iOSPhotoEditor.framework; sourceTree = "<group>"; };
 		F85F88C521A89D6000786AEC /* Debuggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debuggable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97F8D09C24112E5E0074DCC2 /* iOSPhotoEditor.framework in Frameworks */,
+				692D7259241C3AB800081A65 /* iOSPhotoEditor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +159,6 @@
 		69F1EB8521A898F200DBB627 = {
 			isa = PBXGroup;
 			children = (
-				97F8D09924112E300074DCC2 /* iOSPhotoEditor.framework */,
 				69F1EB9321A8992E00DBB627 /* Ass */,
 				69F1EB9F21A8995600DBB627 /* AssExample */,
 				69F1EB9221A8992E00DBB627 /* Products */,
@@ -322,6 +309,7 @@
 		97F8D09B24112E5E0074DCC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				692D7258241C3AB800081A65 /* iOSPhotoEditor.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -348,7 +336,6 @@
 				69F1EB8D21A8992E00DBB627 /* Sources */,
 				69F1EB8E21A8992E00DBB627 /* Frameworks */,
 				69F1EB8F21A8992E00DBB627 /* Resources */,
-				97F8D09E24112E5E0074DCC2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,6 +354,7 @@
 				69F1EB9B21A8995600DBB627 /* Frameworks */,
 				69F1EB9C21A8995600DBB627 /* Resources */,
 				69F1EBB421A8996800DBB627 /* Embed Frameworks */,
+				751A10E9B9D07F72008BE720 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -434,6 +422,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		751A10E9B9D07F72008BE720 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/AssExample-inputPaths.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/AssExample-outputPaths.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		69F1EB8D21A8992E00DBB627 /* Sources */ = {
@@ -575,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -660,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
