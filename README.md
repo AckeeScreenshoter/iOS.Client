@@ -11,7 +11,7 @@ Ass is available through [Carthage](https://github.org/Carthage/Carthage). Just 
 First you need to setup the SDK. You need to provide `baseURL` for the Firebase backend and `authorization` token. Typically you will do that in the app delegate.
 
 ```swift
-Ass.baseURL = URL("https://ass-ee.firebaseapp.com/upload")!
+Ass.baseURL = URL(string: "https://ass-ee.firebaseapp.com/upload")!
 Ass.authorization = "<auth_token>"
 ```
 
