@@ -14,6 +14,7 @@
 		0E55A747242D157800F7109C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A746242D157800F7109C /* Assets.xcassets */; };
 		0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A748242D157800F7109C /* LaunchScreen.storyboard */; };
 		0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECBE57D242D372D00AB4E1E /* SnapKit */; };
+		0EF2772B242D70C000DDE4B7 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2772A242D70C000DDE4B7 /* PHAsset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		0E55A746242D157800F7109C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E55A749242D157800F7109C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E55A74B242D157800F7109C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EF2772A242D70C000DDE4B7 /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +60,24 @@
 		0E55A73C242D157400F7109C /* ass-app */ = {
 			isa = PBXGroup;
 			children = (
+				0E55A741242D157400F7109C /* ViewController.swift */,
+				0EF27729242D70B100DDE4B7 /* Extension */,
 				0E55A73D242D157400F7109C /* AppDelegate.swift */,
 				0E55A73F242D157400F7109C /* SceneDelegate.swift */,
-				0E55A741242D157400F7109C /* ViewController.swift */,
 				0E55A743242D157400F7109C /* Main.storyboard */,
 				0E55A746242D157800F7109C /* Assets.xcassets */,
 				0E55A748242D157800F7109C /* LaunchScreen.storyboard */,
 				0E55A74B242D157800F7109C /* Info.plist */,
 			);
 			path = "ass-app";
+			sourceTree = "<group>";
+		};
+		0EF27729242D70B100DDE4B7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0EF2772A242D70C000DDE4B7 /* PHAsset.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF2772B242D70C000DDE4B7 /* PHAsset.swift in Sources */,
 				0E55A742242D157400F7109C /* ViewController.swift in Sources */,
 				0E55A73E242D157400F7109C /* AppDelegate.swift in Sources */,
 				0E55A740242D157400F7109C /* SceneDelegate.swift in Sources */,
