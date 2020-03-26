@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         }
     
         let tableView = UITableView()
+        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.tableHeaderView = header
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
@@ -42,13 +43,21 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            if #available(iOS 11.0, *) {
+                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            } else {
+                make.top.bottom.equalToSuperview()
+            }
         }
         
         let sendButton = UIButton(type: .system)
         view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            if #available(iOS 11.0, *) {
+                make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            } else {
+                make.trailing.bottom.equalToSuperview().inset(16)
+            }
             make.width.height.equalTo(80)
         }
         sendButton.layer.cornerRadius = 30
@@ -99,7 +108,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.backgroundColor = .systemGray6
+        if #available(iOS 13.0, *) {
+            cell.backgroundColor = .systemGray6
+        } else {
+            cell.backgroundColor = .lightGray
+        }
         cell.textLabel?.text = info[indexPath.row].key
         cell.detailTextLabel?.text = info[indexPath.row].value
         return cell
