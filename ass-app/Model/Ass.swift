@@ -24,9 +24,9 @@ import UIKit
 //    }
 //}
 
-public class Asss: NSObject {
+public class Ass: NSObject {
     
-    public static let shared = Asss()
+    public static let shared = Ass()
     
     /// Authorization header for communication with API
     public var authorization: String?
