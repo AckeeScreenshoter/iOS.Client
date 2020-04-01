@@ -40,6 +40,11 @@ GEM
     aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
     babosa (1.0.3)
+    badge (0.12.0)
+      curb (~> 0.9)
+      fastimage (>= 1.6)
+      fastlane (>= 2.0)
+      mini_magick (>= 4.9.4, < 5.0.0)
     claide (1.0.3)
     cocoapods (1.9.1)
       activesupport (>= 4.0.2, < 5)
@@ -83,6 +88,7 @@ GEM
     commander-fastlane (4.4.6)
       highline (~> 1.7.2)
     concurrent-ruby (1.1.6)
+    curb (0.9.10)
     declarative (0.0.10)
     declarative-option (0.1.0)
     digest-crc (0.5.1)
@@ -140,6 +146,8 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
+    fastlane-plugin-badge (1.4.0)
+      badge (~> 0.12.0)
     ffi (1.12.2)
     fourflusher (2.3.1)
     fuzzy_match (2.0.4)
@@ -253,6 +261,7 @@ DEPENDENCIES
   ACKFastlane!
   cocoapods (~> 1.7)
   fastlane (~> 2.130)
+  fastlane-plugin-badge
   xcode-install (~> 2.6)
 
 BUNDLED WITH

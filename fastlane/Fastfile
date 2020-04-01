@@ -3,7 +3,7 @@ require 'ACKFastlane'
 import(ACKFastlane.fastfilePath)
 
 INHOUSE_APPLE_ID = "unicorn@ackee.cz"
-PRODUCTION_TEAM_ID = "3SMVP6VZP8" # string identifier
+PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
 PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
 HOCKEY_APP_ID = "6392938454cb47f59485d9a82d86e2db"
 
