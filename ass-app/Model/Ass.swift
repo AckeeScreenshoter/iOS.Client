@@ -38,9 +38,12 @@ public class Ass: NSObject {
     
     public var enable: Bool = false {
         didSet {
+            print("enable \(enable)")
             if enable && !oldValue {
+                print("adding ovserver")
                 addObservers()
             } else if !enable && oldValue {
+                print("removing observer")
                 removeObservers()
             }
         }
@@ -60,7 +63,9 @@ public class Ass: NSObject {
         
         let screenshotObserver = NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
+            print("creating url for screenshot")
             let url = URL(string: self.createDeeplink(for: .screenshot))!
+            print("url for screenshot \(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         self.screenshotObserver = screenshotObserver
@@ -78,7 +83,9 @@ public class Ass: NSObject {
                 let isCaptured = UIScreen.main.isCaptured
                 if !isCaptured && isBeingCaptured {
                     isBeingCaptured = isCaptured
+                    print("creating url for record")
                     let url = URL(string: createDeeplink(for: .recording))!
+                    print("url for record \(url)")
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 }
@@ -92,3 +99,4 @@ public class Ass: NSObject {
         return "ass-app://ass.com?mediaType=" + mediaType.rawValue + "&" + appInfo.toHeader
     }
 }
+
