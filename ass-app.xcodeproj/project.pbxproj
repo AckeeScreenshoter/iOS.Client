@@ -539,6 +539,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pan CI (Q8VZP6UP2N)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXDF48X6VX;
 				INFOPLIST_FILE = "ass-app/Info.plist";
@@ -548,7 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cz.ackee.enterprise.ass.dev;
 				PRODUCT_NAME = Ass;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development cz.ackee.enterprise.* 1585827061";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -559,6 +560,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXDF48X6VX;
 				INFOPLIST_FILE = "ass-app/Info.plist";
@@ -568,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cz.ackee.enterprise.ass;
 				PRODUCT_NAME = Ass;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse cz.ackee.enterprise.*";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
