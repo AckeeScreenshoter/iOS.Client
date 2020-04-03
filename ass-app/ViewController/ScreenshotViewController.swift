@@ -86,6 +86,7 @@ class ScreenshotViewController: UIViewController {
         self.sendButton = sendButton
         
         let loader = AssLoader()
+        view.addSubview(loader)
         loader.isHidden = true
         loader.snp.makeConstraints { make in
             make.edges.equalToSuperview()
