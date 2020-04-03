@@ -2,9 +2,14 @@ require 'ACKFastlane'
 
 import(ACKFastlane.fastfilePath)
 
+CONFIGURATIONS = {
+    "Debug" => "development",
+    "Release" => "enterprise",
+}
+
+
 INHOUSE_APPLE_ID = "unicorn@ackee.cz"
 PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
 PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
-HOCKEY_APP_ID = "6392938454cb47f59485d9a82d86e2db"
 
-ENV["XCODE_VERSION"] = "~> 10.3"
+ENV["XCODE_VERSION"] = "~> 11.3"
