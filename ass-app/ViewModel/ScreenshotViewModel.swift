@@ -70,6 +70,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     var screenshot: UIImage? {
         didSet {
             delegate?.screenshotChanged(in: self)
+            upload.operation.recordURL = nil
             upload.operation.screenshot = screenshot
         }
     }
@@ -77,6 +78,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     var recordURL: URL? {
         didSet {
             delegate?.recordURLChanged(in: self)
+            upload.operation.screenshot = nil
             upload.operation.recordURL = recordURL
         }
     }

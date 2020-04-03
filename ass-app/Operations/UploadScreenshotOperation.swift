@@ -13,14 +13,14 @@ final class UploadMultipartDataOperation: URLRequestOperation {
     
     var screenshot: UIImage? {
         didSet {
-            recordURL = nil
+            guard let screenshot = screenshot else { return }
             updateRequest()
         }
     }
     
     var recordURL: URL? {
         didSet {
-            screenshot = nil
+            guard let recordURL = recordURL else { return }
             updateRequest()
         }
     }
