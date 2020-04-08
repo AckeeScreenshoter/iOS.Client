@@ -64,9 +64,7 @@ public class Ass: NSObject {
         let screenshotObserver = NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
             print("creating url for screenshot")
-            let string = self.createDeeplink(for: .screenshot)
-            print("string \(string)")
-            let url = URL(string: string)!
+            guard let url = self.createDeeplink(for: .screenshot) else { return }
             print("url for screenshot \(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -86,7 +84,7 @@ public class Ass: NSObject {
                 if !isCaptured && isBeingCaptured {
                     isBeingCaptured = isCaptured
                     print("creating url for record")
-                    let url = URL(string: createDeeplink(for: .recording))!
+                    guard let url = self.createDeeplink(for: .recording) else { return }
                     print("url for record \(url)")
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
@@ -97,12 +95,17 @@ public class Ass: NSObject {
         }
     }
     
-    private func createDeeplink(for mediaType: MediaType) -> String {
+    private func createDeeplink(for mediaType: MediaType) -> URL? {
         let mediaTypeString = mediaType.rawValue
         print("medita type string \(mediaTypeString)")
-        let appInfoString = appInfo.toHeader
-        print("app info string \(appInfoString)")
-        return "ass-app://ass.com?mediaType=" + mediaTypeString + "&" + appInfoString
+        let appInfoQueryItems = appInfo.queryItems
+        print("app info query items \(appInfoQueryItems)")
+        let mediaQueryItem = URLQueryItem(name: "mediaType", value: mediaTypeString)
+        var urlComponents = URLComponents(string: "")
+        urlComponents?.queryItems = appInfoQueryItems + [mediaQueryItem]
+        urlComponents?.scheme = "ass-app"
+        urlComponents?.host = "ass.cz"
+        return urlComponents?.url
     }
 }
 
