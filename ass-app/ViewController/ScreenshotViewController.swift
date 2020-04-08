@@ -13,12 +13,23 @@ import AVKit
 
 class ScreenshotViewController: UIViewController {
     
+    /// Displays lastly created or updated photo from gallery
+    ///
+    /// `isHidden == true` when `avPlayerController.view.isHidden == false` and vice versa.
     private weak var imageView: UIImageView!
-    private weak var avPlayerController: AVPlayerViewController!
-    private weak var sendButton: UIButton!
-    private weak var tableView: UITableView!
-    private weak var loader: AssLoader!
     
+    /// Displays last video from gallery
+    ///
+    /// `view.isHidden == true` when `imageView.isHidden == false` and vice versa.
+    private weak var avPlayerController: AVPlayerViewController!
+    
+    /// Starts an operation to send all data from tableView and image or video to the server
+    private weak var sendButton: UIButton!
+    
+    /// Shows all data sent from application
+    private weak var tableView: UITableView!
+    
+    private weak var loader: AssLoader!
     
     private let viewModel: ScreenshotViewModeling
     

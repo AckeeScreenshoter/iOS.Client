@@ -38,10 +38,12 @@ protocol ScreenshotViewModeling: class {
     /// Last video from the gallery
     var recordURL: URL? { get set }
     
+    /// Used as data source for tableview
     var tableData: [(key: String, value: String)] { get }
     
     var appInfo: [String: String] { get set }
     
+    /// Custom user note
     var note: String? { get set }
 }
 
