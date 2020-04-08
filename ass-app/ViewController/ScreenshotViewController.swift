@@ -25,6 +25,8 @@ class ScreenshotViewController: UIViewController {
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +40,7 @@ class ScreenshotViewController: UIViewController {
         
         let imageView = UIImageView()
         self.imageView = imageView
-        imageView.isHidden = true
+        imageView.isHidden = false
         imageView.contentMode = .scaleAspectFit
         
         header.addSubview(imageView)
@@ -49,6 +51,7 @@ class ScreenshotViewController: UIViewController {
         
         let avPlayerController = AVPlayerViewController()
         self.avPlayerController = avPlayerController
+        avPlayerController.view.isHidden = true
         header.addSubview(avPlayerController.view)
         avPlayerController.view.snp.makeConstraints { make in
             make.edges.equalTo(imageView)
@@ -182,8 +185,9 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     }
     
     func mediaTypeChanged(in viewModel: ScreenshotViewModeling) {
-        imageView.isHidden = !viewModel.isScreenshot
-        avPlayerController.view.isHidden = viewModel.isScreenshot
+        print("media type changed")
+        imageView.isHidden = viewModel.mediaType == .recording
+        avPlayerController.view.isHidden = viewModel.mediaType == .screenshot
     }
 }
 
