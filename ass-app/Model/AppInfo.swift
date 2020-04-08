@@ -48,16 +48,16 @@ public struct AppInfo {
     
     static var `default`: AppInfo = AppInfo()
     
-    public var platform: String          = "ios"
-    public var deviceMake: String        = "Apple"
-    public var deviceMode: String        = UIDevice.modelIdentifier + " (" + UIDevice.modelName + ")"
-    public var osVersion: String         = UIDevice.current.systemVersion
-    public var bundleId: String          = Bundle.main.bundleIdentifier ?? ""
-    public var appVersion: String        = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
-    public var buildNumber: String       = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? ""
-    public var appName: String           = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
+    public var platform:    String        = "ios"
+    public var deviceMake:  String        = "Apple"
+    public var deviceMode:  String        = UIDevice.modelIdentifier + " (" + UIDevice.modelName + ")"
+    public var osVersion:   String        = UIDevice.current.systemVersion
+    public var bundleId:    String        = Bundle.main.bundleIdentifier ?? ""
+    public var appVersion:  String        = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
+    public var buildNumber: String        = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? ""
+    public var appName:     String        = (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? ""
     /// Custom data that are appended to default information
-    public var customData: CustomData    = [:]
+    public var customData:  CustomData    = [:]
     
     var queryItems: [URLQueryItem] {
         Info.allCases.flatMap { $0.queryItems }
