@@ -60,11 +60,13 @@ public class Ass: NSObject {
     
     private func addObservers() {
         UIScreen.main.addObserver(self, forKeyPath: capturedKeyPath, options: .new, context: nil)
-        
+    
         let screenshotObserver = NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
             print("creating url for screenshot")
-            let url = URL(string: self.createDeeplink(for: .screenshot))!
+            let string = self.createDeeplink(for: .screenshot)
+            print("string")
+            let url = URL(string: string)!
             print("url for screenshot \(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -96,7 +98,11 @@ public class Ass: NSObject {
     }
     
     private func createDeeplink(for mediaType: MediaType) -> String {
-        return "ass-app://ass.com?mediaType=" + mediaType.rawValue + "&" + appInfo.toHeader
+        let mediaTypeString = mediaType.rawValue
+        print("medita type string \(mediaTypeString)")
+        let appInfoString = appInfo.toHeader
+        print("app info string \(appInfoString)")
+        return "ass-app://ass.com?mediaType=" + mediaTypeString + "&" + appInfoString
     }
 }
 
