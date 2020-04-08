@@ -2,7 +2,8 @@
 //  AppInfo.swift
 //  Ass
 //
-//  Created by Jakub Olejník on 23/11/2018.
+//  Created by Vendula Švastalová on 08/04/2020.
+//  Copyright © 2020 Vendula Švastalová. All rights reserved.
 //
 
 import UIKit

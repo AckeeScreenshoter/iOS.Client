@@ -10,7 +10,7 @@
 		0E55A73E242D157400F7109C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E55A73D242D157400F7109C /* AppDelegate.swift */; };
 		0E55A747242D157800F7109C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A746242D157800F7109C /* Assets.xcassets */; };
 		0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A748242D157800F7109C /* LaunchScreen.storyboard */; };
-		0EAC31EA243DD91D00F0AC92 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC31E9243DD91D00F0AC92 /* AppInfo.swift */; };
+		0EAC31EC243DDB1100F0AC92 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */; };
 		0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECBE57D242D372D00AB4E1E /* SnapKit */; };
 		0EF27735242E6F7400DDE4B7 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EF27733242E6F7300DDE4B7 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; };
@@ -65,7 +65,7 @@
 		0E55A746242D157800F7109C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E55A749242D157800F7109C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E55A74B242D157800F7109C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EAC31E9243DD91D00F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = SOURCE_ROOT; };
+		0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = "ass-app/Model/AppInfo.swift"; sourceTree = SOURCE_ROOT; };
 		0EF27731242E6F7300DDE4B7 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF27733242E6F7300DDE4B7 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
 		0EF27734242E6F7400DDE4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		0EF278202433A69200DDE4B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0EAC31E9243DD91D00F0AC92 /* AppInfo.swift */,
+				0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,7 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF278272433BAA900DDE4B7 /* MediaType.swift in Sources */,
-				0EAC31EA243DD91D00F0AC92 /* AppInfo.swift in Sources */,
+				0EAC31EC243DDB1100F0AC92 /* AppInfo.swift in Sources */,
 				0EF278232433A9B800DDE4B7 /* UIDeviceExtensions.swift in Sources */,
 				0EF278222433A6B100DDE4B7 /* Ass.swift in Sources */,
 			);
