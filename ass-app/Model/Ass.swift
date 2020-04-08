@@ -65,7 +65,7 @@ public class Ass: NSObject {
             guard let self = self else { return }
             print("creating url for screenshot")
             let string = self.createDeeplink(for: .screenshot)
-            print("string")
+            print("string \(string)")
             let url = URL(string: string)!
             print("url for screenshot \(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
