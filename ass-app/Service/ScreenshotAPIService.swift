@@ -17,11 +17,11 @@ protocol HasScreenshotAPI {
 }
 
 protocol ScreenshotAPIServicing {
-    func upload() -> UploadMultipartDataOperation
+    var uploadOperation: UploadMultipartDataOperation { get }
 }
 
 struct ScreenshotAPIService: ScreenshotAPIServicing {
-    func upload() -> UploadMultipartDataOperation  {
-        return UploadMultipartDataOperation()
+    var uploadOperation: UploadMultipartDataOperation {
+        UploadMultipartDataOperation()
     }
 }
