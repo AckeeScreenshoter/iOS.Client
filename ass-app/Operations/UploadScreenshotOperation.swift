@@ -27,56 +27,38 @@ final class UploadMultipartDataOperation: URLRequestOperation {
     
     var appInfo: [String:String]? {
         didSet {
-            print("did set app info")
             updateRequest()
         }
     }
     
     var baseURL: URL? {
         didSet {
-            print("did set base url")
             updateRequest()
         }
     }
     
     var authorization: String? {
         didSet {
-            print("did set authorization")
             updateRequest()
         }
     }
     
     private func updateRequest() {
-        print("request updating")
         guard let appInfo = appInfo, let baseURL = baseURL, let authorization = authorization else { return }
-        print("request updating all are ok")
         if let screenshot = screenshot {
-            print("request updating for screenshot")
             urlRequest = createRequest(screenshot: screenshot, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
             return
         }
         
         if let recordURL = recordURL {
-            print("request updating for record")
             urlRequest = createRequest(recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
             return
         }
     }
     
-    // MARK: - Initializers
-    
-//    init(screenshot: UIImage, appInfo: [String:String], baseURL: URL, authorization: String) {
-//        self.screenshot = screenshot
-//        self.appInfo = appInfo
-//        self.baseURL = baseURL
-//        self.authorization = authorization
-//        super.init()
-//    }
-    
     // MARK: - Private helpers
     
     //TODO: create request for record
-    
     func createRequest(screenshot: UIImage? = nil, recordURL: URL? = nil, appInfo: [String:String], baseURL: URL, authorization: String) -> URLRequest {
         let url = URL(string: "upload", relativeTo: baseURL)!
         let boundary = "cz.ackee.enterprise.ass"
