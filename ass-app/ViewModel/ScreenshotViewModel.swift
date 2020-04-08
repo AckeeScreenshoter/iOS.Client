@@ -29,10 +29,13 @@ protocol ScreenshotViewModeling: class {
     
     var delegate: ScreenshotViewModelingDelegate? { get set }
     
-    var isScreenshot: Bool { get set }
+    /// Indicates whether the last screenshot is being displayer od the last scren record
+    var mediaType: MediaType { get set }
     
+    /// Last updated image from the gallery
     var screenshot: UIImage? { get set }
     
+    /// Last video from the gallery
     var recordURL: URL? { get set }
     
     var tableData: [(key: String, value: String)] { get }
@@ -59,14 +62,13 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     typealias Dependencies = HasScreenshotAPI
     
     weak var delegate: ScreenshotViewModelingDelegate?
-    
-    /// Indicates whether the last screenshot is being displayer od the last scren record
-    var isScreenshot: Bool = true {
+
+    var mediaType: MediaType = .screenshot {
         didSet {
             delegate?.mediaTypeChanged(in: self)
         }
     }
-    
+
     var screenshot: UIImage? {
         didSet {
             delegate?.screenshotChanged(in: self)
@@ -122,12 +124,17 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     // MARK: - Initialization
 
     init(dependencies: Dependencies) {
-        self.upload = Action(operation: dependencies.screenshotAPI.upload())
+        self.upload = Action(operation: dependencies.screenshotAPI.uploadOperation)
         super.init()
         
-        upload.operation.startBlock = { [weak self] in self?.delegate?.uploadStarted(in: self!) }
-        upload.operation.progressBlock = { [weak self] in self?.delegate?.uploadProgressChanged($0, in: self!) }
+        upload.operation.startBlock = { [weak self] in
+            print("start block on")
+            self?.delegate?.uploadStarted(in: self!) }
+        upload.operation.progressBlock = { [weak self] in
+            print("progress block on \($0)")
+            self?.delegate?.uploadProgressChanged($0, in: self!) }
         upload.operation.completionBlock = { [weak self] in
+            print("completion block on")
             guard let self = self, let result = self.upload.operation.result else { return }
             
             switch result {
