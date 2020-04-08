@@ -32,7 +32,16 @@ public struct AppInfo {
             case .appVersion:       return AppInfo.default.appVersion
             case .buildNumber:      return AppInfo.default.buildNumber
             case .appName:          return AppInfo.default.appName
-            case .customData:       return AppInfo.default.customData.map { $0.key + "=" + $0.value }.joined(separator: "&")
+            case .customData:       return ""
+            }
+        }
+        
+        var queryItems: [URLQueryItem] {
+            switch self {
+            case .customData:
+                return AppInfo.default.customData.map { URLQueryItem(name: $0.key, value: $0.value) }
+            default:
+                return [URLQueryItem(name: self.rawValue, value: self.value)]
             }
         }
     }
@@ -50,10 +59,7 @@ public struct AppInfo {
     /// Custom data that are appended to default information
     public var customData: CustomData    = [:]
     
-    var toHeader: String {
-        Info.allCases.map {
-            // check made because of customData formatting
-            $0.rawValue.isEmpty ? $0.value : $0.rawValue + "=" + $0.value
-        }.joined(separator: "&")
+    var queryItems: [URLQueryItem] {
+        Info.allCases.flatMap { $0.queryItems }
     }
 }
