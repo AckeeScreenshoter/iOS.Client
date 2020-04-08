@@ -89,15 +89,14 @@ public class Ass: NSObject {
     }
     
     private func createDeeplink(for mediaType: MediaType) -> URL? {
-        let mediaTypeString = mediaType.rawValue
-        print("medita type string \(mediaTypeString)")
-        let appInfoQueryItems = appInfo.queryItems
-        print("app info query items \(appInfoQueryItems)")
-        let mediaQueryItem = URLQueryItem(name: "mediaType", value: mediaTypeString)
+        guard let baseURL = baseURL, let authorization = authorization else { return nil }
+        let mediaQueryItem = URLQueryItem(name: Constants.QueryItemKey.mediaType, value: mediaType.rawValue)
+        let baseURLQueryItem = URLQueryItem(name: Constants.QueryItemKey.baseURL, value: baseURL.absoluteString)
+        let authorizationQueryItem = URLQueryItem(name: Constants.QueryItemKey.authorization, value: authorization)
         var urlComponents = URLComponents(string: "")
-        urlComponents?.queryItems = appInfoQueryItems + [mediaQueryItem]
-        urlComponents?.scheme = "ass-app"
-        urlComponents?.host = "ass.cz"
+        urlComponents?.queryItems = appInfo.queryItems + [mediaQueryItem, baseURLQueryItem, authorizationQueryItem]
+        urlComponents?.scheme = Constants.URLComponent.scheme
+        urlComponents?.host = Constants.URLComponent.host
         return urlComponents?.url
     }
 }
