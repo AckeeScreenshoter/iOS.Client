@@ -130,13 +130,14 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         super.init()
         
         upload.operation.startBlock = { [weak self] in
-            print("start block on")
-            self?.delegate?.uploadStarted(in: self!) }
+            self?.delegate?.uploadStarted(in: self!)
+        }
+
         upload.operation.progressBlock = { [weak self] in
-            print("progress block on \($0)")
-            self?.delegate?.uploadProgressChanged($0, in: self!) }
+            self?.delegate?.uploadProgressChanged($0, in: self!)
+        }
+        
         upload.operation.completionBlock = { [weak self] in
-            print("completion block on")
             guard let self = self, let result = self.upload.operation.result else { return }
             
             switch result {
@@ -178,10 +179,6 @@ extension ScreenshotViewModel: PHPhotoLibraryChangeObserver {
         if let fetchResultChangeDetails = changeInstance.changeDetails(for: imageFetchResult) {
             imageFetchResult = fetchResultChangeDetails.fetchResultAfterChanges
             
-            print("changed \(fetchResultChangeDetails.changedObjects.count)")
-            print("inserted \(fetchResultChangeDetails.insertedObjects.count)")
-            print("removed \(fetchResultChangeDetails.removedObjects.count)")
-            
             // When a screenshot is created it is firstly inserted and updated right after that so taking a changed PHAsset gives us the just taken screenshot.
             // When the screenshot is updated by drawing into it this also retrieves the just editted screenshot.
             guard let changed = fetchResultChangeDetails.changedObjects.first else { return }
@@ -192,10 +189,7 @@ extension ScreenshotViewModel: PHPhotoLibraryChangeObserver {
         }
         
         if let fetchResultChangeDetails = changeInstance.changeDetails(for: videoFetchResult) {
-            print("changed \(fetchResultChangeDetails.changedObjects.count)")
-            print("inserted \(fetchResultChangeDetails.insertedObjects.count)")
-            print("removed \(fetchResultChangeDetails.removedObjects.count)")
-            
+ 
             guard let inserted = fetchResultChangeDetails.insertedObjects.first else { return }
             
             /// Update UI on main thread

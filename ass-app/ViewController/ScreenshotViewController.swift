@@ -159,21 +159,18 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     }
     
     func uploadStarted(in viewModel: ScreenshotViewModeling) {
-        print("upload started")
         DispatchQueue.main.async { [weak self] in
             self?.startLoading()
         }
     }
     
     func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling) {
-        print("upload progress changed")
         DispatchQueue.main.async { [weak self] in
             self?.setUploadProgress(progress)
         }
     }
     
     func uploadFinished(in viewModel: ScreenshotViewModeling) {
-        print("upload finished")
         DispatchQueue.main.async { [weak self] in
             self?.stopLoading()
             self?.uploadSucceeded()
@@ -194,7 +191,6 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     }
     
     func mediaTypeChanged(in viewModel: ScreenshotViewModeling) {
-        print("media type changed")
         imageView.isHidden = viewModel.mediaType == .recording
         avPlayerController.view.isHidden = viewModel.mediaType == .screenshot
     }
