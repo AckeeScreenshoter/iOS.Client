@@ -118,11 +118,9 @@ class ScreenshotViewController: UIViewController {
     // MARK: - Private helpers
     private func startLoading() {
         loader.isHidden = false
-        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     private func stopLoading() {
-        navigationItem.rightBarButtonItem?.isEnabled = true
         loader.isHidden = true
         loader.setProgress(0)
     }
