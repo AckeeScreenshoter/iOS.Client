@@ -33,17 +33,20 @@ final class AssLoader: UIView {
         backgroundView.layer.cornerRadius = 5
         backgroundView.layer.masksToBounds = true
         addSubview(backgroundView)
-        NSLayoutConstraint.activate([
-            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor)
-            ])
+        backgroundView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
         
         let vStack = UIStackView(arrangedSubviews: [loadingAI, percentLabel])
         vStack.axis = .vertical
         vStack.alignment = .center
         vStack.spacing = 10
         backgroundView.addSubview(vStack)
-     //   NSLayoutConstraint.activate(vStack.equalEdges(to: backgroundView, inset: 20))
+        vStack.snp.makeConstraints { make in
+            make.edges.equalTo(backgroundView).inset(20)
+        }
+        
+        setProgress(0)
     }
     
     required init?(coder aDecoder: NSCoder) {
