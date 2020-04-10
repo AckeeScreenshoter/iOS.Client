@@ -24,11 +24,11 @@ public class Ass: NSObject {
     public let appInfo: AppInfo = AppInfo.default
     
     /// Needs to be set to `true` in order for Screenshotter actions to be detected.
-    public var enable: Bool = false {
-        didSet {
-            if enable && !oldValue {
+    public var isEnabled: Bool = false {
+        didSet(wasEnabled) {
+            if isEnabled && !wasEnabled {
                 addObservers()
-            } else if !enable && oldValue {
+            } else if !isEnabled && wasEnabled {
                 removeObservers()
             }
         }
