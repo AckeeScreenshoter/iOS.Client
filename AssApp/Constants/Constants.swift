@@ -16,7 +16,7 @@ public enum Constants {
     }
     
     public enum URLComponent {
-        public static var scheme: String = "ass-app"
+        public static var scheme: String = "ass"
         public static var host: String = "ass.cz"
     }
 }

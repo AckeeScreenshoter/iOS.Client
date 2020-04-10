@@ -22,10 +22,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 			<key>CFBundleURLName</key>
-			<string>com.vendulasvastal.ass-app</string>
+			<string>cz.ackee.enterprise.ass</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ass-app</string>
+				<string>ass</string>
 			</array>
 		</dict>
 	</array>

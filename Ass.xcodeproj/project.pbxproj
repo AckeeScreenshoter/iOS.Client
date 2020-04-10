@@ -68,7 +68,7 @@
 		0E55A74B242D157800F7109C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E72E8D8243E014200DC2FD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDeviceExtensions.swift; path = Ass/Extensions/UIDeviceExtensions.swift; sourceTree = SOURCE_ROOT; };
-		0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = "ass-app/Model/AppInfo.swift"; sourceTree = SOURCE_ROOT; };
+		0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = Ass/AppInfo.swift; sourceTree = SOURCE_ROOT; };
 		0EF27731242E6F7300DDE4B7 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF27733242E6F7300DDE4B7 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
 		0EF27734242E6F7400DDE4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		0EF27756242E738A00DDE4B7 /* URLRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestOperation.swift; sourceTree = "<group>"; };
 		0EF27758242E74A000DDE4B7 /* ScreenshotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewModel.swift; sourceTree = "<group>"; };
 		0EF2775B242E74D400DDE4B7 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		0EF27763242E763800DDE4B7 /* Ass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ass.swift; path = "ass-app/Model/Ass.swift"; sourceTree = SOURCE_ROOT; };
+		0EF27763242E763800DDE4B7 /* Ass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ass.swift; path = Ass/Ass.swift; sourceTree = SOURCE_ROOT; };
 		0EF27766242E763800DDE4B7 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		0EF2776E242E7F5000DDE4B7 /* AppDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		0E55A731242D157400F7109C = {
 			isa = PBXGroup;
 			children = (
-				0E55A73C242D157400F7109C /* ass-app */,
+				0E55A73C242D157400F7109C /* AssApp */,
 				0EF27732242E6F7300DDE4B7 /* Ass */,
 				0E55A73B242D157400F7109C /* Products */,
 			);
@@ -125,7 +125,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0E55A73C242D157400F7109C /* ass-app */ = {
+		0E55A73C242D157400F7109C /* AssApp */ = {
 			isa = PBXGroup;
 			children = (
 				0E72E8D7243E012D00DC2FD8 /* Constants */,
@@ -142,7 +142,7 @@
 				0E55A748242D157800F7109C /* LaunchScreen.storyboard */,
 				0E55A74B242D157800F7109C /* Info.plist */,
 			);
-			path = "ass-app";
+			path = AssApp;
 			sourceTree = "<group>";
 		};
 		0E72E8D7243E012D00DC2FD8 /* Constants */ = {
@@ -338,7 +338,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0E55A735242D157400F7109C /* Build configuration list for PBXProject "ass-app" */;
+			buildConfigurationList = 0E55A735242D157400F7109C /* Build configuration list for PBXProject "Ass" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -560,7 +560,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pan CI (Q8VZP6UP2N)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXDF48X6VX;
-				INFOPLIST_FILE = "ass-app/Info.plist";
+				INFOPLIST_FILE = AssApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,7 +581,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXDF48X6VX;
-				INFOPLIST_FILE = "ass-app/Info.plist";
+				INFOPLIST_FILE = AssApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -659,7 +659,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E55A735242D157400F7109C /* Build configuration list for PBXProject "ass-app" */ = {
+		0E55A735242D157400F7109C /* Build configuration list for PBXProject "Ass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0E55A74C242D157800F7109C /* Debug */,
