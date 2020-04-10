@@ -31,6 +31,8 @@ class ScreenshotViewController: UIViewController {
     
     private weak var loader: AssLoader!
     
+    private var noteCell: UITableViewCell!
+    
     private let viewModel: ScreenshotViewModeling
     
     init(viewModel: ScreenshotViewModeling) {
@@ -46,6 +48,22 @@ class ScreenshotViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        
+        let noteCell = UITableViewCell(style: .default, reuseIdentifier: "noteCell")
+        let textView = UITextView()
+        if #available(iOS 13.0, *) {
+            noteCell.backgroundColor = .systemGray6
+            textView.backgroundColor = .systemGray6
+        } else {
+            noteCell.backgroundColor = .lightGray
+            textView.backgroundColor = .lightGray
+        }
+        noteCell.addSubview(textView)
+        textView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
+        self.noteCell = noteCell
         
         let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.0))
         
@@ -198,18 +216,22 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
 
 extension ScreenshotViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.tableData.count
+        viewModel.tableData.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            return noteCell
+        }
+        
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         if #available(iOS 13.0, *) {
             cell.backgroundColor = .systemGray6
         } else {
             cell.backgroundColor = .lightGray
         }
-        cell.textLabel?.text = viewModel.tableData[indexPath.row].key
-        cell.detailTextLabel?.text = viewModel.tableData[indexPath.row].value
+        cell.textLabel?.text = viewModel.tableData[indexPath.row - 1].key
+        cell.detailTextLabel?.text = viewModel.tableData[indexPath.row - 1].value
         return cell
     }
 }
