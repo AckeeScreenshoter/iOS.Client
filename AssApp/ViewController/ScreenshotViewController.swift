@@ -32,6 +32,7 @@ class ScreenshotViewController: UIViewController {
     private weak var loader: AssLoader!
     
     private var noteCell: UITableViewCell!
+    private weak var noteTextView: UITextView!
     
     private let viewModel: ScreenshotViewModeling
     
@@ -51,6 +52,7 @@ class ScreenshotViewController: UIViewController {
         
         let noteCell = UITableViewCell(style: .default, reuseIdentifier: "noteCell")
         let textView = UITextView()
+        self.noteTextView = textView
         if #available(iOS 13.0, *) {
             noteCell.backgroundColor = .systemGray6
             textView.backgroundColor = .systemGray6
@@ -130,6 +132,9 @@ class ScreenshotViewController: UIViewController {
     
     @objc
     private func sendTapped() {
+        
+        // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
+        viewModel.note = noteTextView.text
         viewModel.actions.upload.start()
     }
     

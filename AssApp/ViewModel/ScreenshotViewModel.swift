@@ -150,6 +150,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         PHPhotoLibrary.shared().register(self)
         
         let imageFetchOptions = PHFetchOptions()
+        
         // Photos are fetched by modification date because when the user edits an image in the Photo Library, that asset is likely to be the one that the user wants to use.
         imageFetchOptions.sortDescriptors = [ NSSortDescriptor(key: "modificationDate", ascending: false) ]
         imageFetchResult = PHAsset.fetchAssets(with: .image, options: imageFetchOptions)
