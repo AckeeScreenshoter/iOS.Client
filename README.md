@@ -8,11 +8,11 @@ Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is designed
 
 **Ass application** is available through [App Distribution]() .
 
-Ass framework communicates with the Ass application so the Ass application must be installed on the testing device.
+Ass framework communicates with the AssApp so the AssApp must be installed on the testing device.
 
 ## Usage
 
-First you need to setup the SDK. The Ass framewoekr must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token. This is typically  done in the app delegate.
+First you need to setup the SDK. Ass must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token. This is typically  done in the app delegate.
 
 ```swift
 Ass.shared.isEnabled = true
