@@ -31,6 +31,7 @@ class ScreenshotViewController: UIViewController {
     
     private weak var loader: AssLoader!
     
+    /// Button displayed when the app is not opened from deeplink.
     private weak var readmeLink: UIButton!
     
     private var noteCell: UITableViewCell!
