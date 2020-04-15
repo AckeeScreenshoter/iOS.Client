@@ -31,8 +31,11 @@ class ScreenshotViewController: UIViewController {
     
     private weak var loader: AssLoader!
     
+    private weak var readmeLink: UIButton!
+    
     private var noteCell: UITableViewCell!
-    private weak var noteTextView: UITextView!
+    
+    private weak var noteTextField: UITextField!
     
     private let viewModel: ScreenshotViewModeling
     
@@ -51,17 +54,17 @@ class ScreenshotViewController: UIViewController {
         super.loadView()
         
         let noteCell = UITableViewCell(style: .default, reuseIdentifier: "noteCell")
-        let textView = UITextView()
-        self.noteTextView = textView
+        let textField = UITextField()
+        self.noteTextField = textField
         if #available(iOS 13.0, *) {
             noteCell.backgroundColor = .systemGray6
-            textView.backgroundColor = .systemGray6
+            textField.backgroundColor = .systemGray6
         } else {
             noteCell.backgroundColor = .lightGray
-            textView.backgroundColor = .lightGray
+            textField.backgroundColor = .lightGray
         }
-        noteCell.addSubview(textView)
-        textView.snp.makeConstraints { make in
+        noteCell.addSubview(textField)
+        textField.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
             make.height.equalTo(50)
         }
@@ -115,6 +118,7 @@ class ScreenshotViewController: UIViewController {
         sendButton.layer.cornerRadius = 30
         sendButton.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 1)
         sendButton.tintColor = .white
+        sendButton.isHidden = true
         sendButton.setTitle("Send", for: [])
         sendButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
         self.sendButton = sendButton
@@ -127,14 +131,34 @@ class ScreenshotViewController: UIViewController {
         }
         self.loader = loader
         
+        let readmeLink = UIButton(type: .system)
+        readmeLink.setTitle("Go to GitLab readme to find out more about Ass", for: [])
+        readmeLink.isHidden = false
+        readmeLink.titleLabel?.numberOfLines = 0
+        readmeLink.titleLabel?.textAlignment = .center
+        readmeLink.tintColor = .black
+        readmeLink.addTarget(self, action: #selector(openReadme), for: .touchUpInside)
+        view.addSubview(readmeLink)
+        readmeLink.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.center.equalToSuperview()
+        }
+        self.readmeLink = readmeLink
+        
         // TODO: Add Cancel Button
+    }
+    
+    @objc
+    private func openReadme() {
+        guard let readmeURL = URL(string: "https://gitlab.ack.ee/iOS/ass/-/blob/master/README.md") else { return }
+        UIApplication.shared.open(readmeURL)
     }
     
     @objc
     private func sendTapped() {
         
         // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
-        viewModel.note = noteTextView.text
+        viewModel.note = noteTextField.text
         viewModel.actions.upload.start()
     }
     
@@ -177,6 +201,9 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
+            let isEmpty = self?.viewModel.tableData.isEmpty ?? true
+            self?.readmeLink.isHidden = !isEmpty
+            self?.sendButton.isHidden = isEmpty
             self?.tableView.reloadData()
         }
     }
@@ -221,7 +248,8 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
 
 extension ScreenshotViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.tableData.count + 1
+        if viewModel.tableData.isEmpty { return 0 }
+        return viewModel.tableData.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
