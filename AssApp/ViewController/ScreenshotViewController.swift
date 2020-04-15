@@ -55,6 +55,7 @@ class ScreenshotViewController: UIViewController {
         
         let noteCell = UITableViewCell(style: .default, reuseIdentifier: "noteCell")
         let textField = UITextField()
+        textField.delegate = self
         self.noteTextField = textField
         if #available(iOS 13.0, *) {
             noteCell.backgroundColor = .systemGray6
@@ -266,5 +267,12 @@ extension ScreenshotViewController: UITableViewDataSource {
         cell.textLabel?.text = viewModel.tableData[indexPath.row - 1].key
         cell.detailTextLabel?.text = viewModel.tableData[indexPath.row - 1].value
         return cell
+    }
+}
+
+extension ScreenshotViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        noteTextField.resignFirstResponder()
+        return true
     }
 }
