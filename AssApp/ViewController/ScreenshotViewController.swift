@@ -40,6 +40,8 @@ class ScreenshotViewController: UIViewController {
     
     private let viewModel: ScreenshotViewModeling
     
+    private var keyboardHeight: CGFloat = 0
+    
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -111,7 +113,8 @@ class ScreenshotViewController: UIViewController {
         view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
             if #available(iOS 11.0, *) {
-                make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+                make.trailing.equalToSuperview().inset(16)
+                make.bottom.equalTo(view.safeAreaLayoutGuide)
             } else {
                 make.trailing.bottom.equalToSuperview().inset(16)
             }
@@ -148,6 +151,25 @@ class ScreenshotViewController: UIViewController {
         self.readmeLink = readmeLink
         
         // TODO: Add Cancel Button
+    }
+    
+    override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            print("button pos \(self.sendButton.center)")
+            keyboardHeight = keyboardSize.height
+            self.sendButton.frame.origin.y -= keyboardHeight
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        self.sendButton.frame.origin.y += keyboardHeight
     }
     
     @objc
