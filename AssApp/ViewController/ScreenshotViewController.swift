@@ -162,7 +162,6 @@ class ScreenshotViewController: UIViewController {
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            print("button pos \(self.sendButton.center)")
             keyboardHeight = keyboardSize.height
             self.sendButton.frame.origin.y -= keyboardHeight
         }
