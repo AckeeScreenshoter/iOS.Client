@@ -69,6 +69,8 @@
 		0E72E8D8243E014200DC2FD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDeviceExtensions.swift; path = Ass/Extensions/UIDeviceExtensions.swift; sourceTree = SOURCE_ROOT; };
 		0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = Ass/AppInfo.swift; sourceTree = SOURCE_ROOT; };
+		0ECFCD6F24484DFB00C91A0A /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		0ECFCD7024484DFB00C91A0A /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		0EF27731242E6F7300DDE4B7 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF27733242E6F7300DDE4B7 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
 		0EF27734242E6F7400DDE4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		0E55A73C242D157400F7109C /* AssApp */ = {
 			isa = PBXGroup;
 			children = (
+				0ECFCD6A24484DBC00C91A0A /* GoogleService */,
 				0E72E8D7243E012D00DC2FD8 /* Constants */,
 				0EF2776D242E7F5000DDE4B7 /* DI */,
 				0EF2781924339E3300DDE4B7 /* View */,
@@ -167,6 +170,15 @@
 				0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		0ECFCD6A24484DBC00C91A0A /* GoogleService */ = {
+			isa = PBXGroup;
+			children = (
+				0ECFCD7024484DFB00C91A0A /* GoogleService-Info-Debug.plist */,
+				0ECFCD6F24484DFB00C91A0A /* GoogleService-Info-Release.plist */,
+			);
+			path = GoogleService;
 			sourceTree = "<group>";
 		};
 		0EF27732242E6F7300DDE4B7 /* Ass */ = {
