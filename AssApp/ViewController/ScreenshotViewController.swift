@@ -141,7 +141,11 @@ class ScreenshotViewController: UIViewController {
         readmeLink.isHidden = false
         readmeLink.titleLabel?.numberOfLines = 0
         readmeLink.titleLabel?.textAlignment = .center
-        readmeLink.tintColor = .black
+        if #available(iOS 13.0, *) {
+            readmeLink.tintColor = .label
+        } else {
+            readmeLink.tintColor = .black
+        }
         readmeLink.addTarget(self, action: #selector(openReadme), for: .touchUpInside)
         view.addSubview(readmeLink)
         readmeLink.snp.makeConstraints { make in
