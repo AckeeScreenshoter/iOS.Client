@@ -20,6 +20,7 @@
 		0E3E57C82448821100F6001A /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B12448821000F6001A /* FirebaseCoreDiagnostics.framework */; };
 		0E3E57CA2448821100F6001A /* PromisesObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B22448821000F6001A /* PromisesObjC.framework */; };
 		0E3E57CC2448821100F6001A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B32448821000F6001A /* Firebase.framework */; };
+		0E3E57D024488DF200F6001A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */; };
 		0E55A73E242D157400F7109C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E55A73D242D157400F7109C /* AppDelegate.swift */; };
 		0E55A747242D157800F7109C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A746242D157800F7109C /* Assets.xcassets */; };
 		0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A748242D157800F7109C /* LaunchScreen.storyboard */; };
@@ -86,6 +87,7 @@
 		0E3E57B12448821000F6001A /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Carthage/Build/iOS/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		0E3E57B22448821000F6001A /* PromisesObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromisesObjC.framework; path = Carthage/Build/iOS/PromisesObjC.framework; sourceTree = "<group>"; };
 		0E3E57B32448821000F6001A /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
+		0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E55A73A242D157400F7109C /* Ass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E55A73D242D157400F7109C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E55A741242D157400F7109C /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		0E55A73C242D157400F7109C /* AssApp */ = {
 			isa = PBXGroup;
 			children = (
+				0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */,
 				0ECFCD6A24484DBC00C91A0A /* GoogleService */,
 				0E72E8D7243E012D00DC2FD8 /* Constants */,
 				0EF2776D242E7F5000DDE4B7 /* DI */,
@@ -356,12 +359,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0E55A74E242D157800F7109C /* Build configuration list for PBXNativeTarget "ass-app" */;
 			buildPhases = (
+				0E3E57A42448808400F6001A /* Generate GoogleService plist */,
 				0E55A736242D157400F7109C /* Sources */,
 				0E55A737242D157400F7109C /* Frameworks */,
 				0E55A738242D157400F7109C /* Resources */,
 				0EF2773D242E6F7400DDE4B7 /* Embed Frameworks */,
-				0E3E57A42448808400F6001A /* ShellScript */,
 				0E3E57A5244881AD00F6001A /* Carthage */,
+				0E3E57CE2448869C00F6001A /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -441,6 +445,7 @@
 			files = (
 				0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */,
 				0E55A747242D157800F7109C /* Assets.xcassets in Resources */,
+				0E3E57D024488DF200F6001A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +459,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E3E57A42448808400F6001A /* ShellScript */ = {
+		0E3E57A42448808400F6001A /* Generate GoogleService plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -463,6 +468,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Generate GoogleService plist";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -491,6 +497,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		0E3E57CE2448869C00F6001A /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "RUN_SCRIPT_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/run\"\nUPLOAD_DSYM_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/upload-symbols\"\nRUN_SCRIPT_DST_DIR=\"$PROJECT_DIR/Carthage/Build\"\nRUN_SCRIPT_DST=\"$RUN_SCRIPT_DST_DIR/run\"\nUPLOAD_DSYM_DST=\"$RUN_SCRIPT_DST_DIR/upload-symbols\"\n\nif [ -f \"$RUN_SCRIPT_DST\" ]; then\n    \"$RUN_SCRIPT_DST\"\nelse \n    cd \"$RUN_SCRIPT_DST_DIR\"\n    curl -O \"$RUN_SCRIPT_URL\"\n    curl -O \"$UPLOAD_DSYM_URL\"\n    cd \"-\"\n    chmod +x \"$RUN_SCRIPT_DST\" \n    chmod +x \"$UPLOAD_DSYM_DST\"\n    \"$RUN_SCRIPT_DST\"\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
