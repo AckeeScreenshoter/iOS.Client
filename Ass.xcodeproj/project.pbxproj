@@ -19,7 +19,6 @@
 		0E3E57C62448821100F6001A /* GoogleDataTransportCCTSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B02448821000F6001A /* GoogleDataTransportCCTSupport.framework */; };
 		0E3E57C82448821100F6001A /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B12448821000F6001A /* FirebaseCoreDiagnostics.framework */; };
 		0E3E57CA2448821100F6001A /* PromisesObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B22448821000F6001A /* PromisesObjC.framework */; };
-		0E3E57CC2448821100F6001A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57B32448821000F6001A /* Firebase.framework */; };
 		0E3E57D024488DF200F6001A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */; };
 		0E55A73E242D157400F7109C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E55A73D242D157400F7109C /* AppDelegate.swift */; };
 		0E55A747242D157800F7109C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A746242D157800F7109C /* Assets.xcassets */; };
@@ -132,7 +131,6 @@
 				0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */,
 				0E3E57C22448821100F6001A /* FirebaseCore.framework in Frameworks */,
 				0E3E57B42448821000F6001A /* FIRAnalyticsConnector.framework in Frameworks */,
-				0E3E57CC2448821100F6001A /* Firebase.framework in Frameworks */,
 				0E3E57BE2448821000F6001A /* GoogleUtilities.framework in Frameworks */,
 				0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */,
 				0E3E57C62448821100F6001A /* GoogleDataTransportCCTSupport.framework in Frameworks */,
