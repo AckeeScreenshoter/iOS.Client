@@ -5,22 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: art" time="0.001407">
+      <testcase classname="fastlane.lanes" name="0: xcversion" time="0.902151">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: get_build_settings" time="3.494987">
+      <testcase classname="fastlane.lanes" name="1: art" time="0.001867">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: get_build_settings" time="2.910023">
+      <testcase classname="fastlane.lanes" name="2: Switch to rome_download lane" time="0.001737">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: provisioning_match" time="36.543466">
+      <testcase classname="fastlane.lanes" name="3: Switch to download_romefile lane" time="0.001847">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: download_from_git" time="0.994807">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: rome" time="5.427651">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: rome" time="0.417377">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: carthage" time="0.909588">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: is_ci" time="0.001535">
         
       </testcase>
     
