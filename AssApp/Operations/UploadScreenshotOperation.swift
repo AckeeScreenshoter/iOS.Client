@@ -63,6 +63,7 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         let url = URL(string: "upload", relativeTo: baseURL)!
         let boundary = "cz.ackee.enterprise.ass"
         var request = URLRequest(url: url)
+        var appInfo = appInfo
         
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=" + boundary, forHTTPHeaderField: "Content-Type")
@@ -70,14 +71,16 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         
         let closeBoundaryData = ("--" + boundary + "--\r\n").data(using: .utf8)!
         
-        let appInfoData = createMultipartItem(name: "metadata", boundary: boundary, object: appInfo)
-        
         var mediaData: Data? = nil
         if let screenshot = screenshot {
+            appInfo["type"] = ContentType.image.rawValue
             mediaData = createMultipartItem(name: "screenshot", boundary: boundary, image: screenshot, filename: "screenshot.jpg")
         } else if let recordURL = recordURL {
+            appInfo["type"] = ContentType.video.rawValue
             mediaData = createMultipartItem(name: "record", boundary: boundary, recordURL: recordURL, filename: "record.mov")
         }
+        
+        let appInfoData = createMultipartItem(name: "metadata", boundary: boundary, object: appInfo)
         
         request.httpBody = [appInfoData, "\r\n".data(using: .utf8), mediaData, closeBoundaryData]
             .compactMap { $0 }
@@ -86,7 +89,18 @@ final class UploadMultipartDataOperation: URLRequestOperation {
                 newData.append($1)
                 return newData
         }
+        
+        print(request)
         return request
+    }
+    
+    func createMultipartItem<Object: Encodable>(name: String, boundary: String, object: Object) -> Data? {
+        let jsonEncoder = JSONEncoder()
+        
+        guard let jsonData = try? jsonEncoder.encode(object) else { return nil }
+        print("jsonData \(jsonData)")
+        
+        return createMultipartItem(name: name, boundary: boundary, filename: nil, contentType: .json, content: jsonData)
     }
     
     func createMultipartItem(name: String, boundary: String, filename: String?, contentType: ContentType, content: Data) -> Data {
@@ -95,9 +109,7 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         // Content-Disposition
         let name = "name=\"" + name + "\""
         let filename = filename.map { "filename=\"" + $0 + "\"" }
-        let type = (contentType == .json ? nil : contentType.rawValue).map { "type=\"" + $0 + "\"" }
-            //contentType.rawValue.map { $0 == ContentType.json.rawValue ? nil : contentType }
-        let contentDispositionItems = ["Content-Disposition: form-data", name, filename, type]
+        let contentDispositionItems = ["Content-Disposition: form-data", name, filename]
         
         let contentDisposition = contentDispositionItems.compactMap { $0 }.joined(separator: "; ")
         body.appendString(contentDisposition + "\r\n")
@@ -110,15 +122,6 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         body.appendString("\r\n")
         
         return body
-    }
-    
-    func createMultipartItem<Object: Encodable>(name: String, boundary: String, object: Object) -> Data? {
-        let jsonEncoder = JSONEncoder()
-        
-        guard let jsonData = try? jsonEncoder.encode(object) else { return nil }
-        print("jsonData \(jsonData)")
-        
-        return createMultipartItem(name: name, boundary: boundary, filename: nil, contentType: .json, content: jsonData)
     }
     
     func createMultipartItem(name: String, boundary: String, recordURL: URL? = nil, image: UIImage? = nil, filename: String) -> Data? {
