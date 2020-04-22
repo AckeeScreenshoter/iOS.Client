@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let authorization = queryItems.first(where: { $0.name == Constants.QueryItemKey.authorization })?.value,
             let baseURL = queryItems.first(where: { $0.name == Constants.QueryItemKey.baseURL })?.value,
             let mediaType = MediaType(rawValue: mediaTypeString)
-            else { return true }
+            else { return false }
             
         queryItems.removeAll {
             $0.name == Constants.QueryItemKey.authorization ||
