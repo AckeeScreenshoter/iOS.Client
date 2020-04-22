@@ -148,6 +148,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3CD02E245049390038B1C5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0EF2775B242E74D400DDE4B7 /* BaseViewModel.swift */,
+				0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0E3CD02F2450496E0038B1C5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0E3CD030245049880038B1C5 /* Screenshot */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		0E3CD030245049880038B1C5 /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				0E55A741242D157400F7109C /* ScreenshotViewController.swift */,
+				0EF27758242E74A000DDE4B7 /* ScreenshotViewModel.swift */,
+			);
+			path = Screenshot;
+			sourceTree = "<group>";
+		};
 		0E3E57A62448821000F6001A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,21 +216,21 @@
 		0E55A73C242D157400F7109C /* AssApp */ = {
 			isa = PBXGroup;
 			children = (
-				0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */,
+				0E3CD02E245049390038B1C5 /* Base */,
 				0ECFCD6A24484DBC00C91A0A /* GoogleService */,
 				0E72E8D7243E012D00DC2FD8 /* Constants */,
 				0EF2776D242E7F5000DDE4B7 /* DI */,
-				0EF2781924339E3300DDE4B7 /* View */,
-				0EF2776C242E7CAA00DDE4B7 /* ViewController */,
-				0EF2775A242E74A500DDE4B7 /* ViewModel */,
-				0EF27761242E763800DDE4B7 /* Model */,
+				0EF2781924339E3300DDE4B7 /* Views */,
+				0EF27761242E763800DDE4B7 /* Models */,
+				0E3CD02F2450496E0038B1C5 /* Screens */,
 				0EF27753242E735B00DDE4B7 /* Operations */,
 				0EF27746242E731600DDE4B7 /* Extensions */,
-				0EF2773E242E720D00DDE4B7 /* Service */,
+				0EF2773E242E720D00DDE4B7 /* Services */,
 				0E55A73D242D157400F7109C /* AppDelegate.swift */,
 				0E55A746242D157800F7109C /* Assets.xcassets */,
 				0E55A748242D157800F7109C /* LaunchScreen.storyboard */,
 				0E55A74B242D157800F7109C /* Info.plist */,
+				0E3E57CF24488DF200F6001A /* GoogleService-Info.plist */,
 			);
 			path = AssApp;
 			sourceTree = "<group>";
@@ -223,14 +249,6 @@
 				0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		0E72E8DE243E296B00DC2FD8 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		0ECFCD6A24484DBC00C91A0A /* GoogleService */ = {
@@ -254,12 +272,12 @@
 			path = Ass;
 			sourceTree = "<group>";
 		};
-		0EF2773E242E720D00DDE4B7 /* Service */ = {
+		0EF2773E242E720D00DDE4B7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				0EF2773F242E723C00DDE4B7 /* ScreenshotAPIService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		0EF27746242E731600DDE4B7 /* Extensions */ = {
@@ -280,39 +298,13 @@
 			path = Operations;
 			sourceTree = "<group>";
 		};
-		0EF2775A242E74A500DDE4B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0EF2775D242E74D800DDE4B7 /* Base */,
-				0EF27758242E74A000DDE4B7 /* ScreenshotViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		0EF2775D242E74D800DDE4B7 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				0EF2775B242E74D400DDE4B7 /* BaseViewModel.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		0EF27761242E763800DDE4B7 /* Model */ = {
+		0EF27761242E763800DDE4B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				0EF27766242E763800DDE4B7 /* Action.swift */,
 				0EF278252433BA8C00DDE4B7 /* MediaType.swift */,
 			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0EF2776C242E7CAA00DDE4B7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0E72E8DE243E296B00DC2FD8 /* Base */,
-				0E55A741242D157400F7109C /* ScreenshotViewController.swift */,
-			);
-			path = ViewController;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0EF2776D242E7F5000DDE4B7 /* DI */ = {
@@ -323,12 +315,12 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
-		0EF2781924339E3300DDE4B7 /* View */ = {
+		0EF2781924339E3300DDE4B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0EF2781A24339E3300DDE4B7 /* AssLoader.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0EF278202433A69200DDE4B7 /* Model */ = {
