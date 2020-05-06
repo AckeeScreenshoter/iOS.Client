@@ -77,7 +77,7 @@ final class UploadMultipartDataOperation: URLRequestOperation {
             mediaData = createMultipartItem(name: "screenshot", boundary: boundary, image: screenshot, filename: "screenshot.jpg")
         } else if let recordURL = recordURL {
             appInfo["type"] = ContentType.video.rawValue
-            mediaData = createMultipartItem(name: "record", boundary: boundary, recordURL: recordURL, filename: "record.mov")
+            mediaData = createMultipartItem(name: "record", boundary: boundary, recordURL: recordURL, filename: "record.mp4")
         }
         
         let appInfoData = createMultipartItem(name: "metadata", boundary: boundary, object: appInfo)
@@ -145,7 +145,7 @@ enum ContentType: String {
     
     var type: String {
         switch self {
-        case .video: return "video/mov"
+        case .video: return "video/mp4"
         case .image: return "image/jpeg"
         case .json: return "application/json"
         }
