@@ -6,4 +6,18 @@
 //  Copyright © 2020 Vendula Švastalová. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+enum Asset: String {
+    case background
+    
+    var image: UIImage {
+        UIImage(named: rawValue)!
+    }
+}
+
+extension UIImage {
+    var view: UIImageView {
+        UIImageView(image: self)
+    }
+}
