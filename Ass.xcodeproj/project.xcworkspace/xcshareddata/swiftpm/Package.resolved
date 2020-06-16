@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ACKategories",
+        "repositoryURL": "https://github.com/AckeeCZ/ACKategories.git",
+        "state": {
+          "branch": null,
+          "revision": "a015ee7262c093524a6e1c1b3d9dfc334a394185",
+          "version": "6.5.0"
+        }
+      },
+      {
         "package": "SnapKit",
         "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
         "state": {
