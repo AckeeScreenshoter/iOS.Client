@@ -57,10 +57,6 @@ final class LoadingButton: UIButton {
         bringSubviewToFront(titleLabel!)
         
         addTarget(self, action: #selector(handleTap), for: [.touchUpInside])
-        
-        
-        
-        //setBackgroundImage(UIColor.white.image(), for: [])
     }
     
     /// Updates the loading view to cover the defined percentage area of the button
