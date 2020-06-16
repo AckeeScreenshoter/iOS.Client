@@ -24,6 +24,8 @@ final class LoadingButton: UIButton {
     
     var isLoading = false {
         didSet {
+            
+            // TODO: fix button color when isEnabled = false
             isEnabled = !isLoading
         }
     }
