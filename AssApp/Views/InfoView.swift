@@ -10,25 +10,26 @@ import UIKit
 import SnapKit
 
 final class InfoView: UIView {
+    
     private weak var scrollView: UIScrollView!
+    
+    /// Shows information passed from the opening application
     private weak var VStack: UIStackView!
     private weak var notchView: UIView!
     weak var loadingButton: LoadingButton!
+    
+    /// User input view
     weak var noteView: NoteView!
     
+    // TODO
     var height: Constraint?
+    var currentHeight: CGFloat = 0
+    let maxHeight: CGFloat = 300
     
     var info: [String: [String: String]] = [:] {
         didSet {
             updateList(with: info)
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        print("layout subviews")
-        print("vstack content", VStack.intrinsicContentSize)
     }
     
     override init(frame: CGRect) {
@@ -89,43 +90,19 @@ final class InfoView: UIView {
         }
         self.VStack = VStack
         
-        //updateList(with: ["Info":["Device make": "Apple", "Device model": "iPhone 11.2 iPhone Xs", "iOS version": "13.3.1"]])
-        
-        //print(VStack.arrangedSubviews.count)
-        
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         addGestureRecognizer(gestureRecognizer)
     }
     
-    var currentHeight: CGFloat = 0
-    let maxHeight: CGFloat = 300
-    
     @objc
     func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self)
-        
-        if translation.y > 0 {
-//            UIView.animate(withDuration: 0.2) { [weak self] in
-//                self?.height?.update(offset: 0)
-//                self?.layoutIfNeeded()
-//            }
-            // down
-            
-            if (currentHeight - translation.y) >= 0 {
-                self.height?.update(offset: currentHeight - translation.y)
-                currentHeight -= translation.y
-            }
-        } else {
-            
-            if (currentHeight - translation.y) <= 300 {
-                self.height?.update(offset: currentHeight - translation.y)
-                currentHeight -= translation.y
-            }
-            
-//            UIView.animate(withDuration: 0.2) { [weak self] in
-//                self?.height?.update(offset: 300)
-//                self?.layoutIfNeeded()
-//            }
+        let change = currentHeight - translation.y
+
+        // TODO: add animation, restrict pan gesture area, fix behavior
+        if change >= 0 && change <= 300 {
+            self.height?.update(offset: change)
+            currentHeight = change
         }
     }
     
@@ -177,13 +154,6 @@ final class InfoView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension InfoView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        noteView.resignFirstResponder()
-        return true
     }
 }
 
