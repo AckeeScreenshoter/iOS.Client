@@ -16,6 +16,8 @@ protocol LoadingButtonDelegate: class {
 }
 
 final class LoadingButton: UIButton {
+    
+    /// View whose width is being updated to demonstrate the current loading percentage
     private weak var loadingView: UIView!
     
     private weak var delegate: LoadingButtonDelegate?
@@ -64,9 +66,12 @@ final class LoadingButton: UIButton {
     /// Updates the loading view to cover the defined percentage area of the button
     /// Uses animation when set to `true`
     ///
-    /// Used to update the current state of loading
-    /// Is animated by default
+    /// Used to update the current state of loading.
+    /// Is animated by default.
+    /// `isLoading` must be `true` to perform any updates
     func updateLoading(progress: Double, animated: Bool = true) {
+        guard isLoading else { return }
+        
         let changeBlock = { [unowned self] in
             self.loadingView.snp.remakeConstraints { make in
                 make.top.leading.bottom.equalToSuperview()
@@ -88,6 +93,10 @@ final class LoadingButton: UIButton {
         isLoading = true
     }
     
+    /// Calling this method results in changing of the appearance and functionality of this button
+    ///
+    ///
+    /// After calling this method this button will be in such state so that when tapped the user is taken back to the initial app (app from which ASS was opened)
     func stopLoading() {
         guard isLoading else { return }
         setTitle("BACK TO APP", for: [])
