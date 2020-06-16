@@ -29,6 +29,7 @@
 		0E72E8D9243E014200DC2FD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E72E8D8243E014200DC2FD8 /* Constants.swift */; };
 		0E72E8DA243E014200DC2FD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E72E8D8243E014200DC2FD8 /* Constants.swift */; };
 		0E72E8DC243E27BF00DC2FD8 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */; };
+		0EA83A1D24911EFC00DA03CF /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA83A1C24911EFC00DA03CF /* NoteView.swift */; };
 		0EA83A1F2491310C00DA03CF /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA83A1E2491310C00DA03CF /* UIFont+Extension.swift */; };
 		0EA83A222491323300DA03CF /* OverpassMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */; };
 		0EA83A362498DC7700DA03CF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA83A352498DC7700DA03CF /* InfoView.swift */; };
@@ -106,6 +107,7 @@
 		0E6C76FA24814101009DD2BC /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		0E72E8D8243E014200DC2FD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDeviceExtensions.swift; path = Ass/Extensions/UIDeviceExtensions.swift; sourceTree = SOURCE_ROOT; };
+		0EA83A1C24911EFC00DA03CF /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		0EA83A1E2491310C00DA03CF /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OverpassMono-Regular.ttf"; sourceTree = "<group>"; };
 		0EA83A352498DC7700DA03CF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				0ECC89CD2478104900400D6A /* EmptyViewController.swift */,
 				0ECC89D324783AD700400D6A /* DataView.swift */,
 				0E6C76FA24814101009DD2BC /* LoadingButton.swift */,
+				0EA83A1C24911EFC00DA03CF /* NoteView.swift */,
 				0EA83A352498DC7700DA03CF /* InfoView.swift */,
 			);
 			path = Views;
@@ -559,6 +562,7 @@
 				0EF2776B242E763800DDE4B7 /* Action.swift in Sources */,
 				0E6C76FB24814101009DD2BC /* LoadingButton.swift in Sources */,
 				0EF27755242E735B00DDE4B7 /* UploadScreenshotOperation.swift in Sources */,
+				0EA83A1D24911EFC00DA03CF /* NoteView.swift in Sources */,
 				0EA83A1F2491310C00DA03CF /* UIFont+Extension.swift in Sources */,
 				0ECC89D22478160700400D6A /* UIColor+Extension.swift in Sources */,
 				0EF27740242E723C00DDE4B7 /* ScreenshotAPIService.swift in Sources */,
