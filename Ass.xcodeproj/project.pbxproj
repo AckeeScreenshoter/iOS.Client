@@ -38,7 +38,6 @@
 		0ECC89CE2478104900400D6A /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CD2478104900400D6A /* EmptyViewController.swift */; };
 		0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */; };
 		0ECC89D22478160700400D6A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89D12478160700400D6A /* UIColor+Extension.swift */; };
-		0ECC89D424783AD700400D6A /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89D324783AD700400D6A /* DataView.swift */; };
 		0EF27735242E6F7400DDE4B7 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EF27733242E6F7300DDE4B7 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; };
 		0EF27739242E6F7400DDE4B7 /* Ass.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -115,7 +114,6 @@
 		0ECC89CD2478104900400D6A /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0ECC89D12478160700400D6A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		0ECC89D324783AD700400D6A /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		0ECFCD6F24484DFB00C91A0A /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		0ECFCD7024484DFB00C91A0A /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		0EF27731242E6F7300DDE4B7 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +352,6 @@
 			children = (
 				0EF2781A24339E3300DDE4B7 /* AssLoader.swift */,
 				0ECC89CD2478104900400D6A /* EmptyViewController.swift */,
-				0ECC89D324783AD700400D6A /* DataView.swift */,
 				0E6C76FA24814101009DD2BC /* LoadingButton.swift */,
 				0EA83A1C24911EFC00DA03CF /* NoteView.swift */,
 				0EA83A352498DC7700DA03CF /* InfoView.swift */,
@@ -576,7 +573,6 @@
 				0EF2781D24339E3300DDE4B7 /* AssLoader.swift in Sources */,
 				0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */,
 				0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */,
-				0ECC89D424783AD700400D6A /* DataView.swift in Sources */,
 				0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */,
 				0EF27759242E74A000DDE4B7 /* ScreenshotViewModel.swift in Sources */,
 				0EA83A362498DC7700DA03CF /* InfoView.swift in Sources */,
