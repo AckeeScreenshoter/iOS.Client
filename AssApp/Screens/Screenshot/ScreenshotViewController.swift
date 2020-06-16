@@ -27,6 +27,7 @@ final class ScreenshotViewController: UIViewController {
     
     private var keyboardHeight: CGFloat = 0
     
+    /// Displays all the information passed from the opening app. Also contains NoteView and LoadingButton
     private weak var infoView: InfoView!
     
     init(viewModel: ScreenshotViewModeling) {
@@ -98,6 +99,7 @@ final class ScreenshotViewController: UIViewController {
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
+            // TODO: manage show-hide keyboard
             //self.sendButton.frame.origin.y -= keyboardHeight
         }
     }
@@ -153,6 +155,7 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
+            // TODO: add support for section titles
             self?.infoView.info = ["": self?.viewModel.appInfo ?? [:]]
         }
     }
@@ -165,7 +168,6 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
-            print("progress", progress)
             self?.setUploadProgress(progress)
         }
     }
