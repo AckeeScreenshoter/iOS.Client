@@ -212,15 +212,15 @@ final class ScreenshotViewController: UIViewController {
     
     // MARK: - Private helpers
     private func startLoading() {
-        //infoView.loadingButton.startLoading()
+        loadingButton.startLoading()
     }
     
     private func stopLoading() {
-        //infoView.loadingButton.stopLoading()
+        loadingButton.stopLoading()
     }
     
     private func setUploadProgress(_ progress: Double) {
-        //infoView.loadingButton.updateLoading(progress: progress)
+        loadingButton.updateLoading(progress: progress)
     }
 }
 
