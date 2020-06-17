@@ -11,20 +11,15 @@ import SnapKit
 
 final class InfoView: UIView {
     
-    private weak var scrollView: UIScrollView!
+    private weak var notchView: UIView!
     
     /// Shows information passed from the opening application
     private weak var VStack: UIStackView!
-    private weak var notchView: UIView!
-    weak var loadingButton: LoadingButton!
+    
+    weak var scrollView: UIScrollView!
     
     /// User input view
     weak var noteView: NoteView!
-    
-    // TODO
-    var height: Constraint?
-    var currentHeight: CGFloat = 0
-    let maxHeight: CGFloat = 300
     
     var info: [String: [String: String]] = [:] {
         didSet {
@@ -36,9 +31,11 @@ final class InfoView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .white
-        
         layer.cornerRadius = 10
         clipsToBounds = true
+        if #available(iOS 11.0, *) {
+            layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMinYCorner]
+        }
         
         let notchView = UIView()
         notchView.backgroundColor = .gray
@@ -50,7 +47,7 @@ final class InfoView: UIView {
             make.width.equalTo(100)
         }
         self.notchView = notchView
-
+        
         let noteView = NoteView()
         addSubview(noteView)
         noteView.snp.makeConstraints { make in
@@ -58,14 +55,6 @@ final class InfoView: UIView {
             make.leading.trailing.equalToSuperview().inset(16)
         }
         self.noteView = noteView
-        
-        let loadingButton = LoadingButton()
-            addSubview(loadingButton)
-            loadingButton.snp.makeConstraints { make in
-                make.leading.trailing.equalToSuperview().inset(16)
-                make.bottom.equalTo(safeArea)
-            }
-        self.loadingButton = loadingButton
 
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -75,8 +64,8 @@ final class InfoView: UIView {
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(noteView.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(loadingButton.snp.top)
-            height = make.height.equalTo(0).constraint
+            make.bottom.equalToSuperview()
+            make.height.equalTo(0)
         }
 
         let VStack = UIStackView()
@@ -90,20 +79,6 @@ final class InfoView: UIView {
         }
         self.VStack = VStack
         
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        addGestureRecognizer(gestureRecognizer)
-    }
-    
-    @objc
-    func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self)
-        let change = currentHeight - translation.y
-
-        // TODO: add animation, restrict pan gesture area, fix behavior
-        if change >= 0 && change <= 300 {
-            self.height?.update(offset: change)
-            currentHeight = change
-        }
     }
     
     private func updateList(with items: [String: [String: String]]) {
