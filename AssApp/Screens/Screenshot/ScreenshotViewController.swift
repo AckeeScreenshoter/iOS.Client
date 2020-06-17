@@ -11,7 +11,7 @@ import Photos
 import SnapKit
 import AVKit
 
-class ScreenshotViewController: UIViewController {
+final class ScreenshotViewController: UIViewController {
     
     /// Displays lastly created or updated photo from gallery
     ///
@@ -23,24 +23,12 @@ class ScreenshotViewController: UIViewController {
     /// `view.isHidden == true` when `imageView.isHidden == false` and vice versa.
     private weak var avPlayerController: AVPlayerViewController!
     
-    /// Starts an operation to send all data from tableView and image or video to the server
-    private weak var sendButton: UIButton!
-    
-    /// Shows all data sent from application
-    private weak var tableView: UITableView!
-    
-    private weak var loader: AssLoader!
-    
-    /// Button displayed when the app is not opened from deeplink.
-    private weak var readmeLink: UIButton!
-    
-    private var noteCell: UITableViewCell!
-    
-    private weak var noteTextField: UITextField!
-    
     private let viewModel: ScreenshotViewModeling
     
     private var keyboardHeight: CGFloat = 0
+    
+    /// Displays all the information passed from the opening app. Also contains NoteView and LoadingButton
+    private weak var infoView: InfoView!
     
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
@@ -56,109 +44,53 @@ class ScreenshotViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let noteCell = UITableViewCell(style: .default, reuseIdentifier: "noteCell")
-        let textField = UITextField()
-        textField.delegate = self
-        self.noteTextField = textField
-        if #available(iOS 13.0, *) {
-            noteCell.backgroundColor = .systemGray6
-            textField.backgroundColor = .systemGray6
-        } else {
-            noteCell.backgroundColor = .lightGray
-            textField.backgroundColor = .lightGray
+        view.backgroundColor = .white
+        let backgroundImage = UIImageView()
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.image = Asset.background.image
+        view.addSubview(backgroundImage)
+        backgroundImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        noteCell.addSubview(textField)
-        textField.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(16)
-            make.height.equalTo(50)
-        }
-        self.noteCell = noteCell
-        
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.0))
-        
+
         let imageView = UIImageView()
-        self.imageView = imageView
         imageView.isHidden = false
         imageView.contentMode = .scaleAspectFit
-        
-        header.addSubview(imageView)
+        view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(20)
+            make.height.equalToSuperview().multipliedBy(0.5)
+            make.top.equalTo(safeArea).offset(16)
+            make.centerX.equalToSuperview()
         }
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        self.imageView = imageView
+        
         
         let avPlayerController = AVPlayerViewController()
         self.avPlayerController = avPlayerController
+        avPlayerController.view.layer.cornerRadius = 10
+        avPlayerController.view.clipsToBounds = true
         avPlayerController.view.isHidden = true
-        header.addSubview(avPlayerController.view)
+        view.addSubview(avPlayerController.view)
         avPlayerController.view.snp.makeConstraints { make in
             make.edges.equalTo(imageView)
         }
         addChild(avPlayerController)
-    
-        let tableView = UITableView()
-        tableView.allowsSelection = false
-        tableView.showsVerticalScrollIndicator = false
-        tableView.tableHeaderView = header
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.bottom.equalToSuperview()
-        }
-        self.tableView = tableView
         
-        let sendButton = UIButton(type: .system)
-        view.addSubview(sendButton)
-        sendButton.snp.makeConstraints { make in
-            if #available(iOS 11.0, *) {
-                make.trailing.equalToSuperview().inset(16)
-                make.bottom.equalTo(view.safeAreaLayoutGuide)
-            } else {
-                make.trailing.bottom.equalToSuperview().inset(16)
-            }
-            make.width.height.equalTo(80)
+        let infoView = InfoView()
+        view.addSubview(infoView)
+        infoView.snp.makeConstraints { make in
+            make.bottom.leading.trailing.equalToSuperview()
         }
-        sendButton.layer.cornerRadius = 30
-        sendButton.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 1)
-        sendButton.tintColor = .white
-        sendButton.isHidden = true
-        sendButton.setTitle("Send", for: [])
-        sendButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
-        self.sendButton = sendButton
-        
-        let loader = AssLoader()
-        view.addSubview(loader)
-        loader.isHidden = true
-        loader.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        self.loader = loader
-        
-        let readmeLink = UIButton(type: .system)
-        readmeLink.setTitle("Go to GitLab readme to find out more about Ass", for: [])
-        readmeLink.isHidden = false
-        readmeLink.titleLabel?.numberOfLines = 0
-        readmeLink.titleLabel?.textAlignment = .center
-        if #available(iOS 13.0, *) {
-            readmeLink.tintColor = .label
-        } else {
-            readmeLink.tintColor = .black
-        }
-        readmeLink.addTarget(self, action: #selector(openReadme), for: .touchUpInside)
-        view.addSubview(readmeLink)
-        readmeLink.snp.makeConstraints { make in
-            make.width.equalTo(200)
-            make.center.equalToSuperview()
-        }
-        self.readmeLink = readmeLink
-        
-        // TODO: Add Cancel Button
+        infoView.loadingButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
+        self.infoView = infoView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Observe for keyboard changes
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -167,13 +99,14 @@ class ScreenshotViewController: UIViewController {
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
-            self.sendButton.frame.origin.y -= keyboardHeight
+            // TODO: manage show-hide keyboard
+            //self.sendButton.frame.origin.y -= keyboardHeight
         }
     }
     
     @objc
     private func keyboardWillHide(notification: NSNotification) {
-        self.sendButton.frame.origin.y += keyboardHeight
+        //self.sendButton.frame.origin.y += keyboardHeight
     }
     
     @objc
@@ -186,33 +119,26 @@ class ScreenshotViewController: UIViewController {
     private func sendTapped() {
         
         // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
-        viewModel.note = noteTextField.text
+        viewModel.note = infoView.noteView.text
         viewModel.actions.upload.start()
     }
     
     // MARK: - Private helpers
     private func startLoading() {
-        loader.isHidden = false
+        infoView.loadingButton.startLoading()
     }
     
     private func stopLoading() {
-        loader.isHidden = true
-        loader.setProgress(0)
+        infoView.loadingButton.stopLoading()
     }
     
     private func setUploadProgress(_ progress: Double) {
-        loader.setProgress(progress)
-    }
-    
-    private func uploadSucceeded() {
-        let alertVC = UIAlertController(title: "Success", message: "Your screenshot was successfully uploaded", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { _ in }
-        alertVC.addAction(ok)
-        present(alertVC, animated: true)
+        infoView.loadingButton.updateLoading(progress: progress)
     }
 }
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
+    
     func recordURLChanged(in viewModel: ScreenshotViewModeling) {
         guard let url = viewModel.recordURL else { return }
         DispatchQueue.main.async { [weak self] in
@@ -229,10 +155,8 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
-            let isEmpty = self?.viewModel.tableData.isEmpty ?? true
-            self?.readmeLink.isHidden = !isEmpty
-            self?.sendButton.isHidden = isEmpty
-            self?.tableView.reloadData()
+            // TODO: add support for section titles
+            self?.infoView.info = ["": self?.viewModel.appInfo ?? [:]]
         }
     }
     
@@ -251,7 +175,6 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     func uploadFinished(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
             self?.stopLoading()
-            self?.uploadSucceeded()
         }
     }
     
@@ -271,35 +194,5 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     func mediaTypeChanged(in viewModel: ScreenshotViewModeling) {
         imageView.isHidden = viewModel.mediaType == .recording
         avPlayerController.view.isHidden = viewModel.mediaType == .screenshot
-    }
-}
-
-extension ScreenshotViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.tableData.isEmpty { return 0 }
-        return viewModel.tableData.count + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            return noteCell
-        }
-        
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        if #available(iOS 13.0, *) {
-            cell.backgroundColor = .systemGray6
-        } else {
-            cell.backgroundColor = .lightGray
-        }
-        cell.textLabel?.text = viewModel.tableData[indexPath.row - 1].key
-        cell.detailTextLabel?.text = viewModel.tableData[indexPath.row - 1].value
-        return cell
-    }
-}
-
-extension ScreenshotViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        noteTextField.resignFirstResponder()
-        return true
     }
 }

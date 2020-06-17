@@ -23,11 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
+//      TODO: distinguish between opening from URL and just opening the app
+//        if launchOptions == nil {
+//            let vc = EmptyViewController()
+//            window?.rootViewController = vc
+//            return true
+//        }
+        
         let vm = ScreenshotViewModel(dependencies: dependencies)
         screenShotViewModel = vm
         
         let vc = ScreenshotViewController(viewModel: vm)
         window?.rootViewController = vc
+        
         return true
     }
     
@@ -50,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         screenShotViewModel?.authorization = authorization
         screenShotViewModel?.baseURL = URL(string: baseURL)
         screenShotViewModel?.appInfo = Dictionary(queryItems.map { ($0.name, $0.value ?? "") }) { $1 }
-        
+ 
         return true
     }
     
