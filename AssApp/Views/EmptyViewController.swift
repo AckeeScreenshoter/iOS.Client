@@ -1,5 +1,5 @@
 //
-//  EmptyView.swift
+//  EmptyViewController.swift
 //  ass-app
 //
 //  Created by Vendula Švastalová on 22/05/2020.
@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 
 /// View that only directs the user to the project description
-final class EmptyView: UIView {
+final class EmptyViewController: UIViewController {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func loadView() {
+        super.loadView()
         
         // checked background
         let background = Asset.background.image.view
-        addSubview(background)
+        view.addSubview(background)
         background.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -32,7 +32,7 @@ final class EmptyView: UIView {
         """
         
         centerLabel.textAlignment = .center
-        addSubview(centerLabel)
+        view.addSubview(centerLabel)
         centerLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(52)
             make.centerY.equalToSuperview()
@@ -58,7 +58,7 @@ final class EmptyView: UIView {
         ], range: NSRange(gitlabRange, in: readmeText))
         
         gitlabLink.setAttributedTitle(attributedString, for: [])
-        addSubview(gitlabLink)
+        view.addSubview(gitlabLink)
         gitlabLink.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(60)
             make.bottom.equalToSuperview().inset(48)
@@ -72,9 +72,5 @@ final class EmptyView: UIView {
     private func openLink() {
         let url = URL(string: "https://gitlab.ack.ee/iOS/ass/-/blob/master/README.md")!
         UIApplication.shared.open(url)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
