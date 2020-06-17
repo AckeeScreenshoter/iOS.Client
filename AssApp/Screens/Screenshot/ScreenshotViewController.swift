@@ -164,7 +164,7 @@ final class ScreenshotViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         infoView.scrollView.snp.updateConstraints { make in
-            // pokud by to bylo az moc velke, tak dame nejakou constantu
+            // TODO: compute value for greater view
             make.height.equalTo(infoView.scrollView.contentSize.height)
         }
         min = buttonContentView.frame.minY - infoView.frame.height
