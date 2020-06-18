@@ -112,9 +112,9 @@ final class NoteView: UITextView {
     
     private func updateUI(with state: State, animated: Bool = true) {
         let firstChangeBlock = { [weak self] in
-            if state == .active || state == .inactiveFull {
+            if state == .active || state == .inactiveFull  {
                 self?.largePlaceholder.alpha = 0.0
-            } else {
+            } else if state != .disabled {
                 self?.smallPlaceholder.alpha = 0.0
             }
             self?.backgroundColor = state.backgroundColor
@@ -127,6 +127,9 @@ final class NoteView: UITextView {
             if state == .active || state == .inactiveFull {
                 self?.smallPlaceholder.textColor = state.placeholderColor
                 self?.smallPlaceholder.alpha = 1.0
+            } else if state == .disabled {
+                self?.smallPlaceholder.textColor = state.placeholderColor
+                self?.largePlaceholder.textColor = state.placeholderColor
             } else {
                 self?.largePlaceholder.textColor = state.placeholderColor
                 self?.largePlaceholder.alpha = 1.0
@@ -155,7 +158,9 @@ extension NoteView: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        state = textView.text.isEmpty ? .inactiveEmpty : .inactiveFull
+        if isUserInteractionEnabled {
+            state = textView.text.isEmpty ? .inactiveEmpty : .inactiveFull
+        }
     }
 }
 
