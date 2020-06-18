@@ -66,17 +66,14 @@ final class ScreenshotViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        let imageView = UIImageView()
+        let imageView = ScreenshotImageView(frame: .zero)
         imageView.isHidden = false
-        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.5)
             make.top.equalTo(safeArea).offset(16)
             make.centerX.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.65)
         }
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
         self.imageView = imageView
         
         
