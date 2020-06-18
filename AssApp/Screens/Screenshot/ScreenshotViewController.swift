@@ -155,6 +155,9 @@ final class ScreenshotViewController: UIViewController {
         // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
         viewModel.note = infoView.noteView.text
         viewModel.actions.upload.start()
+        
+        // disable note input
+        infoView.noteView.isUserInteractionEnabled = false
     }
     
     override func viewDidLayoutSubviews() {
