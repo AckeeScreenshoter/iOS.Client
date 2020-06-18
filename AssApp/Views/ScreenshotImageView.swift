@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Resizes its width according to the ratio of its fixed height while using `contentMode .scaleAcpectFit`
 class ScreenshotImageView: UIImageView {
     
     override init(frame: CGRect) {
@@ -23,7 +24,6 @@ class ScreenshotImageView: UIImageView {
     }
     
     override var intrinsicContentSize: CGSize {
-        
         
         if let image = self.image {
             let imageWidth = image.size.width
