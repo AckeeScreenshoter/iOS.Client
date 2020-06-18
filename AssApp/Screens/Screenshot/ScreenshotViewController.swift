@@ -45,6 +45,8 @@ final class ScreenshotViewController: UIViewController {
     
     var buttonBottomConstraint: Constraint?
     
+    var keyboardIsHidden: Bool = true
+    
     var buttonBottomInset: CGFloat {
         if #available(iOS 11.0, *) {
             // doesn't have notch
@@ -144,8 +146,10 @@ final class ScreenshotViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             
             if notification.name == UIResponder.keyboardWillHideNotification {
+                keyboardIsHidden = true
                 buttonBottomConstraint?.update(inset: buttonBottomInset)
             } else {
+                keyboardIsHidden = false
                 buttonBottomConstraint?.update(inset: keyboardSize.height + buttonBottomInset)
             }
             
@@ -207,6 +211,12 @@ final class ScreenshotViewController: UIViewController {
         currentTranslationY += translation.y
         infoView.frame.origin = CGPoint(x: infoView.frame.origin.x, y: newTop)
         recognizer.setTranslation(CGPoint.zero, in: infoView)
+        
+        // dismiss keyboard when dragging down and keyboard is visible
+        if newTop == max && !keyboardIsHidden {
+            infoView.noteView.resignFirstResponder()
+            return
+        }
 
         // Value that distinguishes between accidential and intentional swipe
         let threshold: CGFloat = 60
