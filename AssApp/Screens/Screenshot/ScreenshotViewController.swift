@@ -43,6 +43,21 @@ final class ScreenshotViewController: UIViewController {
     /// Current value of Y translation from the begining of the pan gesture to the end
     var currentTranslationY: CGFloat = 0.0
     
+    var buttonBottomConstraint: Constraint?
+    
+    var buttonBottomInset: CGFloat {
+        if #available(iOS 11.0, *) {
+            // doesn't have notch
+            if view.safeAreaInsets.bottom == 0.0 {
+                return 16
+            } else {
+                return view.safeAreaInsets.bottom
+            }
+        } else {
+            return 16
+        }
+    }
+    
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -98,11 +113,6 @@ final class ScreenshotViewController: UIViewController {
         
         let loadingButton = LoadingButton()
         buttonContentView.addSubview(loadingButton)
-        loadingButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(safeArea)
-        }
         self.loadingButton = loadingButton
         
         let infoView = InfoView()
@@ -124,23 +134,23 @@ final class ScreenshotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Observe for keyboard changes
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        // Observe for keyboard frame changes
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc
-    private func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillChangeFrame(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            keyboardHeight = keyboardSize.height
-            // TODO: manage show-hide keyboard
-            //self.sendButton.frame.origin.y -= keyboardHeight
+            
+            if notification.name == UIResponder.keyboardWillHideNotification {
+                buttonBottomConstraint?.update(inset: buttonBottomInset)
+            } else {
+                buttonBottomConstraint?.update(inset: keyboardSize.height + buttonBottomInset)
+            }
+            
+            view.layoutIfNeeded()
         }
-    }
-    
-    @objc
-    private func keyboardWillHide(notification: NSNotification) {
-        //self.sendButton.frame.origin.y += keyboardHeight
     }
     
     @objc
@@ -166,6 +176,15 @@ final class ScreenshotViewController: UIViewController {
         }
         min = buttonContentView.frame.minY - infoView.frame.height
         max = infoView.frame.minY
+        
+        // layout loadingButton when safeAreaInsets are computed and valid
+        if buttonBottomConstraint == nil {
+            loadingButton.snp.makeConstraints { make in
+                make.top.equalToSuperview().inset(16)
+                make.leading.trailing.equalToSuperview().inset(16)
+                buttonBottomConstraint = make.bottom.equalToSuperview().inset(buttonBottomInset).constraint
+            }
+        }
     }
     
     @objc
