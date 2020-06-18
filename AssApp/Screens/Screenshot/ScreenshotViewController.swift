@@ -116,6 +116,7 @@ final class ScreenshotViewController: UIViewController {
         let loadingButton = LoadingButton()
         buttonContentView.addSubview(loadingButton)
         self.loadingButton = loadingButton
+        loadingButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
         
         let infoView = InfoView()
         view.addSubview(infoView)
