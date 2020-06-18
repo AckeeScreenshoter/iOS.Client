@@ -51,7 +51,6 @@
 		0EF2776B242E763800DDE4B7 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27766242E763800DDE4B7 /* Action.swift */; };
 		0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2776E242E7F5000DDE4B7 /* AppDependency.swift */; };
 		0EF2781824339D8A00DDE4B7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */; };
-		0EF2781D24339E3300DDE4B7 /* AssLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2781A24339E3300DDE4B7 /* AssLoader.swift */; };
 		0EF278222433A6B100DDE4B7 /* Ass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27763242E763800DDE4B7 /* Ass.swift */; };
 		0EF278262433BA8C00DDE4B7 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF278252433BA8C00DDE4B7 /* MediaType.swift */; };
 		0EF278272433BAA900DDE4B7 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF278252433BA8C00DDE4B7 /* MediaType.swift */; };
@@ -130,7 +129,6 @@
 		0EF27766242E763800DDE4B7 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		0EF2776E242E7F5000DDE4B7 /* AppDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		0EF2781A24339E3300DDE4B7 /* AssLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssLoader.swift; sourceTree = "<group>"; };
 		0EF278252433BA8C00DDE4B7 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -350,7 +348,6 @@
 		0EF2781924339E3300DDE4B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0EF2781A24339E3300DDE4B7 /* AssLoader.swift */,
 				0ECC89CD2478104900400D6A /* EmptyViewController.swift */,
 				0E6C76FA24814101009DD2BC /* LoadingButton.swift */,
 				0EA83A1C24911EFC00DA03CF /* NoteView.swift */,
@@ -570,7 +567,6 @@
 				0EF2774E242E731600DDE4B7 /* DataExtensions.swift in Sources */,
 				0EF2775C242E74D400DDE4B7 /* BaseViewModel.swift in Sources */,
 				0EF27757242E738A00DDE4B7 /* URLRequestOperation.swift in Sources */,
-				0EF2781D24339E3300DDE4B7 /* AssLoader.swift in Sources */,
 				0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */,
 				0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */,
 				0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */,
