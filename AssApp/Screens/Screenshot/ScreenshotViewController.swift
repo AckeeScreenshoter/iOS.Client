@@ -30,6 +30,19 @@ final class ScreenshotViewController: UIViewController {
     /// Displays all the information passed from the opening app. Also contains NoteView and LoadingButton
     private weak var infoView: InfoView!
     
+    private weak var loadingButton: LoadingButton!
+    
+    private weak var buttonContentView: UIView!
+    
+    /// Minimum Y value thet can be reached by the minY value of `infoView`'s frame
+    var min: CGFloat = 0
+    
+    /// Maximum Y value thet can be reached by the minY value of `infoView`'s frame
+    var max: CGFloat = 0
+    
+    /// Current value of Y translation from the begining of the pan gesture to the end
+    var currentTranslationY: CGFloat = 0.0
+    
     init(viewModel: ScreenshotViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -78,13 +91,37 @@ final class ScreenshotViewController: UIViewController {
         }
         addChild(avPlayerController)
         
+        let buttonContentView = UIView()
+        view.addSubview(buttonContentView)
+        buttonContentView.backgroundColor = .white
+        buttonContentView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        self.buttonContentView = buttonContentView
+        
+        let loadingButton = LoadingButton()
+        buttonContentView.addSubview(loadingButton)
+        loadingButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(safeArea)
+        }
+        self.loadingButton = loadingButton
+        
         let infoView = InfoView()
         view.addSubview(infoView)
         infoView.snp.makeConstraints { make in
-            make.bottom.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
-        infoView.loadingButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
+        infoView.noteView.snp.makeConstraints { make in
+            make.bottom.equalTo(buttonContentView.snp.top)
+        }
         self.infoView = infoView
+        
+        view.bringSubviewToFront(buttonContentView)
+        
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        infoView.addGestureRecognizer(gestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -123,17 +160,67 @@ final class ScreenshotViewController: UIViewController {
         viewModel.actions.upload.start()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        infoView.scrollView.snp.updateConstraints { make in
+            // TODO: compute value for greater view
+            make.height.equalTo(infoView.scrollView.contentSize.height)
+        }
+        min = buttonContentView.frame.minY - infoView.frame.height
+        max = infoView.frame.minY
+    }
+    
+    @objc
+    func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: infoView)
+        
+        if recognizer.state == .began {
+            currentTranslationY = translation.y
+        }
+        
+        var newTop: CGFloat = infoView.frame.minY + translation.y
+        
+        // Deal with too long translations
+        if newTop > max {
+            newTop = max
+        } else if newTop < min {
+            newTop = min
+        }
+        
+        currentTranslationY += translation.y
+        infoView.frame.origin = CGPoint(x: infoView.frame.origin.x, y: newTop)
+        recognizer.setTranslation(CGPoint.zero, in: infoView)
+
+        // Value that distinguishes between accidential and intentional swipe
+        let threshold: CGFloat = 60
+        
+        if recognizer.state == .ended {
+            
+            // animate to top when
+            let shouldAnimateToTop =
+                // swiping up and the translation is greater than threshold
+                currentTranslationY < -threshold ||
+                // swiping down and translation is in lower than threshold
+                (currentTranslationY > 0 && currentTranslationY < threshold)
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                self.infoView.frame.origin = CGPoint(x: self.infoView.frame.origin.x, y: shouldAnimateToTop ? self.min : self.max)
+            }, completion: nil)
+        }
+    }
+    
     // MARK: - Private helpers
     private func startLoading() {
-        infoView.loadingButton.startLoading()
+        loadingButton.startLoading()
     }
     
     private func stopLoading() {
-        infoView.loadingButton.stopLoading()
+        loadingButton.stopLoading()
     }
     
     private func setUploadProgress(_ progress: Double) {
-        infoView.loadingButton.updateLoading(progress: progress)
+        loadingButton.updateLoading(progress: progress)
     }
 }
 
