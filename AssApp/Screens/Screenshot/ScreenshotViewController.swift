@@ -91,8 +91,8 @@ final class ScreenshotViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.65)
         }
+        imageView.isUserInteractionEnabled = true
         self.imageView = imageView
-        
         
         let avPlayerController = AVPlayerViewController()
         self.avPlayerController = avPlayerController
@@ -129,9 +129,6 @@ final class ScreenshotViewController: UIViewController {
         self.infoView = infoView
         
         view.bringSubviewToFront(buttonContentView)
-        
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        infoView.addGestureRecognizer(gestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -140,6 +137,12 @@ final class ScreenshotViewController: UIViewController {
         // Observe for keyboard frame changes
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        infoView.addGestureRecognizer(gestureRecognizer)
+        
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openPhotoGallery))
+        imageView.addGestureRecognizer(imageTap)
     }
     
     @objc
@@ -162,6 +165,22 @@ final class ScreenshotViewController: UIViewController {
     private func openReadme() {
         guard let readmeURL = URL(string: "https://gitlab.ack.ee/iOS/ass/-/blob/master/README.md") else { return }
         UIApplication.shared.open(readmeURL)
+    }
+    
+    @objc
+    private func openPhotoGallery() {
+        print("open photo gallery")
+        let alert = UIAlertController(title: "Open Gallery", message: "Do you want to open photo gallery to edit your screenshot?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            guard let url = URL(string: "photos-redirect://") else { return }
+            UIApplication.shared.open(url)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @objc
