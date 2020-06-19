@@ -13,6 +13,7 @@ public enum Constants {
         public static var mediaType: String = "mediaType"
         public static var baseURL: String = "baseUrl"
         public static var authorization: String = "authorization"
+        public static var scheme: String = "scheme"
     }
     
     public enum URLComponent {
