@@ -116,7 +116,7 @@ final class ScreenshotViewController: UIViewController {
         let loadingButton = LoadingButton()
         buttonContentView.addSubview(loadingButton)
         self.loadingButton = loadingButton
-        loadingButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
+        loadingButton.addTarget(self, action: #selector(loadingButtonTapped), for: .touchUpInside)
         
         let infoView = InfoView()
         view.addSubview(infoView)
@@ -165,7 +165,15 @@ final class ScreenshotViewController: UIViewController {
     }
     
     @objc
-    private func sendTapped() {
+    private func loadingButtonTapped() {
+        
+        if loadingButton.customState == .backToApp {
+            var components = URLComponents()
+            components.scheme = viewModel.scheme
+            guard let url = components.url else { return }
+            UIApplication.shared.open(url)
+            return
+        }
         
         // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
         viewModel.note = infoView.noteView.text
