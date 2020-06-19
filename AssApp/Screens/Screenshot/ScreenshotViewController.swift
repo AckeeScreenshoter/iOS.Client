@@ -169,7 +169,6 @@ final class ScreenshotViewController: UIViewController {
     
     @objc
     private func openPhotoGallery() {
-        print("open photo gallery")
         let alert = UIAlertController(title: "Open Gallery", message: "Do you want to open photo gallery to edit your screenshot?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
             guard let url = URL(string: "photos-redirect://") else { return }
