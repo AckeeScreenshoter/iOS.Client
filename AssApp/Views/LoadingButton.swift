@@ -17,16 +17,26 @@ protocol LoadingButtonDelegate: class {
 
 final class LoadingButton: UIButton {
     
+    enum State {
+        
+        /// Currently loading
+        case loading
+        
+        /// Loading has been finished
+        case backToApp
+        
+        /// Initial state
+        case base
+    }
+    
     /// View whose width is being updated to demonstrate the current loading percentage
     private weak var loadingView: UIView!
     
     private weak var delegate: LoadingButtonDelegate?
     
-    var isLoading = false {
+    var customState: State = .base {
         didSet {
-            
-            // TODO: fix button color when isEnabled = false
-            isEnabled = !isLoading
+            isEnabled = customState == .backToApp || customState == .base
         }
     }
     
@@ -57,8 +67,6 @@ final class LoadingButton: UIButton {
         
         // After adding loadingView as a subview titleLabel gets covered by it so it needs to be brought to front
         bringSubviewToFront(titleLabel!)
-        
-        addTarget(self, action: #selector(handleTap), for: [.touchUpInside])
     }
     
     /// Updates the loading view to cover the defined percentage area of the button
@@ -68,7 +76,7 @@ final class LoadingButton: UIButton {
     /// Is animated by default.
     /// `isLoading` must be `true` to perform any updates
     func updateLoading(progress: Double, animated: Bool = true) {
-        guard isLoading else { return }
+        guard customState == .loading else { return }
         
         let changeBlock = { [unowned self] in
             self.loadingView.snp.remakeConstraints { make in
@@ -87,8 +95,8 @@ final class LoadingButton: UIButton {
     }
     
     func startLoading() {
-        guard !isLoading else { return }
-        isLoading = true
+        guard customState == .base else { return }
+        customState = .loading
     }
     
     /// Calling this method results in changing of the appearance and functionality of this button
@@ -96,29 +104,15 @@ final class LoadingButton: UIButton {
     ///
     /// After calling this method this button will be in such state so that when tapped the user is taken back to the initial app (app from which ASS was opened)
     func stopLoading() {
-        guard isLoading else { return }
+        guard customState == .loading else { return }
         setTitle("BACK TO APP", for: [])
         setTitleColor(.ackeePink, for: [])
         setBackgroundImage(nil, for: [])
         loadingView.isHidden = true
-        isLoading = false
-    }
-    
-    @objc
-    private func handleTap() {
-// TODO: manage taps in different states
-//        if isLoading {
-//            delegate?.goBackToApp()
-//        } else {
-//            delegate?.sendTapped()
-//        }
+        customState = .backToApp
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-extension LoadingButton.State {
-    static let loading = UIControl.State(rawValue: 1 << 16)
 }
