@@ -196,7 +196,7 @@ final class ScreenshotViewController: UIViewController {
     }
     
     @objc
-    func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+    private func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: infoView)
         
         if recognizer.state == .began {
@@ -272,8 +272,28 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
-            // TODO: add support for section titles
-            self?.infoView.info = ["": self?.viewModel.appInfo ?? [:]]
+            
+            self?.infoView.info.removeAll()
+            
+            // Split data to sections
+            
+            /// Filtered app info
+            let appInfo = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key)?.section == .appInfo }
+            if appInfo.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.appInfo.rawValue] = appInfo
+            }
+        
+            /// Filtered device info
+            let deviceInfo = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key)?.section == .deviceInfo }
+            if deviceInfo.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.deviceInfo.rawValue] = deviceInfo
+            }
+            
+            /// Filtered custom data
+            let customData = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key) == nil }
+            if customData.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.customData.rawValue] = customData
+            }
         }
     }
     

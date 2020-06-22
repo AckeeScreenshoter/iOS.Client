@@ -12,6 +12,12 @@ public typealias CustomData = [String: String]
 
 public struct AppInfo {
     public enum Info: String, CaseIterable {
+        public enum Section: String {
+            case appInfo = "App"
+            case deviceInfo = "Device"
+            case customData = "Custom Data"
+        }
+        
         case platform
         case deviceMake
         case deviceModel
@@ -42,6 +48,20 @@ public struct AppInfo {
                 return AppInfo.default.customData.map { URLQueryItem(name: $0.key, value: $0.value) }
             default:
                 return [URLQueryItem(name: self.rawValue, value: self.value)]
+            }
+        }
+        
+        var section: Section {
+            switch self {
+            case .platform,
+                 .deviceMake,
+                 .deviceModel,
+                 .osVersion:        return .deviceInfo
+            case .appName,
+                 .bundleId,
+                 .appVersion,
+                 .buildNumber:          return .appInfo
+            default:                return .customData
             }
         }
     }

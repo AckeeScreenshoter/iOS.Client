@@ -24,6 +24,8 @@
 		0E55A747242D157800F7109C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A746242D157800F7109C /* Assets.xcassets */; };
 		0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E55A748242D157800F7109C /* LaunchScreen.storyboard */; };
 		0E60C16C249B66A400622677 /* ScreenshotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60C16B249B66A400622677 /* ScreenshotImageView.swift */; };
+		0E60C16D249CAE5100622677 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */; };
+		0E60C16E249CB53200622677 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E72E8DB243E27BE00DC2FD8 /* UIDeviceExtensions.swift */; };
 		0E6C76FB24814101009DD2BC /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6C76FA24814101009DD2BC /* LoadingButton.swift */; };
 		0E6C77002481463B009DD2BC /* ACKategoriesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0E6C76FF2481463B009DD2BC /* ACKategoriesCore */; };
 		0E6C77022481463B009DD2BC /* ACKategories in Frameworks */ = {isa = PBXBuildFile; productRef = 0E6C77012481463B009DD2BC /* ACKategories */; };
@@ -292,8 +294,8 @@
 		0EF27732242E6F7300DDE4B7 /* Ass */ = {
 			isa = PBXGroup;
 			children = (
-				0E72E8DD243E27DE00DC2FD8 /* Extensions */,
 				0EF27763242E763800DDE4B7 /* Ass.swift */,
+				0E72E8DD243E27DE00DC2FD8 /* Extensions */,
 				0EF278202433A69200DDE4B7 /* Model */,
 				0EF27734242E6F7400DDE4B7 /* Info.plist */,
 				0EF27733242E6F7300DDE4B7 /* Ass.h */,
@@ -556,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF2774F242E731600DDE4B7 /* PHAsset.swift in Sources */,
+				0E60C16E249CB53200622677 /* UIDeviceExtensions.swift in Sources */,
 				0EF2776B242E763800DDE4B7 /* Action.swift in Sources */,
 				0E60C16C249B66A400622677 /* ScreenshotImageView.swift in Sources */,
 				0E6C76FB24814101009DD2BC /* LoadingButton.swift in Sources */,
@@ -573,6 +576,7 @@
 				0EF27757242E738A00DDE4B7 /* URLRequestOperation.swift in Sources */,
 				0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */,
 				0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */,
+				0E60C16D249CAE5100622677 /* AppInfo.swift in Sources */,
 				0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */,
 				0EF27759242E74A000DDE4B7 /* ScreenshotViewModel.swift in Sources */,
 				0EA83A362498DC7700DA03CF /* InfoView.swift in Sources */,
