@@ -24,7 +24,7 @@ public class Ass: NSObject {
     ///
     /// Information about the device and application all have default values.
     /// All the information can be changed if needed.
-    public let appInfo: AppInfo = AppInfo.default
+    public var appInfo: AppInfo = AppInfo.default
     
     /// Needs to be set to `true` in order for Screenshotter actions to be detected.
     public var isEnabled: Bool = false {
