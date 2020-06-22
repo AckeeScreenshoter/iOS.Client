@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mediaTypeString = queryItems.first(where: { $0.name == Constants.QueryItemKey.mediaType })?.value,
             let authorization = queryItems.first(where: { $0.name == Constants.QueryItemKey.authorization })?.value,
             let baseURL = queryItems.first(where: { $0.name == Constants.QueryItemKey.baseURL })?.value,
+            let scheme = queryItems.first(where: { $0.name == Constants.QueryItemKey.scheme })?.value,
             let mediaType = MediaType(rawValue: mediaTypeString)
             else { return false }
             
@@ -66,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         screenShotViewModel?.mediaType = mediaType
         screenShotViewModel?.authorization = authorization
+        screenShotViewModel?.scheme = scheme
         screenShotViewModel?.baseURL = URL(string: baseURL)
         screenShotViewModel?.appInfo = Dictionary(queryItems.map { ($0.name, $0.value ?? "") }) { $1 }
  
