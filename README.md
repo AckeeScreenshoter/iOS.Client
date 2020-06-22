@@ -12,12 +12,17 @@ Ass framework communicates with the AssApp so the AssApp must be installed on th
 
 ## Usage
 
-First you need to setup the SDK. Ass must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token. This is typically  done in the app delegate.
+First you need to setup the SDK. Ass must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token.
+
+Also it needs to be provided with a URL Scheme.  Defined in `Project Settings -> Target -> Info -> URL Types`.
+
+This is typically  done in the app delegate.
 
 ```swift
 Ass.shared.isEnabled = true
 Ass.shared.baseURL = URL(string: "https://ass-ee.firebaseapp.com/upload")!
 Ass.shared.authorization = "<auth_token>"
+Ass.shared.scheme = "<url_scheme>"
 ```
 
 When enabled Ass reacts to taking screenshots and screen capturing.

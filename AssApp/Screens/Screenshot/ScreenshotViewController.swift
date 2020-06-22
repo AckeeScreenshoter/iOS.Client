@@ -116,7 +116,7 @@ final class ScreenshotViewController: UIViewController {
         let loadingButton = LoadingButton()
         buttonContentView.addSubview(loadingButton)
         self.loadingButton = loadingButton
-        loadingButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
+        loadingButton.addTarget(self, action: #selector(loadingButtonTapped), for: .touchUpInside)
         
         let infoView = InfoView()
         view.addSubview(infoView)
@@ -183,7 +183,15 @@ final class ScreenshotViewController: UIViewController {
     }
     
     @objc
-    private func sendTapped() {
+    private func loadingButtonTapped() {
+        
+        if loadingButton.customState == .backToApp {
+            var components = URLComponents()
+            components.scheme = viewModel.scheme
+            guard let url = components.url else { return }
+            UIApplication.shared.open(url)
+            return
+        }
         
         // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
         viewModel.note = infoView.noteView.text
@@ -214,7 +222,7 @@ final class ScreenshotViewController: UIViewController {
     }
     
     @objc
-    func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+    private func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: infoView)
         
         if recognizer.state == .began {
@@ -290,8 +298,28 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
-            // TODO: add support for section titles
-            self?.infoView.info = ["": self?.viewModel.appInfo ?? [:]]
+            
+            self?.infoView.info.removeAll()
+            
+            // Split data to sections
+            
+            /// Filtered app info
+            let appInfo = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key)?.section == .appInfo }
+            if appInfo.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.appInfo.rawValue] = appInfo
+            }
+        
+            /// Filtered device info
+            let deviceInfo = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key)?.section == .deviceInfo }
+            if deviceInfo.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.deviceInfo.rawValue] = deviceInfo
+            }
+            
+            /// Filtered custom data
+            let customData = viewModel.appInfo.filter { AppInfo.Info(rawValue: $0.key) == nil }
+            if customData.isNotEmpty {
+                self?.infoView.info[AppInfo.Info.Section.customData.rawValue] = customData
+            }
         }
     }
     
