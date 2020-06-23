@@ -98,7 +98,6 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         let jsonEncoder = JSONEncoder()
         
         guard let jsonData = try? jsonEncoder.encode(object) else { return nil }
-        print("jsonData \(jsonData)")
         
         return createMultipartItem(name: name, boundary: boundary, filename: nil, contentType: .json, content: jsonData)
     }

@@ -17,6 +17,9 @@ public class Ass: NSObject {
     /// BaseURL for sending data
     public var baseURL: URL?
     
+    /// URL scheme defined in Project Settings - Info
+    public var scheme: String?
+    
     /// Information about the application, device and  custom user defined information
     ///
     /// Information about the device and application all have default values.
@@ -89,8 +92,9 @@ public class Ass: NSObject {
         let mediaQueryItem = URLQueryItem(name: Constants.QueryItemKey.mediaType, value: mediaType.rawValue)
         let baseURLQueryItem = URLQueryItem(name: Constants.QueryItemKey.baseURL, value: baseURL.absoluteString)
         let authorizationQueryItem = URLQueryItem(name: Constants.QueryItemKey.authorization, value: authorization)
+        let schemeQueryItem = URLQueryItem(name: Constants.QueryItemKey.scheme, value: scheme)
         var urlComponents = URLComponents(string: "")
-        urlComponents?.queryItems = appInfo.queryItems + [mediaQueryItem, baseURLQueryItem, authorizationQueryItem]
+        urlComponents?.queryItems = appInfo.queryItems + [mediaQueryItem, baseURLQueryItem, authorizationQueryItem, schemeQueryItem]
         urlComponents?.scheme = Constants.URLComponent.scheme
         urlComponents?.host = Constants.URLComponent.host
         return urlComponents?.url

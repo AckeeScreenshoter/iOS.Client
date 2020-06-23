@@ -45,6 +45,8 @@ protocol ScreenshotViewModeling: class {
     
     /// Custom user note
     var note: String? { get set }
+    
+    var scheme: String? { get }
 }
 
 extension ScreenshotViewModeling {
@@ -117,6 +119,8 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
             upload.operation.appInfo?["note"] = note
         }
     }
+    
+    var scheme: String?
     
     let upload: Action<UploadMultipartDataOperation>
     
