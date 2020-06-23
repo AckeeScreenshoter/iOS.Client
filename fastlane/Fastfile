@@ -13,3 +13,53 @@ PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
 PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
 
 ENV["XCODE_VERSION"] = "~> 11.3"
+
+def resources_directory
+	return "AssApp/Resources"
+end
+
+def assets_directory
+	return "#{resources_directory}/Assets.xcassets"
+end
+
+def provisioning_mapping	
+	return {
+            "cz.ackee.enterprise.ass" => "match InHouse cz.ackee.enterprise.*"
+	}
+end
+
+override_lane :beta do |options|
+  SCHEME = "AssApp"
+  CONFIGURATION = "Release"
+  TARGET_RESOURCES = assets_directory
+  
+  if is_ci
+    provisioning configuration: CONFIGURATION
+  else
+    UI.message("Running locally, run provisioning manually if needed")
+  end
+  
+  begin
+    add_badge(
+      shield: "#{get_version_string}-#{number_of_commits}-blue",
+      dark: ENV["ACK_BADGE_TYPE"] == "dark",
+      glob: "/#{resources_directory}/**/*.appiconset/*.{png,PNG}",
+      shield_no_resize: false,
+    )
+  rescue
+    UI.error("Unable to add badges to app icon")
+    # Put badge back to original
+    sh "git checkout -- ../#{TARGET_RESOURCES}"
+  end
+
+  build(export_options: {
+    method: CONFIGURATIONS[CONFIGURATION],
+    provisioningProfiles: provisioning_mapping,
+  })
+
+  UI.important "beta lane does not upload the build itself, jenkins does it on CI and you have to do it manually if you need it"
+  UI.message ""
+  UI.important "Testflight"
+  UI.message "fastlane run upload_to_testflight ipa:outputs/App.ipa team_id:{teamID} username:{name.surname}@ackee.cz"
+  UI.message ""
+end
