@@ -27,28 +27,44 @@ final class LoadingButton: UIButton {
         
         /// Initial state
         case base
+        
+        var title: String {
+            switch self {
+            case .backToApp:    return "back to app".uppercased()
+            default:            return "send".uppercased()
+            }
+        }
+        
+        var backgroundColor: UIColor? {
+            switch self {
+            case .backToApp:    return nil
+            default:            return .ackeePink
+            }
+        }
+        
+        var titleColor: UIColor? {
+            switch self {
+            case .backToApp:    return .ackeePink
+            default:            return .white
+            }
+        }
     }
     
     /// View whose width is being updated to demonstrate the current loading percentage
     private weak var loadingView: UIView!
     
-    private weak var delegate: LoadingButtonDelegate?
-    
-    var customState: State = .base {
+    private(set) var customState: State = .base {
         didSet {
-            isEnabled = customState == .backToApp || customState == .base
+            updateUI(for: customState)
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
     
-        setTitleColor(.white, for: [])
         titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         layer.cornerRadius = 6
         clipsToBounds = true
-        setBackgroundImage(UIColor.ackeePink.image(), for: [])
-        setTitle("SEND", for: [])
         snp.makeConstraints { make in
             make.height.equalTo(56)
         }
@@ -67,6 +83,8 @@ final class LoadingButton: UIButton {
         
         // After adding loadingView as a subview titleLabel gets covered by it so it needs to be brought to front
         bringSubviewToFront(titleLabel!)
+        
+        updateUI(for: .base)
     }
     
     /// Updates the loading view to cover the defined percentage area of the button
@@ -76,8 +94,6 @@ final class LoadingButton: UIButton {
     /// Is animated by default.
     /// `isLoading` must be `true` to perform any updates
     func updateLoading(progress: Double, animated: Bool = true) {
-        guard customState == .loading else { return }
-        
         let changeBlock = { [unowned self] in
             self.loadingView.snp.remakeConstraints { make in
                 make.top.leading.bottom.equalToSuperview()
@@ -94,6 +110,7 @@ final class LoadingButton: UIButton {
         }
     }
     
+    /// Brings the button to `.loading` state
     func startLoading() {
         guard customState == .base else { return }
         customState = .loading
@@ -105,11 +122,21 @@ final class LoadingButton: UIButton {
     /// After calling this method this button will be in such state so that when tapped the user is taken back to the initial app (app from which ASS was opened)
     func stopLoading() {
         guard customState == .loading else { return }
-        setTitle("BACK TO APP", for: [])
-        setTitleColor(.ackeePink, for: [])
-        setBackgroundImage(nil, for: [])
-        loadingView.isHidden = true
         customState = .backToApp
+    }
+    
+    func setToInitialState() {
+        guard customState == .backToApp else { return }
+        customState = .base
+        updateLoading(progress: 0.0, animated: false)
+    }
+    
+    private func updateUI(for state: State) {
+        setTitle(state.title, for: [])
+        setTitleColor(state.titleColor, for: [])
+        setBackgroundImage(state.backgroundColor?.image(), for: [])
+        loadingView.isHidden = state == .backToApp
+        isEnabled = state != .loading
     }
     
     required init?(coder: NSCoder) {
