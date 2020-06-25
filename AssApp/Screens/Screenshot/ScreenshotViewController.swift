@@ -278,6 +278,11 @@ final class ScreenshotViewController: UIViewController {
     private func setUploadProgress(_ progress: Double) {
         loadingButton.updateLoading(progress: progress)
     }
+    
+    private func setToInitialState() {
+        loadingButton.setToInitialState()
+        infoView.noteView.isUserInteractionEnabled = false
+    }
 }
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
@@ -288,7 +293,7 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
             let player = AVPlayer(url: url)
             self?.avPlayerController.player = player
             
-            self?.loadingButton.setToInitialState()
+            self?.setToInitialState()
         }
     }
     
@@ -296,7 +301,7 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image = self?.viewModel.screenshot
             
-            self?.loadingButton.setToInitialState()
+            self?.setToInitialState()
         }
     }
     
@@ -324,7 +329,7 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
                 self?.infoView.info[AppInfo.Info.Section.customData.rawValue] = customData
             }
             
-            self?.loadingButton.setToInitialState()
+            self?.setToInitialState()
         }
     }
     
