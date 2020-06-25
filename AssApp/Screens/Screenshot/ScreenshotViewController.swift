@@ -287,18 +287,21 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
         DispatchQueue.main.async { [weak self] in
             let player = AVPlayer(url: url)
             self?.avPlayerController.player = player
+            
+            self?.loadingButton.setToInitialState()
         }
     }
     
     func screenshotChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image = self?.viewModel.screenshot
+            
+            self?.loadingButton.setToInitialState()
         }
     }
     
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
-            
             self?.infoView.info.removeAll()
             
             // Split data to sections
@@ -320,6 +323,8 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
             if customData.isNotEmpty {
                 self?.infoView.info[AppInfo.Info.Section.customData.rawValue] = customData
             }
+            
+            self?.loadingButton.setToInitialState()
         }
     }
     
