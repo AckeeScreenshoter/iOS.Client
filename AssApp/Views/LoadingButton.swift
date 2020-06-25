@@ -53,6 +53,7 @@ final class LoadingButton: UIButton {
     /// View whose width is being updated to demonstrate the current loading percentage
     private weak var loadingView: UIView!
     
+    /// Setting this value updates the button's UI
     private(set) var customState: State = .base {
         didSet {
             updateUI(for: customState)
@@ -125,12 +126,14 @@ final class LoadingButton: UIButton {
         customState = .backToApp
     }
     
+    /// Brings the button to `.base` state
     func setToInitialState() {
         guard customState == .backToApp else { return }
         customState = .base
         updateLoading(progress: 0.0, animated: false)
     }
     
+    /// Updates button's UI according to the passed state
     private func updateUI(for state: State) {
         setTitle(state.title, for: [])
         setTitleColor(state.titleColor, for: [])
