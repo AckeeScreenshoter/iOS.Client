@@ -282,6 +282,7 @@ final class ScreenshotViewController: UIViewController {
     private func setToInitialState() {
         loadingButton.setToInitialState()
         infoView.noteView.isUserInteractionEnabled = true
+        infoView.noteView.text = nil
     }
 }
 
