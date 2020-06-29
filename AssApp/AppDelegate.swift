@@ -26,12 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if launchOptions == nil {
             let vc = EmptyViewController()
             window?.rootViewController = vc
-            return true
+        } else {
+            setupScreenshotVC(in: window)
         }
         
-        setupScreenshotVC(in: window)
+        showAnimatedSplashScreen()
         
         return true
+    }
+    
+    private func showAnimatedSplashScreen() {
+        let splashScreen = SplashScreen()
+        splashScreen.animateAfterLaunch(in: window?.rootViewController?.view)
     }
     
     private func setupScreenshotVC(in window: UIWindow?) {

@@ -10,6 +10,7 @@ import UIKit
 
 enum Asset: String {
     case background
+    case ackeeSignature
     
     var image: UIImage {
         UIImage(named: rawValue)!
