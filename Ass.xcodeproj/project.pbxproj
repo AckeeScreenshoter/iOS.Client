@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3ADE0324AA3FEE0009DAD8 /* Lottie */; };
+		0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0624AA416D0009DAD8 /* splash_animation.json */; };
+		0E3ADE0924AA422B0009DAD8 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */; };
 		0E3E57B42448821000F6001A /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57A72448821000F6001A /* FIRAnalyticsConnector.framework */; };
 		0E3E57B62448821000F6001A /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57A82448821000F6001A /* FirebaseAnalytics.framework */; };
 		0E3E57B82448821000F6001A /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3E57A92448821000F6001A /* FirebaseInstallations.framework */; };
@@ -85,6 +88,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E3ADE0624AA416D0009DAD8 /* splash_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_animation.json; sourceTree = "<group>"; };
+		0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		0E3E57A72448821000F6001A /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Carthage/Build/iOS/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
 		0E3E57A82448821000F6001A /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Carthage/Build/iOS/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		0E3E57A92448821000F6001A /* FirebaseInstallations.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstallations.framework; path = Carthage/Build/iOS/FirebaseInstallations.framework; sourceTree = "<group>"; };
@@ -147,6 +152,7 @@
 				0E3E57B82448821000F6001A /* FirebaseInstallations.framework in Frameworks */,
 				0E3E57BA2448821000F6001A /* GoogleAppMeasurement.framework in Frameworks */,
 				0E3E57BC2448821000F6001A /* GoogleDataTransport.framework in Frameworks */,
+				0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */,
 				0E3E57C02448821100F6001A /* nanopb.framework in Frameworks */,
 				0E3E57CA2448821100F6001A /* PromisesObjC.framework in Frameworks */,
 				0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */,
@@ -170,6 +176,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3ADE0524AA40DE0009DAD8 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				0E3ADE0624AA416D0009DAD8 /* splash_animation.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		0E3CD02E245049390038B1C5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +290,7 @@
 		0EA83A202491315900DA03CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0E3ADE0524AA40DE0009DAD8 /* Animation */,
 				0E9E6D3A24A0F4260034D1A8 /* Assets.xcassets */,
 				0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */,
 			);
@@ -352,6 +367,7 @@
 		0EF2781924339E3300DDE4B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */,
 				0ECC89CD2478104900400D6A /* EmptyViewController.swift */,
 				0E6C76FA24814101009DD2BC /* LoadingButton.swift */,
 				0EA83A1C24911EFC00DA03CF /* NoteView.swift */,
@@ -405,6 +421,7 @@
 				0ECBE57D242D372D00AB4E1E /* SnapKit */,
 				0E6C76FF2481463B009DD2BC /* ACKategoriesCore */,
 				0E6C77012481463B009DD2BC /* ACKategories */,
+				0E3ADE0324AA3FEE0009DAD8 /* Lottie */,
 			);
 			productName = "ass-app";
 			productReference = 0E55A73A242D157400F7109C /* Ass.app */;
@@ -458,6 +475,7 @@
 			packageReferences = (
 				0ECBE57C242D372D00AB4E1E /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0E6C76FE2481463B009DD2BC /* XCRemoteSwiftPackageReference "ACKategories" */,
+				0E3ADE0224AA3FEE0009DAD8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 0E55A73B242D157400F7109C /* Products */;
 			projectDirPath = "";
@@ -475,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E55A74A242D157800F7109C /* LaunchScreen.storyboard in Resources */,
+				0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */,
 				0E3E57D024488DF200F6001A /* GoogleService-Info.plist in Resources */,
 				0E9E6D3B24A0F4270034D1A8 /* Assets.xcassets in Resources */,
 				0EA83A222491323300DA03CF /* OverpassMono-Regular.ttf in Resources */,
@@ -577,6 +596,7 @@
 				0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */,
 				0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */,
 				0E60C16D249CAE5100622677 /* AppInfo.swift in Sources */,
+				0E3ADE0924AA422B0009DAD8 /* SplashScreen.swift in Sources */,
 				0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */,
 				0EF27759242E74A000DDE4B7 /* ScreenshotViewModel.swift in Sources */,
 				0EA83A362498DC7700DA03CF /* InfoView.swift in Sources */,
@@ -651,6 +671,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = PXDF48X6VX;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -712,6 +733,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PXDF48X6VX;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -879,6 +901,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0E3ADE0224AA3FEE0009DAD8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
 		0E6C76FE2481463B009DD2BC /* XCRemoteSwiftPackageReference "ACKategories" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AckeeCZ/ACKategories.git";
@@ -898,6 +928,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0E3ADE0324AA3FEE0009DAD8 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E3ADE0224AA3FEE0009DAD8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		0E6C76FF2481463B009DD2BC /* ACKategoriesCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0E6C76FE2481463B009DD2BC /* XCRemoteSwiftPackageReference "ACKategories" */;
