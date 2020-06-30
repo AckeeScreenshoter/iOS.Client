@@ -41,6 +41,7 @@ final class EmptyViewController: UIViewController {
         let gitlabLink = UIButton()
         gitlabLink.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         gitlabLink.titleLabel?.textAlignment = .center
+        gitlabLink.titleLabel?.numberOfLines = 0
         gitlabLink.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         
         let readmeText = """
