@@ -1,0 +1,48 @@
+require 'ACKFastlane'
+
+import(ACKFastlane.fastfilePath)
+
+CONFIGURATIONS = {
+    "Debug" => "development",
+    "Release" => "enterprise",
+}
+
+
+INHOUSE_APPLE_ID = "unicorn@ackee.cz"
+PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
+PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
+
+ENV["XCODE_VERSION"] = "~> 11.3"
+
+def resources_directory
+	return "AssApp/Resources"
+end
+
+def assets_directory
+	return "#{resources_directory}/Assets.xcassets"
+end
+
+def provisioning_mapping	
+	return {
+            "cz.ackee.enterprise.ass" => "match InHouse cz.ackee.enterprise.*"
+	}
+end
+
+override_lane :beta do |options|
+  SCHEME = "AssApp"
+  CONFIGURATION = "Release"
+  TARGET_RESOURCES = assets_directory
+  
+  if is_ci
+    provisioning configuration: CONFIGURATION
+  else
+    UI.message("Running locally, run provisioning manually if needed")
+  end
+  
+  build(export_options: {
+    method: CONFIGURATIONS[CONFIGURATION],
+    provisioningProfiles: provisioning_mapping,
+  })
+
+  UI.important "beta lane does not upload the build itself, jenkins does it on CI and you have to do it manually if you need it"
+end
