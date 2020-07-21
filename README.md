@@ -14,9 +14,9 @@ Ass framework communicates with the AssApp so the AssApp must be installed on th
 
 First you need to setup the SDK. Ass must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token.
 
-Also it needs to be provided with a URL Scheme.  Defined in `Project Settings -> Target -> Info -> URL Types`.
+Also it needs to be provided with *any* URL Scheme.  Defined in `Project Settings -> Target -> Info -> URL Types`.
 
-This is typically  done in the app delegate.
+This setup is typically done in the app delegate.
 
 ```swift
 Ass.shared.isEnabled = true
@@ -69,5 +69,5 @@ When AssApp is opened with a URL its query parameters are parsed. The query para
 ## User guide
 
 To use Ass just **take a screenshot** or **stop a video inside** your debug application. 
-After one of these actions is detected the user is taken straight to AssApp. In case of a **screenshot** the user can edit the image through the small window that appears in the bottom left corner of the screen. It is also possible to edit the photo in the Gallery and return back to AssApp. When finished just tap send and your screenshot or recors appears in [Ass on the web](https://ass-ee.firebaseapp.com/)
+After one of these actions is detected the user is taken straight to AssApp. In case of a **screenshot** the user can edit the image through the small window that appears in the bottom left corner of the screen. It is also possible to edit the photo in the Gallery and return back to AssApp. When finished just tap send and your screenshot or records appears in [Ass on the web](https://ass-ee.firebaseapp.com/)
 
