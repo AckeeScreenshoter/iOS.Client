@@ -193,9 +193,8 @@ final class ScreenshotViewController: UIViewController {
             return
         }
         
-        // Note is set right before send action occurs, so that we don't have to update the upload operation everytime the text changes but only with the final text
         viewModel.note = infoView.noteView.text
-        viewModel.actions.upload.start()
+        viewModel.actions.startUploading()
         
         // disable note input
         infoView.noteView.isUserInteractionEnabled = false
@@ -356,7 +355,7 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
         DispatchQueue.main.async { [weak self] in
             let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
             let retry = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
-                self?.viewModel.actions.upload.start()
+                self?.viewModel.actions.startUploading()
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             alertVC.addAction(retry)
