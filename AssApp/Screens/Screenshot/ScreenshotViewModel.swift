@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol ScreenshotViewModelingActions {
-    var upload: Action<UploadMultipartDataOperation> { get }
+    func startUploading()
 }
 
 protocol ScreenshotViewModelingDelegate: class {
@@ -76,34 +76,17 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     var screenshot: UIImage? {
         didSet {
             delegate?.screenshotChanged(in: self)
-            upload.operation.recordURL = nil
-            upload.operation.screenshot = screenshot
         }
     }
     
     var recordURL: URL? {
         didSet {
             delegate?.recordURLChanged(in: self)
-            upload.operation.screenshot = nil
-            upload.operation.recordURL = recordURL
-        }
-    }
-    
-    var baseURL: URL? {
-        didSet {
-            upload.operation.baseURL = baseURL
-        }
-    }
-    
-    var authorization: String? {
-        didSet {
-            upload.operation.authorization = authorization
         }
     }
     
     var appInfo: [String:String] = [:] {
         didSet {
-            upload.operation.appInfo = appInfo
             tableData = Array(appInfo)
         }
     }
@@ -114,41 +97,26 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         }
     }
     
-    var note: String? {
-        didSet {
-            upload.operation.appInfo?["note"] = note
-        }
-    }
+    var note: String?
     
     var scheme: String?
+    var baseURL: URL?
+    var authorization: String?
     
-    let upload: Action<UploadMultipartDataOperation>
+    private let screenshotAPIService: ScreenshotAPIServicing
     
     private var imageFetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>()
     private var videoFetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>()
     
+    private var uploadAction: Action<UploadMultipartDataOperation>? = nil
+    
     // MARK: - Initialization
 
     init(dependencies: Dependencies) {
-        self.upload = Action(operation: dependencies.screenshotAPI.uploadOperation)
+        self.screenshotAPIService = dependencies.screenshotAPI
         super.init()
         
-        upload.operation.startBlock = { [weak self] in
-            self?.delegate?.uploadStarted(in: self!)
-        }
-
-        upload.operation.progressBlock = { [weak self] in
-            self?.delegate?.uploadProgressChanged($0, in: self!)
-        }
         
-        upload.operation.completionBlock = { [weak self] in
-            guard let self = self, let result = self.upload.operation.result else { return }
-            
-            switch result {
-            case .success: self.delegate?.uploadFinished(in: self)
-            case .failure(let error): self.delegate?.uploadFailed(with: error, in: self)
-            }
-        }
         
         // Photo Library setup, fetching last image and last record
         PHPhotoLibrary.shared().register(self)
@@ -176,6 +144,37 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     
     private func updateScreenshot(with asset: PHAsset?) {
         screenshot = asset?.image
+    }
+    
+    func startUploading() {
+        
+        // update appInfo with current note
+        var appInfo = self.appInfo
+        appInfo["note"] = note
+        
+        guard let operation = screenshotAPIService.createUploadOperation(screenshot: screenshot, recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization) else { return }
+        
+        uploadAction = Action(operation: operation)
+        
+        uploadAction?.operation.startBlock = { [weak self] in
+            guard let self = self else { return }
+            self.delegate?.uploadStarted(in: self)
+        }
+
+        uploadAction?.operation.progressBlock = { [weak self] in
+            self?.delegate?.uploadProgressChanged($0, in: self!)
+        }
+        
+        uploadAction?.operation.completionBlock = { [weak self] in
+            guard let self = self, let result = self.uploadAction?.operation.result else { return }
+            
+            switch result {
+            case .success: self.delegate?.uploadFinished(in: self)
+            case .failure(let error): self.delegate?.uploadFailed(with: error, in: self)
+            }
+        }
+        
+        uploadAction?.start()
     }
 }
 

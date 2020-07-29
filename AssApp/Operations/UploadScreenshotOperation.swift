@@ -8,53 +8,18 @@
 import UIKit
 import AVKit
 
-// Rename to upload data
 final class UploadMultipartDataOperation: URLRequestOperation {
     
-    var screenshot: UIImage? {
-        didSet {
-            guard let _ = screenshot else { return }
-            updateRequest()
-        }
+    init(screenshot: UIImage, appInfo: [String: String], baseURL: URL, authorization: String) {
+        super.init()
+        urlRequest = createRequest(screenshot: screenshot, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
     }
     
-    var recordURL: URL? {
-        didSet {
-            guard let _ = recordURL else { return }
-            updateRequest()
-        }
+    init(recordURL: URL, appInfo: [String: String], baseURL: URL, authorization: String) {
+        super.init()
+        urlRequest = createRequest(recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
     }
     
-    var appInfo: [String:String]? {
-        didSet {
-            updateRequest()
-        }
-    }
-    
-    var baseURL: URL? {
-        didSet {
-            updateRequest()
-        }
-    }
-    
-    var authorization: String? {
-        didSet {
-            updateRequest()
-        }
-    }
-    
-    private func updateRequest() {
-        guard let appInfo = appInfo, let baseURL = baseURL, let authorization = authorization else { return }
-        if let screenshot = screenshot {
-            urlRequest = createRequest(screenshot: screenshot, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
-            return
-        }
-        
-        if let recordURL = recordURL {
-            urlRequest = createRequest(recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
-            return
-        }
-    }
     
     // MARK: - Private helpers
     
