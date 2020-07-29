@@ -6,6 +6,10 @@ Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is designed
 
 **Ass framework** is available through [Carthage](https://github.org/Carthage/Carthage). Just add it to your _Cartfile_. 
 
+```
+git "git@gitlab.ack.ee:iOS/Ass.git" "master"
+```
+
 **Ass application** is available through [App Distribution]() .
 
 Ass framework communicates with the AssApp so the AssApp must be installed on the testing device.
