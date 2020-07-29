@@ -161,7 +161,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
             self.delegate?.uploadStarted(in: self)
         }
 
-        uploadAction?.operation.progessBlock = { [weak self] in
+        uploadAction?.operation.progressBlock = { [weak self] in
             self?.delegate?.uploadProgressChanged($0, in: self!)
         }
         
