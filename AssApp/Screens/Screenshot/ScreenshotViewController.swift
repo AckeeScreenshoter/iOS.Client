@@ -83,13 +83,16 @@ final class ScreenshotViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        let imageView = ScreenshotImageView(frame: .zero)
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         imageView.isHidden = false
         view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(16)
             make.centerX.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.65)
+            make.size.equalToSuperview().multipliedBy(0.65)
         }
         imageView.isUserInteractionEnabled = true
         self.imageView = imageView
@@ -101,7 +104,9 @@ final class ScreenshotViewController: UIViewController {
         avPlayerController.view.isHidden = true
         view.addSubview(avPlayerController.view)
         avPlayerController.view.snp.makeConstraints { make in
-            make.edges.equalTo(imageView)
+            make.top.equalTo(safeArea).offset(16)
+            make.centerX.equalToSuperview()
+            make.size.equalToSuperview().multipliedBy(0.65)
         }
         addChild(avPlayerController)
         
