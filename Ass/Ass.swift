@@ -17,9 +17,6 @@ public class Ass: NSObject {
     /// BaseURL for sending data
     public var baseURL: URL?
     
-    /// URL scheme defined in Project Settings - Info
-    public var scheme: String?
-    
     /// Information about the application, device and  custom user defined information
     ///
     /// Information about the device and application all have default values.
@@ -45,6 +42,17 @@ public class Ass: NSObject {
     
     /// Indicates whether the screen is currently being captured
     private var isBeingCaptured = false
+    
+    /// URL scheme defined in Project Settings - Info
+    private var scheme: String? {
+        guard
+            let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: AnyObject]],
+            let urlType = urlTypes.first(where: { return ($0["CFBundleURLName"] as? String) == "AckeeScreenshotter" }),
+            let scheme = (urlType["CFBundleURLSchemes"] as? [String])?.first
+            else { return nil }
+                
+        return scheme
+    }
     
     /// Adds observer to UIScreen for detecting video capturing
     /// Adds observer for `.userDidTakeScreenshotNotification` to the `NotificationCentre`

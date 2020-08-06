@@ -16,18 +16,21 @@ Ass framework communicates with the AssApp so the AssApp must be installed on th
 
 ## Usage
 
-First you need to setup the SDK. Ass must first be `enabled`, then is needs to be provided with a `baseURL` for the Firebase backend and `authorization` token.
+First you need to setup the SDK. 
 
-Also it needs to be provided with *any* URL Scheme.  Defined in `Project Settings -> Target -> Info -> URL Types`.
+1. Enable ASS.
+2. Provide ASS with `baseURL` for the Firebase backend.
+3. Provide ASS with **[<auth_token>](https://ackee.passwd.team/secrets/utLLPiEx8RhCyab8m8bP)** for Firebase backend authorization.
 
 This setup is typically done in the app delegate.
 
 ```swift
 Ass.shared.isEnabled = true
 Ass.shared.baseURL = URL(string: "https://ass-ee.firebaseapp.com/upload")!
-Ass.shared.authorization = "<auth_token>"
-Ass.shared.scheme = "<url_scheme>"
+Ass.shared.authorization = "[<auth_token>](https://ackee.passwd.team/secrets/utLLPiEx8RhCyab8m8bP)"
 ```
+
+4. Define URL Scheme in `Project Settings -> Target -> Info -> URL Types` by adding a new `URLType` (tapping the plus sign) with **`AckeeScreenshotter`** identifier. The URL Scheme must be different from URL schemes defined in your other URL Types. Also it has to be unique across all the apps installed on a device to function properly. So it is preferred to pick URL Scheme such as `ass-my-app` over `ass`.
 
 When enabled Ass reacts to taking screenshots and screen capturing.
 
