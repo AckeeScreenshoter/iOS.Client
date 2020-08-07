@@ -27,7 +27,7 @@ This setup is typically done in the app delegate.
 ```swift
 Ass.shared.isEnabled = true
 Ass.shared.baseURL = URL(string: "https://ass-ee.firebaseapp.com/upload")!
-Ass.shared.authorization = "[<auth_token>](https://ackee.passwd.team/secrets/utLLPiEx8RhCyab8m8bP)"
+Ass.shared.authorization = <auth_token>
 ```
 
 4. Define URL Scheme in `Project Settings -> Target -> Info -> URL Types` by adding a new `URLType` (tapping the plus sign) with **`AckeeScreenshotter`** identifier. The URL Scheme must be different from URL schemes defined in your other URL Types. Also it has to be unique across all the apps installed on a device to function properly. So it is preferred to pick URL Scheme such as `ass-my-app` over `ass`.
