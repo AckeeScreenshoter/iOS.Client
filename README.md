@@ -32,6 +32,8 @@ Ass.shared.authorization = <auth_token>
 
 4. Define URL Scheme in `Project Settings -> Target -> Info -> URL Types` by adding a new `URLType` (tapping the plus sign) with **`AckeeScreenshotter`** identifier. The URL Scheme must be different from URL schemes defined in your other URL Types. Also it has to be unique across all the apps installed on a device to function properly. So it is preferred to pick URL Scheme such as `ass-my-app` over `ass` as `ass` is a scheme already used by AssApp.
 
+![How to add URL Type](/uploads/278a1c6417f68b760b431e51f4f68863/Snímek_obrazovky_2020-08-07_v_16.10.33.png)
+
 When enabled Ass reacts to taking screenshots and screen capturing.
 
 ## What is sent to backend?
