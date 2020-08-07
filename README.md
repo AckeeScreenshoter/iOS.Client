@@ -7,7 +7,7 @@ Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is designed
 **Ass framework** is available through [Carthage](https://github.org/Carthage/Carthage). Just add it to your _Cartfile_. 
 
 ```
-git "git@gitlab.ack.ee:iOS/Ass.git" ~> 0.2.0
+git "git@gitlab.ack.ee:iOS/Ass.git" ~> 1.0.0
 ```
 
 **Ass application** is available through [App Distribution]() .
