@@ -82,9 +82,12 @@ public class Ass: NSObject {
                 let isCaptured = UIScreen.main.isCaptured
                 if !isCaptured && isBeingCaptured { // currently is not being captured but was
                     isBeingCaptured = isCaptured
+                    ShowTime.enabled = .never
                     guard let url = self.createDeeplink(for: .recording) else { return }
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
+                } else if isCaptured && !isBeingCaptured { // currently is being captured bu was not
+                    ShowTime.enabled = .debugOnly
                 }
 
                 isBeingCaptured = isCaptured
