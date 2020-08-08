@@ -87,7 +87,7 @@ public class Ass: NSObject {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 } else if isCaptured && !isBeingCaptured { // currently is being captured bu was not
-                    ShowTime.enabled = .debugOnly
+                    ShowTime.enabled = .always
                 }
 
                 isBeingCaptured = isCaptured

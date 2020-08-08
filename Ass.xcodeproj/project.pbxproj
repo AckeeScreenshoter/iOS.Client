@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02EFDE24DF16510000A83B /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDC389824DE29AB0007DE72 /* ShowTime.swift */; };
 		0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3ADE0324AA3FEE0009DAD8 /* Lottie */; };
 		0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0624AA416D0009DAD8 /* splash_animation.json */; };
 		0E3ADE0924AA422B0009DAD8 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */; };
@@ -43,7 +44,6 @@
 		0ECC89CE2478104900400D6A /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CD2478104900400D6A /* EmptyViewController.swift */; };
 		0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */; };
 		0ECC89D22478160700400D6A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89D12478160700400D6A /* UIColor+Extension.swift */; };
-		0EDC389A24DE2ABA0007DE72 /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDC389824DE29AB0007DE72 /* ShowTime.swift */; };
 		0EF27735242E6F7400DDE4B7 /* Ass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EF27733242E6F7300DDE4B7 /* Ass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; };
 		0EF27739242E6F7400DDE4B7 /* Ass.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -610,7 +610,7 @@
 				0E72E8DA243E014200DC2FD8 /* Constants.swift in Sources */,
 				0E72E8DC243E27BF00DC2FD8 /* UIDeviceExtensions.swift in Sources */,
 				0EF278272433BAA900DDE4B7 /* MediaType.swift in Sources */,
-				0EDC389A24DE2ABA0007DE72 /* ShowTime.swift in Sources */,
+				0E02EFDE24DF16510000A83B /* ShowTime.swift in Sources */,
 				0EAC31EC243DDB1100F0AC92 /* AppInfo.swift in Sources */,
 				0EF278222433A6B100DDE4B7 /* Ass.swift in Sources */,
 			);
