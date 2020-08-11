@@ -5,6 +5,8 @@
 //  Created by Kane Cheshire on 11/11/2016.
 //  Copyright © 2016 Kane Cheshire. All rights reserved.
 //
+//  https://github.com/KaneCheshire/ShowTime/blob/main/Sources/ShowTime/ShowTime.swift
+
 import UIKit
 
 /// ShowTime displays your taps and swipes when you're presenting or demoing.
