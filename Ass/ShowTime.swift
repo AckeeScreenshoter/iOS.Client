@@ -26,8 +26,7 @@ public final class ShowTime: NSObject {
     }
     
     /// Whether ShowTime is enabled.
-    /// ShowTime automatically enables itself by default.
-    /// (`.always` by default)
+    /// ShowTime is disabled by default
     @objc internal static var isEnabled: Bool = false
     
     /// The fill (background) colour of the visual touches.
