@@ -61,7 +61,7 @@ public class Ass: NSObject {
     
         let screenshotObserver = NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
-            guard let url = self.createDeeplink(for: .screenshot) else { return }
+            guard let url = self.createDeeplink(for: .screenshot(nil)) else { return }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         self.screenshotObserver = screenshotObserver
@@ -83,7 +83,7 @@ public class Ass: NSObject {
                 if !isCaptured && isBeingCaptured { // currently is not being captured but was
                     isBeingCaptured = isCaptured
                     ShowTime.isEnabled = false
-                    guard let url = self.createDeeplink(for: .recording) else { return }
+                    guard let url = self.createDeeplink(for: .record(nil)) else { return }
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 } else if isCaptured && !isBeingCaptured { // currently is being captured bu was not
@@ -98,9 +98,9 @@ public class Ass: NSObject {
     /// Creates deeplink for opening Ass application
     ///
     /// Takes all the data that are currently stored in Ass and adds them to the URL as `[URLQueryItems]`
-    private func createDeeplink(for mediaType: MediaType) -> URL? {
+    private func createDeeplink(for media: Media) -> URL? {
         guard let baseURL = baseURL, let authorization = authorization else { return nil }
-        let mediaQueryItem = URLQueryItem(name: Constants.QueryItemKey.mediaType, value: mediaType.rawValue)
+        let mediaQueryItem = URLQueryItem(name: Constants.QueryItemKey.media, value: media.id)
         let baseURLQueryItem = URLQueryItem(name: Constants.QueryItemKey.baseURL, value: baseURL.absoluteString)
         let authorizationQueryItem = URLQueryItem(name: Constants.QueryItemKey.authorization, value: authorization)
         let schemeQueryItem = URLQueryItem(name: Constants.QueryItemKey.scheme, value: scheme)

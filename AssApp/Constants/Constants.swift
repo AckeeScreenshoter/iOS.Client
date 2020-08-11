@@ -10,7 +10,7 @@ import Foundation
 
 public enum Constants {
     public enum QueryItemKey {
-        public static var mediaType: String = "mediaType"
+        public static var media: String = "media"
         public static var baseURL: String = "baseUrl"
         public static var authorization: String = "authorization"
         public static var scheme: String = "scheme"

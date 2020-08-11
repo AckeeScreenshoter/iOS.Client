@@ -58,20 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard
             var queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
-            let mediaTypeString = queryItems.first(where: { $0.name == Constants.QueryItemKey.mediaType })?.value,
+            let mediaString = queryItems.first(where: { $0.name == Constants.QueryItemKey.media })?.value,
             let authorization = queryItems.first(where: { $0.name == Constants.QueryItemKey.authorization })?.value,
             let baseURL = queryItems.first(where: { $0.name == Constants.QueryItemKey.baseURL })?.value,
             let scheme = queryItems.first(where: { $0.name == Constants.QueryItemKey.scheme })?.value,
-            let mediaType = MediaType(rawValue: mediaTypeString)
+            let media = Media(string: mediaString)
             else { return false }
             
         queryItems.removeAll {
             $0.name == Constants.QueryItemKey.authorization ||
             $0.name == Constants.QueryItemKey.baseURL ||
-            $0.name == Constants.QueryItemKey.mediaType
+            $0.name == Constants.QueryItemKey.media
         }
         
-        screenShotViewModel?.mediaType = mediaType
+        screenShotViewModel?.media = media
         screenShotViewModel?.authorization = authorization
         screenShotViewModel?.scheme = scheme
         screenShotViewModel?.baseURL = URL(string: baseURL)
