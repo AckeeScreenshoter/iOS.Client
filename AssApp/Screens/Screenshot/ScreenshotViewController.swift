@@ -293,24 +293,6 @@ final class ScreenshotViewController: UIViewController {
 
 extension ScreenshotViewController: ScreenshotViewModelingDelegate {
     
-    func recordURLChanged(in viewModel: ScreenshotViewModeling) {
-        guard let url = viewModel.recordURL else { return }
-        DispatchQueue.main.async { [weak self] in
-            let player = AVPlayer(url: url)
-            self?.avPlayerController.player = player
-            
-            self?.setToInitialState()
-        }
-    }
-    
-    func screenshotChanged(in viewModel: ScreenshotViewModeling) {
-        DispatchQueue.main.async { [weak self] in
-            self?.imageView.image = self?.viewModel.screenshot
-            
-            self?.setToInitialState()
-        }
-    }
-    
     func appInfoChanged(in viewModel: ScreenshotViewModeling) {
         DispatchQueue.main.async { [weak self] in
             self?.infoView.info.removeAll()
@@ -370,8 +352,24 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
         }
     }
     
-    func mediaTypeChanged(in viewModel: ScreenshotViewModeling) {
-        imageView.isHidden = viewModel.mediaType == .recording
-        avPlayerController.view.isHidden = viewModel.mediaType == .screenshot
+    func mediaChanged(in viewModel: ScreenshotViewModeling) {
+        let media = viewModel.media
+        DispatchQueue.main.async { [weak self] in
+            switch media {
+            case .screenshot(let image):
+                self?.imageView.isHidden = false
+                self?.avPlayerController.view.isHidden = true
+                self?.imageView.image = image
+            case .record(let url):
+                self?.imageView.isHidden = true
+                self?.avPlayerController.view.isHidden = false
+                if let url = url {
+                    let player = AVPlayer(url: url)
+                    self?.avPlayerController.player = player
+                }
+            }
+            
+            self?.setToInitialState()
+        }
     }
 }

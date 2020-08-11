@@ -10,14 +10,15 @@ import AVKit
 
 final class UploadMultipartDataOperation: URLRequestOperation {
     
-    init(screenshot: UIImage, appInfo: [String: String], baseURL: URL, authorization: String) {
+    init(media: Media, appInfo: [String: String], baseURL: URL, authorization: String) {
         super.init()
-        urlRequest = createRequest(screenshot: screenshot, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
-    }
-    
-    init(recordURL: URL, appInfo: [String: String], baseURL: URL, authorization: String) {
-        super.init()
-        urlRequest = createRequest(recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
+        
+        switch media {
+        case .screenshot(let image):
+            urlRequest = createRequest(screenshot: image, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
+        case .record(let url):
+            urlRequest = createRequest(recordURL: url, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
+        }
     }
     
     

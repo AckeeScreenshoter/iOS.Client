@@ -19,9 +19,7 @@ protocol ScreenshotViewModelingDelegate: class {
     func uploadProgressChanged(_ progress: Double, in viewModel: ScreenshotViewModeling)
     func uploadFinished(in viewModel: ScreenshotViewModeling)
     func uploadFailed(with error: RequestError, in viewModel: ScreenshotViewModeling)
-    func mediaTypeChanged(in viewModel: ScreenshotViewModeling)
-    func recordURLChanged(in viewModel: ScreenshotViewModeling)
-    func screenshotChanged(in viewModel: ScreenshotViewModeling)
+    func mediaChanged(in viewModel: ScreenshotViewModeling)
 }
 
 protocol ScreenshotViewModeling: class {
@@ -30,13 +28,7 @@ protocol ScreenshotViewModeling: class {
     var delegate: ScreenshotViewModelingDelegate? { get set }
     
     /// Indicates whether the last screenshot is being displayer od the last scren record
-    var mediaType: MediaType { get set }
-    
-    /// Last updated image from the gallery
-    var screenshot: UIImage? { get set }
-    
-    /// Last video from the gallery
-    var recordURL: URL? { get set }
+    var media: Media { get set }
     
     /// Used as data source for tableview
     var tableData: [(key: String, value: String)] { get }
@@ -67,21 +59,9 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     
     weak var delegate: ScreenshotViewModelingDelegate?
 
-    var mediaType: MediaType = .screenshot {
+    var media: Media = .screenshot(nil) {
         didSet {
-            delegate?.mediaTypeChanged(in: self)
-        }
-    }
-
-    var screenshot: UIImage? {
-        didSet {
-            delegate?.screenshotChanged(in: self)
-        }
-    }
-    
-    var recordURL: URL? {
-        didSet {
-            delegate?.recordURLChanged(in: self)
+            delegate?.mediaChanged(in: self)
         }
     }
     
@@ -138,12 +118,12 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         guard let asset = asset else { return }
         PHImageManager.default().requestAVAsset(forVideo: asset, options: nil) { [weak self] (asset, _, _) in
             guard let asset = asset as? AVURLAsset else { return }
-            self?.recordURL = asset.url
+            self?.media = .record(asset.url)
         }
     }
     
     private func updateScreenshot(with asset: PHAsset?) {
-        screenshot = asset?.image
+        media = .screenshot(asset?.image)
     }
     
     func startUploading() {
@@ -152,7 +132,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         var appInfo = self.appInfo
         appInfo["note"] = note
         
-        guard let operation = screenshotAPIService.createUploadOperation(screenshot: screenshot, recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization) else { return }
+        guard let operation = screenshotAPIService.createUploadOperation(media: media, appInfo: appInfo, baseURL: baseURL, authorization: authorization) else { return }
         
         uploadAction = Action(operation: operation)
         
