@@ -8,8 +8,12 @@
 
 ## Next
 
+## 1.1.0
+
+- Add ShowTime for tracking user touches while screen recording in tested app. ([#28](https://gitlab.ack.ee/iOS/ass/-/merge_requests/28))
+
 ## 1.0.0
 
 ### Changed
 
-- Scheme should now only be defined in separate `URL Type` with `AckeeScreenshotter` identifier. See **[Usage](README.md#usage)** (#27, kudos to @vendula.svastalova)
+- Scheme should now only be defined in separate `URL Type` with `AckeeScreenshotter` identifier. See **[Usage](README.md#usage)** ([#27](https://gitlab.ack.ee/iOS/ass/-/merge_requests/27), kudos to @vendula.svastalova)
