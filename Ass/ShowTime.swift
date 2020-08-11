@@ -76,14 +76,6 @@ public final class ShowTime: NSObject {
     @objc public static var shouldIgnoreApplePencilEvents = true
 }
 
-public extension UIColor {
-    
-    /// Represents a ShowTime-defined "automatic" color.
-    /// For example, setting `ShowTime.fillColor` to `.auto` results in a fill color that is 50% alpha of the stroke color.
-    static let auto = UIColor(red: -1, green: -1, blue: -1, alpha: 1)
-    
-}
-
 class TouchView: UILabel {
     
     /// Creates a new instance representing a touch to visually display.
@@ -151,7 +143,7 @@ class TouchView: UILabel {
         layer.cornerRadius = ShowTime.size.height / 2
         layer.borderColor = ShowTime.strokeColor.cgColor
         layer.borderWidth = ShowTime.strokeWidth
-        backgroundColor = ShowTime.fillColor == .auto ? ShowTime.strokeColor.withAlphaComponent(0.5) : ShowTime.fillColor
+        backgroundColor = ShowTime.fillColor
         text = ShowTime.shouldShowMultipleTapCount && touch.tapCount > 1 ? "\(touch.tapCount)" : nil
         textAlignment = .center
         textColor = ShowTime.multipleTapCountTextColor
@@ -181,7 +173,7 @@ extension UIWindow {
     
     @objc private func swizzled_sendEvent(_ event: UIEvent) {
         swizzled_sendEvent(event)
-        guard ShowTime.enabled else { return removeAllTouchViews() }
+        guard ShowTime.isEnabled else { return removeAllTouchViews() }
         event.allTouches?.forEach {
             if ShowTime.shouldIgnoreApplePencilEvents && $0.isApplePencil { return }
             switch $0.phase {
