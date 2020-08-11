@@ -152,7 +152,7 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
         var appInfo = self.appInfo
         appInfo["note"] = note
         
-        guard let operation = screenshotAPIService.createUploadOperation(screenshot: screenshot, recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization) else { return }
+        guard let operation = screenshotAPIService.createUploadOperation(mediaType: mediaType, screenshot: screenshot, recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization) else { return }
         
         uploadAction = Action(operation: operation)
         

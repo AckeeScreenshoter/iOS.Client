@@ -18,12 +18,13 @@ protocol HasScreenshotAPI {
 
 protocol ScreenshotAPIServicing {
     
-    func createUploadOperation(screenshot: UIImage?, recordURL: URL?, appInfo: [String: String], baseURL: URL?, authorization: String?) -> UploadMultipartDataOperation?
+    func createUploadOperation(mediaType: MediaType, screenshot: UIImage?, recordURL: URL?, appInfo: [String: String], baseURL: URL?, authorization: String?) -> UploadMultipartDataOperation?
 }
 
 struct ScreenshotAPIService: ScreenshotAPIServicing {
         
     func createUploadOperation(
+        mediaType: MediaType,
         screenshot: UIImage? = nil,
         recordURL: URL? = nil,
         appInfo: [String: String],
@@ -36,11 +37,11 @@ struct ScreenshotAPIService: ScreenshotAPIServicing {
             else { return nil }
         
         
-        if let screenshot = screenshot {
+        if let screenshot = screenshot, mediaType == .screenshot {
             return UploadMultipartDataOperation(screenshot: screenshot, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
         }
         
-        if let recordURL = recordURL {
+        if let recordURL = recordURL, mediaType == .recording {
             return UploadMultipartDataOperation(recordURL: recordURL, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
         }
         
