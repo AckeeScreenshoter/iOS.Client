@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02EFDE24DF16510000A83B /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDC389824DE29AB0007DE72 /* ShowTime.swift */; };
+		0E02EFE024DF1D460000A83B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89D12478160700400D6A /* UIColor+Extension.swift */; };
 		0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3ADE0324AA3FEE0009DAD8 /* Lottie */; };
 		0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0624AA416D0009DAD8 /* splash_animation.json */; };
 		0E3ADE0924AA422B0009DAD8 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */; };
@@ -122,6 +124,7 @@
 		0ECC89D12478160700400D6A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0ECFCD6F24484DFB00C91A0A /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		0ECFCD7024484DFB00C91A0A /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		0EDC389824DE29AB0007DE72 /* ShowTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTime.swift; sourceTree = "<group>"; };
 		0EF27731242E6F7300DDE4B7 /* Ass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF27733242E6F7300DDE4B7 /* Ass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ass.h; sourceTree = "<group>"; };
 		0EF27734242E6F7400DDE4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -307,6 +310,7 @@
 		0EF27732242E6F7300DDE4B7 /* Ass */ = {
 			isa = PBXGroup;
 			children = (
+				0EDC389824DE29AB0007DE72 /* ShowTime.swift */,
 				0EF27763242E763800DDE4B7 /* Ass.swift */,
 				0E72E8DD243E27DE00DC2FD8 /* Extensions */,
 				0EF278202433A69200DDE4B7 /* Model */,
@@ -604,9 +608,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E02EFE024DF1D460000A83B /* UIColor+Extension.swift in Sources */,
 				0E72E8DA243E014200DC2FD8 /* Constants.swift in Sources */,
 				0E72E8DC243E27BF00DC2FD8 /* UIDeviceExtensions.swift in Sources */,
 				0EF278272433BAA900DDE4B7 /* MediaType.swift in Sources */,
+				0E02EFDE24DF16510000A83B /* ShowTime.swift in Sources */,
 				0EAC31EC243DDB1100F0AC92 /* AppInfo.swift in Sources */,
 				0EF278222433A6B100DDE4B7 /* Ass.swift in Sources */,
 			);
