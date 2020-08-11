@@ -11,17 +11,6 @@ import UIKit
 /// Change the options to customise ShowTime.
 public final class ShowTime: NSObject {
     
-    /// Defines if and when ShowTime should be enabled.
-    ///
-    /// - always:    ShowTime is always enabled.
-    /// - never:     ShowTime is never enabled.
-    /// - debugOnly: ShowTime is enabled while the `DEBUG` flag is set and enabled.
-    @objc public enum Enabled: Int {
-        case always
-        case never
-        case debugOnly
-    }
-    
     /// Defines a style of animation.
     ///
     /// - standard: The standard type of animation will be used.
@@ -37,16 +26,16 @@ public final class ShowTime: NSObject {
     /// Whether ShowTime is enabled.
     /// ShowTime automatically enables itself by default.
     /// (`.always` by default)
-    @objc public static var enabled: ShowTime.Enabled = .never
+    @objc internal static var isEnabled: Bool = false
     
     /// The fill (background) colour of the visual touches.
     /// If set to `.auto`, ShowTime automatically uses the stroke color with 50% alpha.
     /// (`.auto` by default)
-    @objc public static var fillColor: UIColor = .auto
+    @objc public static var fillColor: UIColor = ShowTime.strokeColor.withAlphaComponent(0.5)
     
     /// The colour of the stroke (outline) of the visual touches.
     /// ("Twitter Blue" by default)
-    @objc public static var strokeColor = UIColor(red: 0.21, green: 0.61, blue: 0.92, alpha: 1)
+    @objc public static var strokeColor = UIColor.gray
     
     /// The width (thickness) of the stroke around the visual touches.
     /// (3pt by default)
@@ -83,22 +72,6 @@ public final class ShowTime: NSObject {
     /// Whether touch events from Apple Pencil are ignored.
     /// (`true` by default)
     @objc public static var shouldIgnoreApplePencilEvents = true
-    
-    static var shouldEnable: Bool {
-        switch enabled {
-        case .always:
-            return true
-        case .debugOnly:
-            #if DEBUG || ADHOC
-                return true
-            #else
-                return false
-            #endif
-        case .never:
-            return false
-        }
-    }
-    
 }
 
 public extension UIColor {
@@ -184,7 +157,6 @@ class TouchView: UILabel {
         clipsToBounds = true
         isUserInteractionEnabled = false
     }
-    
 }
 
 internal var _touches = [UITouch : TouchView]()
@@ -207,7 +179,7 @@ extension UIWindow {
     
     @objc private func swizzled_sendEvent(_ event: UIEvent) {
         swizzled_sendEvent(event)
-        guard ShowTime.shouldEnable else { return removeAllTouchViews() }
+        guard ShowTime.enabled else { return removeAllTouchViews() }
         event.allTouches?.forEach {
             if ShowTime.shouldIgnoreApplePencilEvents && $0.isApplePencil { return }
             switch $0.phase {
@@ -260,5 +232,4 @@ private extension UITouch {
         guard #available(iOS 9.1, *) else { return false }
         return type == .stylus
     }
-    
 }
