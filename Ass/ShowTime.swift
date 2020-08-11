@@ -30,13 +30,12 @@ public final class ShowTime: NSObject {
     @objc internal static var isEnabled: Bool = false
     
     /// The fill (background) colour of the visual touches.
-    /// If set to `.auto`, ShowTime automatically uses the stroke color with 50% alpha.
-    /// (`.auto` by default)
+    /// (strokeColor with alpha of 0.5 by default)
     @objc public static var fillColor: UIColor = ShowTime.strokeColor.withAlphaComponent(0.5)
     
     /// The colour of the stroke (outline) of the visual touches.
-    /// ("Twitter Blue" by default)
-    @objc public static var strokeColor = UIColor.gray
+    /// (black by default)
+    @objc public static var strokeColor = UIColor.ackeePink
     
     /// The width (thickness) of the stroke around the visual touches.
     /// (3pt by default)
