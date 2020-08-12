@@ -23,6 +23,7 @@ final class EmptyViewController: UIViewController {
         }
         
         let centerLabel = UILabel()
+        centerLabel.textColor = UIColor.text
         centerLabel.numberOfLines = 0
         centerLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         centerLabel.text = """
@@ -42,6 +43,7 @@ final class EmptyViewController: UIViewController {
         gitlabLink.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         gitlabLink.titleLabel?.textAlignment = .center
         gitlabLink.titleLabel?.numberOfLines = 0
+        gitlabLink.titleLabel?.textColor = UIColor.text
         gitlabLink.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         
         let readmeText = """

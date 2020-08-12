@@ -21,5 +21,6 @@ extension UIColor {
     static let ackeePink: UIColor       = UIColor(hex: 0xff00ff)
     static let ackeePinkDim: UIColor    = UIColor(hex: 0xcc00cc)
     static let gray: UIColor            = UIColor(hex: 0xeeeeee)
+    static let text: UIColor            = UIColor(hex: 0x000000)
 }
 
