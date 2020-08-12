@@ -84,12 +84,12 @@ extension URLRequestOperation: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard dataTask.countOfBytesExpectedToReceive > 0 else { return }
         
-        progressBlock?(Double(dataTask.countOfBytesReceived) / Double(dataTask.countOfBytesExpectedToReceive) / 2 + 0.5)
+        progressBlock?(Double(dataTask.countOfBytesReceived) / Double(dataTask.countOfBytesExpectedToReceive))
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         guard totalBytesExpectedToSend > 0 else { return }
 
-        progressBlock?(Double(totalBytesSent) / Double(totalBytesExpectedToSend) / 2)
+        progressBlock?(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
     }
 }
