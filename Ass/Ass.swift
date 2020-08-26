@@ -23,6 +23,12 @@ public class Ass: NSObject {
     /// All the information can be changed if needed.
     public var appInfo: AppInfo = AppInfo.default
     
+    /// Value indicating whether touches should be physically visible when screen recording.
+    ///
+    /// Defaults to `true`.
+    /// Properties of the touches like `fillColor`, `strokeColor`, `strokeWidth` etc. can be modified directly on `ShowTime` class's static properties.
+    public var isVisibleTapsEnabled: Bool = true
+    
     /// Needs to be set to `true` in order for Screenshotter actions to be detected.
     public var isEnabled: Bool = false {
         didSet(wasEnabled) {
@@ -87,7 +93,7 @@ public class Ass: NSObject {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 } else if isCaptured && !isBeingCaptured { // currently is being captured bu was not
-                    ShowTime.isEnabled = true
+                    ShowTime.isEnabled = isVisibleTapsEnabled
                 }
 
                 isBeingCaptured = isCaptured
