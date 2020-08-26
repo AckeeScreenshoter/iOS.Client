@@ -8,6 +8,10 @@
 
 ## Next
 
+## 1.1.3
+
+- Add possibility to turn ShowTime on / off ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/30))
+
 ## 1.1.0
 
 - Add ShowTime for tracking user touches while screen recording in tested app. ([#28](https://gitlab.ack.ee/iOS/ass/-/merge_requests/28))
