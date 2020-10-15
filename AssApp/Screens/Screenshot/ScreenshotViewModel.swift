@@ -229,6 +229,7 @@ extension ScreenshotViewModel: PHPhotoLibraryChangeObserver {
         }
         
         if let fetchResultChangeDetails = changeInstance.changeDetails(for: videoFetchResult) {
+            videoFetchResult = fetchResultChangeDetails.fetchResultAfterChanges
  
             guard let inserted = fetchResultChangeDetails.insertedObjects.first else { return }
             
