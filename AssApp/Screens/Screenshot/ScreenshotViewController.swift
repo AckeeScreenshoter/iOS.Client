@@ -150,6 +150,13 @@ final class ScreenshotViewController: UIViewController {
         imageView.addGestureRecognizer(imageTap)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.actions.checkAuthorization()
+    }
+    
     @objc
     private func keyboardWillChangeFrame(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -372,5 +379,19 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
             
             self?.setToInitialState()
         }
+    }
+    
+    func openSettings(in viewModel: ScreenshotViewModeling) {
+        let alert = UIAlertController(title: "Open Settings", message: "Gallery access must be granted. Do you want to adjust your settings?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(url)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }

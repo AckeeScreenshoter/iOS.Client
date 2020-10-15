@@ -11,6 +11,7 @@ import Photos
 
 protocol ScreenshotViewModelingActions {
     func startUploading()
+    func checkAuthorization()
 }
 
 protocol ScreenshotViewModelingDelegate: class {
@@ -20,6 +21,7 @@ protocol ScreenshotViewModelingDelegate: class {
     func uploadFinished(in viewModel: ScreenshotViewModeling)
     func uploadFailed(with error: RequestError, in viewModel: ScreenshotViewModeling)
     func mediaChanged(in viewModel: ScreenshotViewModeling)
+    func openSettings(in viewModel: ScreenshotViewModeling)
 }
 
 protocol ScreenshotViewModeling: class {
@@ -90,40 +92,71 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
     
     private var uploadAction: Action<UploadMultipartDataOperation>? = nil
     
+    private var currentAsset: PHAsset?
+    
     // MARK: - Initialization
 
     init(dependencies: Dependencies) {
         self.screenshotAPIService = dependencies.screenshotAPI
         super.init()
         
-        
-        
         // Photo Library setup, fetching last image and last record
         PHPhotoLibrary.shared().register(self)
         
-        let imageFetchOptions = PHFetchOptions()
-        
-        // Photos are fetched by modification date because when the user edits an image in the Photo Library, that asset is likely to be the one that the user wants to use.
-        imageFetchOptions.sortDescriptors = [ NSSortDescriptor(key: "modificationDate", ascending: false) ]
-        imageFetchResult = PHAsset.fetchAssets(with: .image, options: imageFetchOptions)
-        updateScreenshot(with: imageFetchResult.firstObject)
-        
-        let videoFetchOptions = PHFetchOptions()
-        videoFetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        videoFetchResult = PHAsset.fetchAssets(with: .video, options: videoFetchOptions)
-        updateRecordURL(with: videoFetchResult.firstObject)
+        updateMedia()
     }
     
     private func updateRecordURL(with asset: PHAsset?) {
         guard let asset = asset else { return }
-        PHImageManager.default().requestAVAsset(forVideo: asset, options: nil) { [weak self] (asset, _, _) in
-            guard let asset = asset as? AVURLAsset else { return }
-            self?.media = .record(asset.url)
+        PHImageManager.default().requestAVAsset(forVideo: asset, options: nil) { [weak self] (avAsset, _, _) in
+            guard let urlAsset = avAsset as? AVURLAsset else { return }
+            self?.media = .record(asset, urlAsset.url)
         }
     }
     
     private func updateScreenshot(with asset: PHAsset?) {
-        media = .screenshot(asset?.image)
+        media = .screenshot(asset)
+    }
+    
+    private func updateMedia() {
+        switch media {
+        case .record:
+            let videoFetchOptions = PHFetchOptions()
+            videoFetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            videoFetchResult = PHAsset.fetchAssets(with: .video, options: videoFetchOptions)
+            updateRecordURL(with: videoFetchResult.firstObject)
+        case .screenshot:
+            guard let screenshotAssetCollection = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumScreenshots, options: nil).firstObject else {
+                return
+            }
+            
+            let imageFetchOptions = PHFetchOptions()
+            // Photos are fetched by modification date because when the user edits an image in the Photo Library, that asset is likely to be the one that the user wants to use.
+            imageFetchOptions.sortDescriptors = [ NSSortDescriptor(key: "modificationDate", ascending: false) ]
+            
+            imageFetchResult = PHAsset.fetchAssets(in: screenshotAssetCollection, options: imageFetchOptions)
+            updateScreenshot(with: imageFetchResult.firstObject)
+        }
+    }
+
+    /// TODO: if at any time access can be `.limited` by the user to only certain folders in the gallery
+    /// update the logic to require access to the screenshot folder
+    /// until then the app requires `.authorized` access
+    func checkAuthorization() {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            updateMedia()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { [weak self] status in
+                if status == .authorized {
+                    self?.updateMedia()
+                }
+            }
+        case .denied, .restricted, .limited:
+            delegate?.openSettings(in: self)
+        @unknown default:
+            delegate?.openSettings(in: self)
+        }
     }
     
     func startUploading() {
