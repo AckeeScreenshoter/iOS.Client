@@ -40,6 +40,7 @@
 		0EA83A1F2491310C00DA03CF /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA83A1E2491310C00DA03CF /* UIFont+Extension.swift */; };
 		0EA83A222491323300DA03CF /* OverpassMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */; };
 		0EA83A362498DC7700DA03CF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA83A352498DC7700DA03CF /* InfoView.swift */; };
+		0EA878DC24FD334800858682 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EA878DB24FD334800858682 /* Settings.bundle */; };
 		0EAC31EC243DDB1100F0AC92 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */; };
 		0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECBE57D242D372D00AB4E1E /* SnapKit */; };
 		0ECC89CE2478104900400D6A /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CD2478104900400D6A /* EmptyViewController.swift */; };
@@ -118,6 +119,7 @@
 		0EA83A1E2491310C00DA03CF /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OverpassMono-Regular.ttf"; sourceTree = "<group>"; };
 		0EA83A352498DC7700DA03CF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		0EA878DB24FD334800858682 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0EAC31EB243DDB1100F0AC92 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = Ass/AppInfo.swift; sourceTree = SOURCE_ROOT; };
 		0ECC89CD2478104900400D6A /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				0E3ADE0524AA40DE0009DAD8 /* Animation */,
 				0E9E6D3A24A0F4260034D1A8 /* Assets.xcassets */,
 				0EA83A212491316900DA03CF /* OverpassMono-Regular.ttf */,
+				0EA878DB24FD334800858682 /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */,
 				0E3E57D024488DF200F6001A /* GoogleService-Info.plist in Resources */,
 				0E9E6D3B24A0F4270034D1A8 /* Assets.xcassets in Resources */,
+				0EA878DC24FD334800858682 /* Settings.bundle in Resources */,
 				0EA83A222491323300DA03CF /* OverpassMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
