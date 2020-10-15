@@ -182,12 +182,35 @@ final class ScreenshotViewModel: BaseViewModel, ScreenshotViewModeling, Screensh
             guard let self = self, let result = self.uploadAction?.operation.result else { return }
             
             switch result {
-            case .success: self.delegate?.uploadFinished(in: self)
-            case .failure(let error): self.delegate?.uploadFailed(with: error, in: self)
+            case .success:
+                if UserDefaults.standard.bool(forKey: "delete_screenshot") {
+                    self.deleteFromLibrary(media: self.media)
+                }
+                self.delegate?.uploadFinished(in: self)
+            case .failure(let error):
+                self.delegate?.uploadFailed(with: error, in: self)
             }
         }
         
         uploadAction?.start()
+    }
+    
+    private func deleteFromLibrary(media: Media) {
+        let assetsToRemove: [PHAsset]
+        
+        switch media {
+        case let .record(asset, _):
+            assetsToRemove = [asset].compactMap { $0 }
+        case let .screenshot(asset):
+            assetsToRemove = [asset].compactMap { $0 }
+        }
+        
+        PHPhotoLibrary.shared().performChanges {
+            let assets = NSMutableArray(array: assetsToRemove)
+            PHAssetChangeRequest.deleteAssets(assets)
+        } completionHandler: { (success, error) in
+            print(success ? "Successfully deleted screenshot" : error)
+        }
     }
 }
 
@@ -216,4 +239,3 @@ extension ScreenshotViewModel: PHPhotoLibraryChangeObserver {
         }
     }
 }
-
