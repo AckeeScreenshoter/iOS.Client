@@ -14,9 +14,9 @@ final class UploadMultipartDataOperation: URLRequestOperation {
         super.init()
         
         switch media {
-        case .screenshot(let image):
-            urlRequest = createRequest(screenshot: image, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
-        case .record(let url):
+        case let .screenshot(asset):
+            urlRequest = createRequest(screenshot: asset?.image, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
+        case let .record(_, url):
             urlRequest = createRequest(recordURL: url, appInfo: appInfo, baseURL: baseURL, authorization: authorization)
         }
     }

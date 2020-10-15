@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Photos
 import UIKit
 
 public enum Media {
-    case screenshot(UIImage?)
-    case record(URL?)
+    case screenshot(PHAsset?)
+    case record(PHAsset?, URL?)
     
     var id: String {
         switch self {
@@ -29,7 +30,7 @@ extension Media {
         case "screenshot":
             self = .screenshot(nil)
         case "record":
-            self = .record(nil)
+            self = .record(nil, nil)
         default:
             return nil
         }

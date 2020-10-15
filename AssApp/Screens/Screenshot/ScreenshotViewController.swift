@@ -356,11 +356,12 @@ extension ScreenshotViewController: ScreenshotViewModelingDelegate {
         let media = viewModel.media
         DispatchQueue.main.async { [weak self] in
             switch media {
-            case .screenshot(let image):
+            case let .screenshot(asset):
                 self?.imageView.isHidden = false
                 self?.avPlayerController.view.isHidden = true
-                self?.imageView.image = image
-            case .record(let url):
+                self?.imageView.image = asset?.image
+                
+            case let .record(_, url):
                 self?.imageView.isHidden = true
                 self?.avPlayerController.view.isHidden = false
                 if let url = url {
