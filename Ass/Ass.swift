@@ -89,7 +89,7 @@ public class Ass: NSObject {
                 if !isCaptured && isBeingCaptured { // currently is not being captured but was
                     isBeingCaptured = isCaptured
                     ShowTime.isEnabled = false
-                    guard let url = self.createDeeplink(for: .record(nil)) else { return }
+                    guard let url = self.createDeeplink(for: .record(nil, nil)) else { return }
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 } else if isCaptured && !isBeingCaptured { // currently is being captured bu was not
