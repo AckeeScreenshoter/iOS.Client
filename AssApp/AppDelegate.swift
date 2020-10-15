@@ -83,5 +83,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureCrashlytics() {
         FirebaseApp.configure()
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        registerDefaultsFromSettingsBundle()
+    }
+    
+    private func registerDefaultsFromSettingsBundle() {
+        guard
+            let settingsBundleURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle"),
+            let settingsData = try? Data(contentsOf: settingsBundleURL.appendingPathComponent("Root.plist")),
+            let settingsPlist = try? PropertyListSerialization.propertyList(
+                from: settingsData,
+                options: [],
+                format: nil) as? [String: Any],
+            let settingsPreferences = settingsPlist["PreferenceSpecifiers"] as? [[String: Any]] else {
+                return
+        }
+
+        var defaultsToRegister = [String: Any]()
+
+        settingsPreferences.forEach { preference in
+            if let key = preference["Key"] as? String {
+                defaultsToRegister[key] = preference["DefaultValue"]
+            }
+        }
+
+        UserDefaults.standard.register(defaults: defaultsToRegister)
+    }
 }
 
