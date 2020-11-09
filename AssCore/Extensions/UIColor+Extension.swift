@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    convenience init(hex: UInt32) {
+    public convenience init(hex: UInt32) {
         self.init(
             red: CGFloat((hex & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((hex & 0xFF00) >> 8) / 255.0,
@@ -18,9 +18,9 @@ extension UIColor {
         )
     }
     
-    static let ackeePink: UIColor       = UIColor(hex: 0xff00ff)
-    static let ackeePinkDim: UIColor    = UIColor(hex: 0xcc00cc)
-    static let gray: UIColor            = UIColor(hex: 0xeeeeee)
-    static let text: UIColor            = UIColor(hex: 0x000000)
+    public static let ackeePink: UIColor       = UIColor(hex: 0xff00ff)
+    public static let ackeePinkDim: UIColor    = UIColor(hex: 0xcc00cc)
+    public static let gray: UIColor            = UIColor(hex: 0xeeeeee)
+    public static let text: UIColor            = UIColor(hex: 0x000000)
 }
 

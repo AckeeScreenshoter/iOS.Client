@@ -14,7 +14,7 @@ public enum Media {
     case screenshot(PHAsset?)
     case record(PHAsset?, URL?)
     
-    var id: String {
+    public var id: String {
         switch self {
         case .screenshot:
             return "screenshot"
@@ -25,7 +25,7 @@ public enum Media {
 }
 
 extension Media {
-    init?(string: String) {
+    public init?(string: String) {
         switch string {
         case "screenshot":
             self = .screenshot(nil)
