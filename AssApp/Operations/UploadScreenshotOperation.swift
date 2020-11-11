@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import AssCore
 
 final class UploadMultipartDataOperation: URLRequestOperation {
     

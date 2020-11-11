@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import AssCore
 
 protocol ScreenshotViewModelingActions {
     func startUploading()

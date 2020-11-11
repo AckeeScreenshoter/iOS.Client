@@ -28,7 +28,7 @@ public struct AppInfo {
         case appName
         case customData = ""
         
-        var value: String {
+        public var value: String {
             switch self {
             case .platform:         return AppInfo.default.platform
             case .deviceMake:       return AppInfo.default.deviceMake
@@ -42,7 +42,7 @@ public struct AppInfo {
             }
         }
         
-        var queryItems: [URLQueryItem] {
+        public var queryItems: [URLQueryItem] {
             switch self {
             case .customData:
                 return AppInfo.default.customData.map { URLQueryItem(name: $0.key, value: $0.value) }
@@ -51,7 +51,7 @@ public struct AppInfo {
             }
         }
         
-        var section: Section {
+        public var section: Section {
             switch self {
             case .platform,
                  .deviceMake,
@@ -66,7 +66,7 @@ public struct AppInfo {
         }
     }
     
-    static var `default`: AppInfo = AppInfo()
+    public static var `default`: AppInfo = AppInfo()
     
     public var platform:    String        = "ios"
     public var deviceMake:  String        = "Apple"
@@ -79,7 +79,7 @@ public struct AppInfo {
     /// Custom data that are appended to default information
     public var customData:  CustomData    = [:]
     
-    var queryItems: [URLQueryItem] {
+    public var queryItems: [URLQueryItem] {
         Info.allCases.flatMap { $0.queryItems }
     }
 }
