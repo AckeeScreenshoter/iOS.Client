@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import SnapKit
 import AVKit
+import AssCore
 
 final class ScreenshotViewController: UIViewController {
     

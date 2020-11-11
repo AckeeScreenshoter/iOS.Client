@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import AssCore
 
 /// View that only directs the user to the project description
 final class EmptyViewController: UIViewController {
