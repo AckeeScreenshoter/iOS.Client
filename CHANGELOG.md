@@ -8,6 +8,10 @@
 
 ## Next
 
+## 1.2.0
+
+- Add Swift Package Manager support ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/32))
+
 ## 1.1.3
 
 - Add possibility to turn ShowTime on / off ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/30))

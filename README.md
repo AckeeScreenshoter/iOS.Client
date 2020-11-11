@@ -4,6 +4,18 @@ Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is designed
 
 ## Installation
 
+### Swift Package Manager
+
+add ASS to the `dependencies` value of your `Package.swift`
+
+```
+dependencies: [
+    .package(url: "git@gitlab.ack.ee:iOS/Ass.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
+### Carthage
+
 **Ass framework** is available through [Carthage](https://github.org/Carthage/Carthage). Just add it to your _Cartfile_. 
 
 ```
