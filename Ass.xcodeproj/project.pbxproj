@@ -10,6 +10,8 @@
 		0E281047255ED0E400CE15C6 /* Ass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC0FE255A01C50026B55F /* Ass.swift */; };
 		0E28104B255ED0F200CE15C6 /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC0FD255A01C50026B55F /* ShowTime.swift */; };
 		0E281062255ED17B00CE15C6 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC0EA255A01A30026B55F /* Action.swift */; };
+		0E281069255ED6DF00CE15C6 /* AssCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4FC0D22559FF9F0026B55F /* AssCore.framework */; };
+		0E28106A255ED6DF00CE15C6 /* AssCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4FC0D22559FF9F0026B55F /* AssCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3ADE0324AA3FEE0009DAD8 /* Lottie */; };
 		0E3ADE0724AA416D0009DAD8 /* splash_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0624AA416D0009DAD8 /* splash_animation.json */; };
 		0E3ADE0924AA422B0009DAD8 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ADE0824AA422B0009DAD8 /* SplashScreen.swift */; };
@@ -51,8 +53,6 @@
 		0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECBE57D242D372D00AB4E1E /* SnapKit */; };
 		0ECC89CE2478104900400D6A /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CD2478104900400D6A /* EmptyViewController.swift */; };
 		0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */; };
-		0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; };
-		0EF27739242E6F7400DDE4B7 /* Ass.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0EF27740242E723C00DDE4B7 /* ScreenshotAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2773F242E723C00DDE4B7 /* ScreenshotAPIService.swift */; };
 		0EF2774E242E731600DDE4B7 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27748242E731600DDE4B7 /* DataExtensions.swift */; };
 		0EF2774F242E731600DDE4B7 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27749242E731600DDE4B7 /* PHAsset.swift */; };
@@ -66,6 +66,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0E28106B255ED6DF00CE15C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E55A732242D157400F7109C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E4FC0D12559FF9F0026B55F;
+			remoteInfo = AssCore;
+		};
 		0E4FC0D72559FF9F0026B55F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0E55A732242D157400F7109C /* Project object */;
@@ -94,23 +101,26 @@
 			remoteGlobalIDString = 0E4FC0D12559FF9F0026B55F;
 			remoteInfo = AssCore;
 		};
-		0EF27736242E6F7400DDE4B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0E55A732242D157400F7109C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0EF27730242E6F7300DDE4B7;
-			remoteInfo = Ass;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0E28106D255ED6DF00CE15C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E28106A255ED6DF00CE15C6 /* AssCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0EF2773D242E6F7400DDE4B7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0EF27739242E6F7400DDE4B7 /* Ass.framework in Embed Frameworks */,
 				0E4FC0DA2559FF9F0026B55F /* AssCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -208,7 +218,6 @@
 				0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */,
 				0E3E57C02448821100F6001A /* nanopb.framework in Frameworks */,
 				0E3E57CA2448821100F6001A /* PromisesObjC.framework in Frameworks */,
-				0EF27738242E6F7400DDE4B7 /* Ass.framework in Frameworks */,
 				0E3E57C22448821100F6001A /* FirebaseCore.framework in Frameworks */,
 				0E4FC0D92559FF9F0026B55F /* AssCore.framework in Frameworks */,
 				0E3E57B42448821000F6001A /* FIRAnalyticsConnector.framework in Frameworks */,
@@ -224,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E281069255ED6DF00CE15C6 /* AssCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +536,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0EF27737242E6F7400DDE4B7 /* PBXTargetDependency */,
 				0E4FC0D82559FF9F0026B55F /* PBXTargetDependency */,
 			);
 			name = "ass-app";
@@ -548,10 +557,12 @@
 				0EF2772D242E6F7300DDE4B7 /* Sources */,
 				0EF2772E242E6F7300DDE4B7 /* Frameworks */,
 				0EF2772F242E6F7300DDE4B7 /* Resources */,
+				0E28106D255ED6DF00CE15C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0E28106C255ED6DF00CE15C6 /* PBXTargetDependency */,
 			);
 			name = Ass;
 			productName = Ass;
@@ -768,6 +779,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0E28106C255ED6DF00CE15C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E4FC0D12559FF9F0026B55F /* AssCore */;
+			targetProxy = 0E28106B255ED6DF00CE15C6 /* PBXContainerItemProxy */;
+		};
 		0E4FC0D82559FF9F0026B55F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0E4FC0D12559FF9F0026B55F /* AssCore */;
@@ -789,11 +805,6 @@
 			platformFilter = ios;
 			target = 0E4FC0D12559FF9F0026B55F /* AssCore */;
 			targetProxy = 0E4FC15D255A067A0026B55F /* PBXContainerItemProxy */;
-		};
-		0EF27737242E6F7400DDE4B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0EF27730242E6F7300DDE4B7 /* Ass */;
-			targetProxy = 0EF27736242E6F7400DDE4B7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
