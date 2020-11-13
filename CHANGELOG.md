@@ -8,9 +8,13 @@
 
 ## Next
 
+## 1.2.1
+
+- Adds FirebaseCrashlytics as SPM dependency, removes Carthage, fixes target dependencies and imports ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/33))
+
 ## 1.2.0
 
-- Add Swift Package Manager support ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/32))
+- Add Swift Package Manager support ([#32](https://gitlab.ack.ee/iOS/ass/-/merge_requests/32))
 
 ## 1.1.3
 
