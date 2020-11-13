@@ -90,3 +90,5 @@ Environment/Environment.swift
 */Model/Generated/*
 !*/Model/Generated/.gitkeep
 *.xcsettings
+
+Derived/*
