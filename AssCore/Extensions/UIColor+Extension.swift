@@ -20,7 +20,7 @@ extension UIColor {
     
     public static let ackeePink: UIColor       = UIColor(hex: 0xff00ff)
     public static let ackeePinkDim: UIColor    = UIColor(hex: 0xcc00cc)
-    public static let gray: UIColor            = UIColor(hex: 0xeeeeee)
+    public static let grey: UIColor            = UIColor(hex: 0xeeeeee)
     public static let text: UIColor            = UIColor(hex: 0x000000)
 }
 

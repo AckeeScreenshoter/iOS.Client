@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import AssCore
 
 final class InfoView: UIView {
     
@@ -38,7 +39,7 @@ final class InfoView: UIView {
         }
         
         let notchView = UIView()
-        notchView.backgroundColor = .gray
+        notchView.backgroundColor = .grey
         addSubview(notchView)
         notchView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
@@ -118,7 +119,7 @@ final class InfoView: UIView {
                 VStack.addArrangedSubview(HStack)
                 
                 let line = UIView()
-                line.backgroundColor = .gray
+                line.backgroundColor = .grey
                 line.snp.makeConstraints { make in
                     make.height.equalTo(1)
                 }

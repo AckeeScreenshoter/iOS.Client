@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AssCore
 
 final class NoteView: UITextView {
     
@@ -19,7 +20,7 @@ final class NoteView: UITextView {
         var backgroundColor: UIColor {
             switch self {
             case .active:           return .white
-            default:                return .gray
+            default:                return .grey
             }
         }
         
