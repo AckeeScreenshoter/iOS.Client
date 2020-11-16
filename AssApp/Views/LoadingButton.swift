@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ACKategories_iOS
 import SnapKit
 import AssCore
+import ACKategories_iOS
 
 protocol LoadingButtonDelegate: class {
     func goBackToApp()
