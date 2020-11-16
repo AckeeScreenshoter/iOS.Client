@@ -24,7 +24,6 @@
 		0E4FC0F7255A01A30026B55F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC0EC255A01A30026B55F /* UIColor+Extension.swift */; };
 		0E4FC114255A03820026B55F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC0FF255A01C50026B55F /* AppInfo.swift */; };
 		0E4FC11D255A03A90026B55F /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC101255A01C50026B55F /* UIDeviceExtensions.swift */; };
-		0E4FC143255A05960026B55F /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; platformFilter = ios; };
 		0E4FC144255A05960026B55F /* AssCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4FC0D22559FF9F0026B55F /* AssCore.framework */; platformFilter = ios; };
 		0E4FC148255A05E40026B55F /* AssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC146255A05E40026B55F /* AssTests.swift */; };
 		0E4FC149255A05E40026B55F /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FC147255A05E40026B55F /* XCTestManifests.swift */; };
@@ -42,6 +41,7 @@
 		0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECBE57D242D372D00AB4E1E /* SnapKit */; };
 		0ECC89CE2478104900400D6A /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CD2478104900400D6A /* EmptyViewController.swift */; };
 		0ECC89D0247810AE00400D6A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89CF247810AE00400D6A /* UIImage+Extension.swift */; };
+		0EEE378B2562E2300033CC5B /* Ass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF27731242E6F7300DDE4B7 /* Ass.framework */; platformFilter = ios; };
 		0EF27740242E723C00DDE4B7 /* ScreenshotAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2773F242E723C00DDE4B7 /* ScreenshotAPIService.swift */; };
 		0EF2774E242E731600DDE4B7 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27748242E731600DDE4B7 /* DataExtensions.swift */; };
 		0EF2774F242E731600DDE4B7 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27749242E731600DDE4B7 /* PHAsset.swift */; };
@@ -189,7 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E4FC143255A05960026B55F /* Ass.framework in Frameworks */,
+				0EEE378B2562E2300033CC5B /* Ass.framework in Frameworks */,
 				0E4FC144255A05960026B55F /* AssCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
