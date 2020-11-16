@@ -8,11 +8,15 @@
 
 ## Next
 
-## 1.2.1
+## 1.2.2
 
-- Adds FirebaseCrashlytics as SPM dependency, removes Carthage, fixes target dependencies and imports ([#29](https://gitlab.ack.ee/iOS/ass/-/merge_requests/33))
+- Fixes dependencies and shared schemes. Removes ACKategories dependency from AssCore.framework ([#34](https://gitlab.ack.ee/iOS/ass/-/merge_requests/34))
 
-## 1.2.0
+## 1.2.1 (broken)
+
+- Adds FirebaseCrashlytics as SPM dependency, removes Carthage, fixes target dependencies and imports ([#33](https://gitlab.ack.ee/iOS/ass/-/merge_requests/33))
+
+## 1.2.0 (broken)
 
 - Add Swift Package Manager support ([#32](https://gitlab.ack.ee/iOS/ass/-/merge_requests/32))
 
