@@ -50,8 +50,8 @@
 		0EF2776F242E7F5000DDE4B7 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2776E242E7F5000DDE4B7 /* AppDependency.swift */; };
 		0EF2781824339D8A00DDE4B7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF2781724339D8A00DDE4B7 /* BaseViewController.swift */; };
 		0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E55A741242D157400F7109C /* ScreenshotViewController.swift */; };
-		0EF4E4E22562F67100D44388 /* ACKategories in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E4E12562F67100D44388 /* ACKategories */; };
-		0EF4E4E82562F69F00D44388 /* ACKategoriesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E4E72562F69F00D44388 /* ACKategoriesCore */; };
+		0EF4E5222563001200D44388 /* ACKategories in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E5212563001200D44388 /* ACKategories */; };
+		0EF4E5242563001200D44388 /* ACKategoriesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E5232563001200D44388 /* ACKategoriesCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,8 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF4E4E22562F67100D44388 /* ACKategories in Frameworks */,
-				0EF4E4E82562F69F00D44388 /* ACKategoriesCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +199,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E3ADE0424AA3FEE0009DAD8 /* Lottie in Frameworks */,
+				0EF4E5242563001200D44388 /* ACKategoriesCore in Frameworks */,
 				0E4FC0D92559FF9F0026B55F /* AssCore.framework in Frameworks */,
 				0E28108A255EDADE00CE15C6 /* FirebaseCrashlytics in Frameworks */,
 				0ECBE57E242D372D00AB4E1E /* SnapKit in Frameworks */,
+				0EF4E5222563001200D44388 /* ACKategories in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,8 +476,6 @@
 			);
 			name = AssCore;
 			packageProductDependencies = (
-				0EF4E4E12562F67100D44388 /* ACKategories */,
-				0EF4E4E72562F69F00D44388 /* ACKategoriesCore */,
 			);
 			productName = AssCore;
 			productReference = 0E4FC0D22559FF9F0026B55F /* AssCore.framework */;
@@ -524,6 +522,8 @@
 				0ECBE57D242D372D00AB4E1E /* SnapKit */,
 				0E3ADE0324AA3FEE0009DAD8 /* Lottie */,
 				0E281089255EDADE00CE15C6 /* FirebaseCrashlytics */,
+				0EF4E5212563001200D44388 /* ACKategories */,
+				0EF4E5232563001200D44388 /* ACKategoriesCore */,
 			);
 			productName = "ass-app";
 			productReference = 0E55A73A242D157400F7109C /* Ass.app */;
@@ -1212,12 +1212,12 @@
 			package = 0ECBE57C242D372D00AB4E1E /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		0EF4E4E12562F67100D44388 /* ACKategories */ = {
+		0EF4E5212563001200D44388 /* ACKategories */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0E6C76FE2481463B009DD2BC /* XCRemoteSwiftPackageReference "ACKategories" */;
 			productName = ACKategories;
 		};
-		0EF4E4E72562F69F00D44388 /* ACKategoriesCore */ = {
+		0EF4E5232563001200D44388 /* ACKategoriesCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0E6C76FE2481463B009DD2BC /* XCRemoteSwiftPackageReference "ACKategories" */;
 			productName = ACKategoriesCore;
