@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1220"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EF27730242E6F7300DDE4B7"
-               BuildableName = "Ass.framework"
-               BlueprintName = "Ass"
+               BlueprintIdentifier = "0E4FC0D12559FF9F0026B55F"
+               BuildableName = "AssCore.framework"
+               BlueprintName = "AssCore"
                ReferencedContainer = "container:Ass.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EF27730242E6F7300DDE4B7"
-            BuildableName = "Ass.framework"
-            BlueprintName = "Ass"
+            BlueprintIdentifier = "0E4FC0D12559FF9F0026B55F"
+            BuildableName = "AssCore.framework"
+            BlueprintName = "AssCore"
             ReferencedContainer = "container:Ass.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

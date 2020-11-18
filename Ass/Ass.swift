@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AssCore
 
 public class Ass: NSObject {
     
