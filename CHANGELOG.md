@@ -8,7 +8,11 @@
 
 ## Next
 
-## 1.2.2
+## 1.2.3
+
+- Removes AssCore.framework as a dependency from Ass.framework and makes AssCore files target membership shared between AssCore and Ass frameworks. ([#35](https://gitlab.ack.ee/iOS/ass/-/merge_requests/35)) 
+
+## 1.2.2 (broken)
 
 - Fixes dependencies and shared schemes. Removes ACKategories dependency from AssCore.framework ([#34](https://gitlab.ack.ee/iOS/ass/-/merge_requests/34))
 
