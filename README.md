@@ -1,52 +1,52 @@
-# Ass - Ackee screenshotter
+# Ackee Screenshotter - ASS
 
-Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is designed to save your testing time 💪
+Do you test? We do! 😂 So let's make it a bit less boring 😎 Ass is a **framework** and an **app** designed to save you testing time 💪
 
 ## Installation
 
 ### Swift Package Manager
 
-add ASS to the `dependencies` value of your `Package.swift`
+**ASS framework** is available through SwiftPM. Add ASS to the `dependencies` value of your `Package.swift`
 
 ```
 dependencies: [
-    .package(url: "git@gitlab.ack.ee:iOS/Ass.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "git@github.com:AckeeScreenshoter/iOS.Client.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 
 ### Carthage
 
-**Ass framework** is available through [Carthage](https://github.org/Carthage/Carthage). Just add it to your _Cartfile_. 
+**ASS framework** is also available through [Carthage](https://github.org/Carthage/Carthage). Just add it to your _Cartfile_. 
 
 ```
-git "git@gitlab.ack.ee:iOS/Ass.git" ~> 1.0.0
+git "git@github.com:AckeeScreenshoter/iOS.Client.git" ~> 1.0.0
 ```
 
-**Ass application** is available through [App Distribution]() .
+**ASS Application** is available through [App Distribution]() .
 
-Ass framework communicates with the AssApp so the AssApp must be installed on the testing device.
+ASS framework communicates with the ASSApp therefore ASSApp must be installed on the testing device.
 
 ## Usage
 
-First you need to setup the SDK. 
+First the SDK needs to be setup in an application that is to be tested. 
 
 1. Enable ASS.
-2. Provide ASS with `baseURL` for the Firebase backend.
-3. Provide ASS with **[<auth_token>](https://ackee.passwd.team/secrets/utLLPiEx8RhCyab8m8bP)** for Firebase backend authorization.
+2. Provide ASS with `base_url` for the Firebase backend.
+3. Provide ASS with `auth_token` for the Firebase backend authorization.
 
 This setup is typically done in the app delegate.
 
 ```swift
 Ass.shared.isEnabled = true
-Ass.shared.baseURL = URL(string: "https://ass-ee.firebaseapp.com/upload")!
-Ass.shared.authorization = <auth_token>
+Ass.shared.baseURL = URL(string: "<base_url>")!
+Ass.shared.authorization = "<auth_token>"
 ```
 
-4. Define URL Scheme in `Project Settings -> Target -> Info -> URL Types` by adding a new `URLType` (tapping the plus sign) with **`AckeeScreenshotter`** identifier. The URL Scheme must be different from URL schemes defined in your other URL Types. Also it has to be unique across all the apps installed on a device to function properly. So it is preferred to pick URL Scheme such as `ass-my-app` over `ass` as `ass` is a scheme already used by AssApp.
+4. Define URL Scheme in `Project Settings -> Target -> Info -> URL Types` by adding a new `URLType` (tapping the plus sign) with **`AckeeScreenshotter`** identifier. The URL Scheme must be different from URL schemes defined in your other URL Types. Also it has to be unique across all the apps installed on a device to function properly. So it is preferred to pick URL Scheme such as `ass-<bundle_id>`. Do not use `ass` as `ass` is a scheme already used by AssApp.
 
-![How to add URL Type](/uploads/278a1c6417f68b760b431e51f4f68863/Snímek_obrazovky_2020-08-07_v_16.10.33.png)
+![How to add URL Type](https://user-images.githubusercontent.com/42235915/106173464-3e1bde80-6194-11eb-9597-e710d38ff620.png)
 
-When enabled Ass reacts to taking screenshots and screen capturing.
+When enabled ASS reacts to taking screenshots and screen capturing.
 
 ## What is sent to backend?
 
@@ -77,6 +77,14 @@ Ass.shared.appInfo.customData = ["account": "pan.unicorn@ackee.cz"]
 
 AssApp allows the user to take a note that is also sent to the backend.
 
+### Show Time
+
+When screen recording, we use ShowTime to show screen touches. This feature is enabled by default but can be disabled when setting up ASS in your application.
+
+```swift
+Ass.shared.isVisibleTapsEnabled = false
+```
+
 ## Framework and App communiaction
 
 Debug application using Ass communicates with the AssApp through URL scheme. 
@@ -89,6 +97,6 @@ When AssApp is opened with a URL its query parameters are parsed. The query para
 
 ## User guide
 
-To use Ass just **take a screenshot** or **stop a video inside** your debug application. 
-After one of these actions is detected the user is taken straight to AssApp. In case of a **screenshot** the user can edit the image through the small window that appears in the bottom left corner of the screen. It is also possible to edit the photo in the Gallery and return back to AssApp. When finished just tap send and your screenshot or records appears in [Ass on the web](https://ass-ee.firebaseapp.com/)
+To use Ass just **take a screenshot** or **stop a video inside** the tested application. 
+After one of these actions is detected the user is taken straight to ASS App. In case of a **screenshot** the user can edit the image through the small window that appears in the bottom left corner of the screen. It is also possible to edit the photo in the Gallery and return back to ASSApp. When finished just tap send and your screenshot or records appears on the specified backend.
 
