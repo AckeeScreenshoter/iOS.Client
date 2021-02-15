@@ -1,18 +1,11 @@
-require 'ACKFastlane'
-
-import(ACKFastlane.fastfilePath)
-
-CONFIGURATIONS = {
-    "Debug" => "development",
-    "Release" => "enterprise",
-}
-
-
-INHOUSE_APPLE_ID = "unicorn@ackee.cz"
-PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
-PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
-
 ENV["XCODE_VERSION"] = "~> 12.0"
+ENV["ARCHIVE_PATH"] = "./outputs/Archive.xcarchive"
+ENV["ACK_ENTERPRISE_WILDCARD"] = "cz.ackee.enterprise.*"
+ENV["ACK_INHOUSE_MATCH_GIT"] = "git@gitlab.ack.ee:Ackee/ios-inhouse-certificates.git"
+ENV["MATCH_GIT_URL"] = ENV["ACK_INHOUSE_MATCH_GIT"]
+ENV["MATCH_DEFAULT_TEAM_ID"] = "PXDF48X6VX"
+
+USE_WILDCARD = false
 
 def resources_directory
 	return "AssApp/Resources"
@@ -28,21 +21,52 @@ def provisioning_mapping
 	}
 end
 
-override_lane :beta do |options|
+def git_user_email
+  return `git config user.email`.strip
+end
+
+lane :provisioning do |options|
+  CONFIGURATION = options[:configuration] || "Release"
+  READ_ONLY = options[:readonly] == nil ? true : options[:readonly]
+  USERNAME = options[:username] == nil ? git_user_email : options[:username]
+  PRODUCT_BUNDLE_IDENTIFIER = "cz.ackee.enterprise.ass"
+  DEVELOPMENT_TEAM = "PXDF48X6VX"
+
+  type = "enterprise"
+
+  provisioning_match(
+    configuration: CONFIGURATION,
+    type: type,
+    use_wildcard: USE_WILDCARD,
+    app_identifier: PRODUCT_BUNDLE_IDENTIFIER,
+    username: USERNAME,
+    team_id: DEVELOPMENT_TEAM,
+    readonly: READ_ONLY,
+  )
+end
+
+
+lane :beta do |options|
   SCHEME = "AssApp"
   CONFIGURATION = "Release"
   TARGET_RESOURCES = assets_directory
   
-  if is_ci
-    provisioning configuration: CONFIGURATION
-  else
-    UI.message("Running locally, run provisioning manually if needed")
-  end
-  
-  build(export_options: {
-    method: CONFIGURATIONS[CONFIGURATION],
+  archive(export_options: {
+    method: "enterprise",
     provisioningProfiles: provisioning_mapping,
   })
 
-  UI.important "beta lane does not upload the build itself, jenkins does it on CI and you have to do it manually if you need it"
+  UI.important "beta lane does not upload the build itself, you have to do it manually if you need it"
+end
+
+desc "Wrapper around gym that handles cleaning xcarchive before the build"
+private_lane :archive do |options|
+  sh "rm -rf ../#{ENV['ARCHIVE_PATH']}"
+  gym(
+      scheme: SCHEME,
+      configuration: CONFIGURATION,
+      clean: true,
+      archive_path: ENV["ARCHIVE_PATH"],
+      export_options: options[:export_options]
+  )
 end
