@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'fastlane', '~> 2.130'
+gem 'fastlane', '~> 2.144'
 gem "xcode-install", '~> 2.6'
 gem "cocoapods", '~> 1.7'
 

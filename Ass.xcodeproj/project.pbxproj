@@ -657,7 +657,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "RUN_SCRIPT_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/run\"\nUPLOAD_DSYM_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/upload-symbols\"\nRUN_SCRIPT_DST_DIR=\"$PROJECT_DIR/Derived\"\nRUN_SCRIPT_DST=\"$RUN_SCRIPT_DST_DIR/run\"\nUPLOAD_DSYM_DST=\"$RUN_SCRIPT_DST_DIR/upload-symbols\"\n\nif [ -f \"$RUN_SCRIPT_DST\" ]; then\n    \"$RUN_SCRIPT_DST\"\nelse \n    cd \"$RUN_SCRIPT_DST_DIR\"\n    curl -O \"$RUN_SCRIPT_URL\"\n    curl -O \"$UPLOAD_DSYM_URL\"\n    cd \"-\"\n    chmod +x \"$RUN_SCRIPT_DST\" \n    chmod +x \"$UPLOAD_DSYM_DST\"\n    \"$RUN_SCRIPT_DST\"\nfi\n";
+			shellScript = "RUN_SCRIPT_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/run\"\nUPLOAD_DSYM_URL=\"https://raw.githubusercontent.com/firebase/firebase-ios-sdk/master/Crashlytics/upload-symbols\"\nRUN_SCRIPT_DST_DIR=\"$PROJECT_DIR/Derived\"\nRUN_SCRIPT_DST=\"$RUN_SCRIPT_DST_DIR/run\"\nUPLOAD_DSYM_DST=\"$RUN_SCRIPT_DST_DIR/upload-symbols\"\n\n[[ -d \"$RUN_SCRIPT_DST_DIR\" ]] || mkdir \"$RUN_SCRIPT_DST_DIR\"\n\nif [ -f \"$RUN_SCRIPT_DST\" ]; then\n    \"$RUN_SCRIPT_DST\"\nelse \n    cd \"$RUN_SCRIPT_DST_DIR\"\n    curl -O \"$RUN_SCRIPT_URL\"\n    curl -O \"$UPLOAD_DSYM_URL\"\n    cd \"-\"\n    chmod +x \"$RUN_SCRIPT_DST\" \n    chmod +x \"$UPLOAD_DSYM_DST\"\n    \"$RUN_SCRIPT_DST\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1002,7 +1002,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cz.ackee.enterprise.ass.dev;
 				PRODUCT_NAME = Ass;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development cz.ackee.enterprise.* 1587466174";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development cz.ackee.enterprise.*";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1027,7 +1027,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cz.ackee.enterprise.ass;
 				PRODUCT_NAME = Ass;
-				PROVISIONING_PROFILE_SPECIFIER = "match InHouse cz.ackee.enterprise.*";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse cz.ackee.enterprise.ass";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

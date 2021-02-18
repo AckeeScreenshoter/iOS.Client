@@ -1,48 +1,35 @@
-require 'ACKFastlane'
-
-import(ACKFastlane.fastfilePath)
-
-CONFIGURATIONS = {
-    "Debug" => "development",
-    "Release" => "enterprise",
-}
-
-
-INHOUSE_APPLE_ID = "unicorn@ackee.cz"
-PRODUCTION_TEAM_ID = "PXDF48X6VX" # string identifier
-PRODUCTION_TEAM_ID2 = "1588142" # number identifier, anyone idea for better name?
-
 ENV["XCODE_VERSION"] = "~> 12.0"
 
-def resources_directory
-	return "AssApp/Resources"
+lane :provisioning do |options|
+  CONFIGURATION = options[:configuration] || UI.select("Select configuration:", ["Debug", "Release"])
+  USERNAME = options[:username] || UI.input("Apple ID username:")
+
+  APP_IDENTIFIER = get_build_settings(key: "PRODUCT_BUNDLE_IDENTIFIER", build_configuration: CONFIGURATION)
+  TYPE = CONFIGURATION == "Debug" ? "development" : "enterprise"
+
+  match(
+    git_url: "git@github.com:AckeeScreenshoter/match-certificates.git",
+    storage_mode: "git",
+    team_id: "PXDF48X6VX",
+    app_identifier: APP_IDENTIFIER,
+    type: TYPE,
+    username: USERNAME
+  )
 end
 
-def assets_directory
-	return "#{resources_directory}/Assets.xcassets"
-end
+lane :beta do |options|
+  ARCHIVE_PATH = "./outputs/Archive.xcarchive"
 
-def provisioning_mapping	
-	return {
-            "cz.ackee.enterprise.ass" => "match InHouse cz.ackee.enterprise.*"
-	}
-end
+  sh "rm -rf ../#{ARCHIVE_PATH}"
 
-override_lane :beta do |options|
-  SCHEME = "AssApp"
-  CONFIGURATION = "Release"
-  TARGET_RESOURCES = assets_directory
-  
-  if is_ci
-    provisioning configuration: CONFIGURATION
-  else
-    UI.message("Running locally, run provisioning manually if needed")
-  end
-  
-  build(export_options: {
-    method: CONFIGURATIONS[CONFIGURATION],
-    provisioningProfiles: provisioning_mapping,
-  })
+  gym(
+    scheme: "ass-app",
+    clean: true,
+    output_directory: ARCHIVE_PATH,
+    export_options: {
+      method: "enterprise"
+    }
+  )
 
-  UI.important "beta lane does not upload the build itself, jenkins does it on CI and you have to do it manually if you need it"
+  UI.important "beta lane does not upload the build itself, you have to do it manually if you need it"
 end
