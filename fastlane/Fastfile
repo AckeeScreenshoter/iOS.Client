@@ -1,72 +1,35 @@
 ENV["XCODE_VERSION"] = "~> 12.0"
-ENV["ARCHIVE_PATH"] = "./outputs/Archive.xcarchive"
-ENV["ACK_ENTERPRISE_WILDCARD"] = "cz.ackee.enterprise.*"
-ENV["ACK_INHOUSE_MATCH_GIT"] = "git@gitlab.ack.ee:Ackee/ios-inhouse-certificates.git"
-ENV["MATCH_GIT_URL"] = ENV["ACK_INHOUSE_MATCH_GIT"]
-ENV["MATCH_DEFAULT_TEAM_ID"] = "PXDF48X6VX"
-
-USE_WILDCARD = false
-
-def resources_directory
-	return "AssApp/Resources"
-end
-
-def assets_directory
-	return "#{resources_directory}/Assets.xcassets"
-end
-
-def provisioning_mapping	
-	return {
-            "cz.ackee.enterprise.ass" => "match InHouse cz.ackee.enterprise.*"
-	}
-end
-
-def git_user_email
-  return `git config user.email`.strip
-end
 
 lane :provisioning do |options|
-  CONFIGURATION = options[:configuration] || "Release"
-  READ_ONLY = options[:readonly] == nil ? true : options[:readonly]
-  USERNAME = options[:username] == nil ? git_user_email : options[:username]
-  PRODUCT_BUNDLE_IDENTIFIER = "cz.ackee.enterprise.ass"
-  DEVELOPMENT_TEAM = "PXDF48X6VX"
+  CONFIGURATION = options[:configuration] || UI.select("Select configuration:", ["Debug", "Release"])
+  USERNAME = options[:username] || UI.input("Apple ID username:")
 
-  type = "enterprise"
+  APP_IDENTIFIER = get_build_settings(key: "PRODUCT_BUNDLE_IDENTIFIER", build_configuration: CONFIGURATION)
+  TYPE = CONFIGURATION == "Debug" ? "development" : "enterprise"
 
-  provisioning_match(
-    configuration: CONFIGURATION,
-    type: type,
-    use_wildcard: USE_WILDCARD,
-    app_identifier: PRODUCT_BUNDLE_IDENTIFIER,
-    username: USERNAME,
-    team_id: DEVELOPMENT_TEAM,
-    readonly: READ_ONLY,
+  match(
+    git_url: "git@github.com:AckeeScreenshoter/match-certificates.git",
+    storage_mode: "git",
+    team_id: "PXDF48X6VX",
+    app_identifier: APP_IDENTIFIER,
+    type: TYPE,
+    username: USERNAME
   )
 end
-
 
 lane :beta do |options|
-  SCHEME = "AssApp"
-  CONFIGURATION = "Release"
-  TARGET_RESOURCES = assets_directory
-  
-  archive(export_options: {
-    method: "enterprise",
-    provisioningProfiles: provisioning_mapping,
-  })
+  ARCHIVE_PATH = "./outputs/Archive.xcarchive"
+
+  sh "rm -rf ../#{ARCHIVE_PATH}"
+
+  gym(
+    scheme: "ass-app",
+    clean: true,
+    output_directory: ARCHIVE_PATH,
+    export_options: {
+      method: "enterprise"
+    }
+  )
 
   UI.important "beta lane does not upload the build itself, you have to do it manually if you need it"
-end
-
-desc "Wrapper around gym that handles cleaning xcarchive before the build"
-private_lane :archive do |options|
-  sh "rm -rf ../#{ENV['ARCHIVE_PATH']}"
-  gym(
-      scheme: SCHEME,
-      configuration: CONFIGURATION,
-      clean: true,
-      archive_path: ENV["ARCHIVE_PATH"],
-      export_options: options[:export_options]
-  )
 end
