@@ -8,6 +8,7 @@
 //  https://github.com/KaneCheshire/ShowTime/blob/main/Sources/ShowTime/ShowTime.swift
 
 import UIKit
+import AssCore
 
 /// ShowTime displays your taps and swipes when you're presenting or demoing.
 /// Change the options to customise ShowTime.
