@@ -7,16 +7,16 @@
         "state": {
           "branch": null,
           "revision": "05d8107f2971a37e6c77245b7c4c6b0a7e97bc99",
-          "version": null
+          "version": "0.20200225.0"
         }
       },
       {
         "package": "ACKategories",
-        "repositoryURL": "https://github.com/AckeeCZ/ACKategories.git",
+        "repositoryURL": "https://github.com/AckeeCZ/ACKategories",
         "state": {
           "branch": null,
-          "revision": "a015ee7262c093524a6e1c1b3d9dfc334a394185",
-          "version": "6.5.0"
+          "revision": "6661df930983be8d9a4d517f13507d012728e8c0",
+          "version": "6.8.1"
         }
       },
       {
@@ -25,16 +25,43 @@
         "state": {
           "branch": null,
           "revision": "7bcafa2660bc58715c39637494550d1ed7cd7229",
-          "version": null
+          "version": "0.0.7"
         }
       },
       {
         "package": "Firebase",
-        "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
+        "repositoryURL": "https://github.com/firebase/firebase-ios-sdk",
         "state": {
-          "branch": "7.0-spm-beta",
-          "revision": "ab758f2ac842b12560354af0526e21d73235d4d3",
-          "version": null
+          "branch": null,
+          "revision": "14dff7e19375288c7e34df8444c85d314f26d7cf",
+          "version": "7.6.0"
+        }
+      },
+      {
+        "package": "GoogleAppMeasurement",
+        "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
+        "state": {
+          "branch": null,
+          "revision": "38205d8e39f806f71b048f93427337c9511c9402",
+          "version": "7.5.1"
+        }
+      },
+      {
+        "package": "GoogleDataTransport",
+        "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
+        "state": {
+          "branch": null,
+          "revision": "2e8a342494d20fcf209b61a45cddc1668b5ccc6d",
+          "version": "8.2.0"
+        }
+      },
+      {
+        "package": "GoogleUtilities",
+        "repositoryURL": "https://github.com/google/GoogleUtilities.git",
+        "state": {
+          "branch": null,
+          "revision": "2c7d33099a3c3da1139bb1e8eb94e46e0dacf075",
+          "version": "7.2.2"
         }
       },
       {
@@ -42,8 +69,8 @@
         "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "5bb2669317ae2183f4cb00c675423af1924f0b46",
-          "version": null
+          "revision": "91b62619e6c83bc5f1b99d9d60fe46b2862d3a5a",
+          "version": "1.28.2"
         }
       },
       {
@@ -61,25 +88,16 @@
         "state": {
           "branch": null,
           "revision": "fa1f25f296a766e5a789c4dacd4798dea798b2c2",
-          "version": null
-        }
-      },
-      {
-        "package": "Lottie",
-        "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "4e5877425dae5c10792fc9d22d53dc6bf6824dc1",
-          "version": "3.1.8"
+          "version": "1.22.1"
         }
       },
       {
         "package": "nanopb",
-        "repositoryURL": "https://github.com/nanopb/nanopb.git",
+        "repositoryURL": "https://github.com/firebase/nanopb.git",
         "state": {
           "branch": null,
-          "revision": "8119dfe5631f2616d11e50ead95448d12e816062",
-          "version": null
+          "revision": "c2d43e59d8ec880ed261366818f0cacc5c8cc2e6",
+          "version": "2.30907.0"
         }
       },
       {
@@ -87,17 +105,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "d8accebc8fa32f57196df191e733f946e955c549",
-          "version": "1.2.11"
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
-        "state": {
-          "branch": null,
-          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
-          "version": "5.0.1"
+          "revision": "afa9a1ace74e116848d4f743599ab83e584ff8cb",
+          "version": "1.2.12"
         }
       }
     ]

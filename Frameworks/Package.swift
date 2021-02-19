@@ -10,13 +10,11 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Ass",
+            name: "ASS",
             targets: ["Ass", "AssCore"]
         ),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Ass",
             dependencies: ["AssCore"],
@@ -25,14 +23,6 @@ let package = Package(
         .target(
             name: "AssCore",
             path: "AssCore"
-        ),
-        .testTarget(
-            name: "AssTests",
-            dependencies: [
-                "AssCore",
-                "Ass"
-            ],
-            path: "AssTests"
         )
     ],
     swiftLanguageVersions: [
