@@ -25,7 +25,8 @@ public let assApp = Target(
         SourceFileGlob(stringLiteral: "\(assAppName)/**")
     ],
     resources: [
-        .glob(pattern: Path("\(assAppName)/Resources/**"))
+        .glob(pattern: Path("\(assAppName)/Resources/**")),
+        .glob(pattern: Path("\(assAppName)/Environment/\(environment())/GoogleService-Info.plist")),
     ],
     actions: [
         TargetAction.crashlytics()
@@ -36,7 +37,9 @@ public let assApp = Target(
             path: .relativeToRoot("Frameworks/" + assCoreName)
         ),
         .package(product: "FirebaseCrashlytics"),
-        .package(product: "ACKategories")
+        .package(product: "ACKategories"),
+        .package(product: "SnapKit"),
+        .package(product: "Lottie")
     ],
     settings: targetSettings
 )
