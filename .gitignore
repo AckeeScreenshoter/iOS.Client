@@ -1,5 +1,4 @@
-Romefile
-Derived/
+*/Settings.bundle/Licenses*
 
 # Created by http://www.gitignore.io
 
@@ -46,50 +45,33 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+*.xcodeproj
+*.xcworkspace
 
 # CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
 Pods/
 
+# Carthage
 Carthage/Build
 Carthage/Checkouts
+Romefile
 
 #Fastlane
-
-# fastlane specific
 fastlane/report.xml
-
-# deliver temporary files
 fastlane/Preview.html
-
-# shared fastfile
-fastlane/.shared
-
-# snapshot generated screenshots
 fastlane/screenshots
-
-# scan temporary files
 fastlane/test_output
-
-#taken screenshots
 screenshots
 
 #build output
 /outputs
 
 #Environment
-Environment/Current
-Environment/.current
-Environment/.environment_preprocess.h
-Environment/Environment.swift
+**/Environment/Current
+**/Environment/.current
+**/Environment/.environment_preprocess.h
+**/Environment/Generated/*
 
-#generated files
-*/Model/Generated/*
-!*/Model/Generated/.gitkeep
-*.xcsettings
+# tuist + crashlytics
+Derived
 
-Derived/*
