@@ -4,7 +4,8 @@
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      runPostActionsOnFailure = "NO">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +15,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "813335F40CBBBDF02947E02E"
+               BlueprintIdentifier = "6FC91BBD8213A878625C54E4"
                BuildableName = "AssApp.app"
                BlueprintName = "AssApp"
-               ReferencedContainer = "container:ASS.xcodeproj">
+               ReferencedContainer = "container:Ass.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4B1F05FA68566B716BCBD2E4"
+               BuildableName = "AssAppTests.xctest"
+               BlueprintName = "AssAppTests"
+               ReferencedContainer = "container:Ass.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -40,17 +55,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      disableMainThreadChecker = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B87B47BA2058C5D83FDD2E32"
+               BlueprintIdentifier = "4B1F05FA68566B716BCBD2E4"
                BuildableName = "AssAppTests.xctest"
                BlueprintName = "AssAppTests"
-               ReferencedContainer = "container:ASS.xcodeproj">
+               ReferencedContainer = "container:Ass.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,10 +83,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "813335F40CBBBDF02947E02E"
+            BlueprintIdentifier = "6FC91BBD8213A878625C54E4"
             BuildableName = "AssApp.app"
             BlueprintName = "AssApp"
-            ReferencedContainer = "container:ASS.xcodeproj">
+            ReferencedContainer = "container:Ass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -86,10 +100,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "813335F40CBBBDF02947E02E"
+            BlueprintIdentifier = "6FC91BBD8213A878625C54E4"
             BuildableName = "AssApp.app"
             BlueprintName = "AssApp"
-            ReferencedContainer = "container:ASS.xcodeproj">
+            ReferencedContainer = "container:Ass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

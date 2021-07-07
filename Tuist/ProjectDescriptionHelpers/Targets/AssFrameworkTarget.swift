@@ -1,9 +1,9 @@
 import ProjectDescription
 
-public let assName = "Ass"
+public let assFrameworkName = "AssFramework"
 
 public let ass = Target(
-    name: assName,
+    name: assFrameworkName,
     platform: .iOS,
     product: .framework,
     bundleId: "cz.ackee.enterprise.ass.framework",
@@ -19,4 +19,4 @@ public let ass = Target(
     settings: Settings()
 )
 
-public let assTests = Target.test(for: assName)
+public let assTests = Target.test(for: assFrameworkName)

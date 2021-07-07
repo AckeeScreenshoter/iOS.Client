@@ -2,7 +2,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 let assProject = Project(
-    name: assName,
+    name: assFrameworkName,
     settings: projectSettings,
     targets: [
         ass,

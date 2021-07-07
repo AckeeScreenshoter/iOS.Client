@@ -13,8 +13,12 @@ public enum CustomInfoPlist {
         let defaultInfoPlist: [String: InfoPlist.Value] = [
             "UIMainStoryboardFile": "",
             "UILaunchStoryboardName": "LaunchScreen",
+            "ITSAppUsesNonExemptEncryption": "NO",
             "CFBundleShortVersionString": "$(ACK_PROJECT_VERSION)",
             "CFBundleDisplayName": "$(ACK_APPNAME)",
+            "UISupportedInterfaceOrientations": [
+                "UIInterfaceOrientationPortrait"
+            ]
         ]
         switch self {
         case let .custom(infoPlist):

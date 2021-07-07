@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ASS.xcodeproj">
+      location = "group:Ass.xcodeproj">
    </FileRef>
    <Group
       location = "group:Frameworks"
