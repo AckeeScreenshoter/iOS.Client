@@ -55,6 +55,7 @@
 		0EF2782A2433D5E300DDE4B7 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E55A741242D157400F7109C /* ScreenshotViewController.swift */; };
 		0EF4E5222563001200D44388 /* ACKategories in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E5212563001200D44388 /* ACKategories */; };
 		0EF4E5242563001200D44388 /* ACKategoriesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4E5232563001200D44388 /* ACKategoriesCore */; };
+		6943853C270FAA0D00C88FA5 /* AssCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4FC0D22559FF9F0026B55F /* AssCore.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,13 @@
 			remoteInfo = Ass;
 		};
 		0E4FC15D255A067A0026B55F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E55A732242D157400F7109C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E4FC0D12559FF9F0026B55F;
+			remoteInfo = AssCore;
+		};
+		6943853E270FAA0D00C88FA5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0E55A732242D157400F7109C /* Project object */;
 			proxyType = 1;
@@ -196,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6943853C270FAA0D00C88FA5 /* AssCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +534,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6943853F270FAA0D00C88FA5 /* PBXTargetDependency */,
 			);
 			name = Ass;
 			productName = Ass;
@@ -748,6 +758,12 @@
 			platformFilter = ios;
 			target = 0E4FC0D12559FF9F0026B55F /* AssCore */;
 			targetProxy = 0E4FC15D255A067A0026B55F /* PBXContainerItemProxy */;
+		};
+		6943853F270FAA0D00C88FA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 0E4FC0D12559FF9F0026B55F /* AssCore */;
+			targetProxy = 6943853E270FAA0D00C88FA5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1148,8 +1164,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				branch = "7.0-spm-beta";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
 			};
 		};
 		0E3ADE0224AA3FEE0009DAD8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
