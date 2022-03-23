@@ -6,7 +6,10 @@
 //
 
 import UIKit
+
+#if !COCOAPODS
 import AssCore
+#endif
 
 public class Ass: NSObject {
     
